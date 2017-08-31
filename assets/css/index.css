@@ -1,0 +1,25 @@
+/* Navigation */
+nav ul {
+  padding: 0;
+  list-style-type: none;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li .active {
+  color: orange;
+}
+
+/* Main controls */
+.page {
+  display: none;
+}
+.page:target {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+.page {
+  margin: 20px 10px;
+}

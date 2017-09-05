@@ -15,11 +15,16 @@ nav ul li .active {
   display: none;
 }
 .page:target {
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  flex-wrap: wrap;
+  display: block;
 }
 .page {
   margin: 20px 10px;
+}
+
+/* Photos */
+.photo-list {
+  list-style: none;
+}
+.album {
+  width: 25% !important;
 }

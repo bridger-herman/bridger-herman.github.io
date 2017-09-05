@@ -1,6 +1,6 @@
 function init() {
   // Set up navigation
-  let defaultPage = 'home'
+  let defaultPage = 'photos'
   if (window.location.hash !== '#' + defaultPage) {
     window.location.hash = '#' + defaultPage;
   }
@@ -9,7 +9,6 @@ function init() {
     $('nav ul li a').removeClass('active');
     $('nav ul li a[href="' + window.location.hash + '"]').addClass('active');
   });
-
 }
 
 document.onload = init();

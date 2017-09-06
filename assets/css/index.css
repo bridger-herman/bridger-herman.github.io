@@ -17,7 +17,9 @@ body {
 
 /* Header */
 header {
-  margin: 20px;
+  /*background-image: url('../img/header.jpg');
+  background-size: contain;*/
+  padding: 20px;
 }
 header h1 {
   margin: 0;
@@ -36,8 +38,10 @@ nav ul {
 }
 nav ul li {
   display: inline-block;
-  padding: 20px;
+  width: 15%;
+  padding: 20px 40px;
   font-size: 20pt;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
 }
 nav ul li a {
   color: #21262D;
@@ -68,4 +72,10 @@ nav ul li.active {
 }
 .album {
   width: 25% !important;
+}
+.test {
+  width: 25%;
+  height: 45px;
+  background-color: #0F0;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
 }

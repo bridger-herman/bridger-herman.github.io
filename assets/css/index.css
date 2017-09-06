@@ -37,16 +37,19 @@ nav ul {
   margin: inherit;
 }
 nav ul li {
-  display: inline-block;
-  width: 15%;
-  padding: 20px 40px;
-  font-size: 20pt;
   clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  display: inline-block;
+  font-size: 20pt;
+  padding: 0 3%;
+  width: 15%;
+  border-bottom: 5px solid #A6F075;
 }
 nav ul li a {
   color: #21262D;
-  text-decoration: none;
+  display: block;
   font-weight: bold;
+  text-decoration: none;
+  padding: 20px 0;
 }
 nav ul li:hover {
   background-color: #F075A6;

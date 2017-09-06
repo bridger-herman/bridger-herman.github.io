@@ -1,13 +1,46 @@
-/* Navigation */
-nav ul {
+/* COLORS
+ * #75A6F0
+ * #A6F075
+ * #F075A6
+ * #21262D
+ * #EFEEEE
+*/
+
+/* Main Style */
+body {
+  background-color: #21262D;
+  color: #EFEEEE;
+  font-size: 14pt;
   padding: 0;
+  margin: 0;
+}
+
+/* Navigation */
+nav {
+background-color: #75A6F0;
+padding: 0;
+margin: 0;
+}
+nav ul {
   list-style-type: none;
+  padding: inherit;
+  margin: inherit;
 }
 nav ul li {
   display: inline-block;
+  padding: 20px;
+  font-size: 20pt;
 }
-nav ul li .active {
-  color: orange;
+nav ul li a {
+  color: #21262D;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav ul li:hover {
+  background-color: #F075A6;
+}
+nav ul li.active {
+  background-color: #A6F075;
 }
 
 /* Main controls */

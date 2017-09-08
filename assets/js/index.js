@@ -1,6 +1,6 @@
 function init() {
   // Set up navigation
-  let defaultPage = 'photos'
+  let defaultPage = 'projects'
   if (window.location.hash !== '#' + defaultPage) {
     window.location.hash = '#' + defaultPage;
   }

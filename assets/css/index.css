@@ -1,5 +1,6 @@
 /* COLORS
  * #75A6F0
+ * #2D3F5C
  * #A6F075
  * #F075A6
  * #21262D
@@ -69,16 +70,16 @@ nav ul li.active {
   margin: 20px 10px;
 }
 
-/* Photos */
-.photo-list {
+/* Photos/projects */
+.tiled-list {
   list-style: none;
+}
+.tiled-list li {
+  border-bottom-style: solid;
+  padding: 1% 6%;
+  background-color: #2D3F5C;
+  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
 }
 .album {
   width: 25% !important;
-}
-.test {
-  width: 25%;
-  height: 45px;
-  background-color: #0F0;
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
 }

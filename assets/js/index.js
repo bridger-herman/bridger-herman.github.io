@@ -1,6 +1,6 @@
 function init() {
   // Set up navigation
-  let defaultPage = 'projects'
+  let defaultPage = 'about'
   if (window.location.hash !== '#' + defaultPage) {
     window.location.hash = '#' + defaultPage;
   }
@@ -9,6 +9,8 @@ function init() {
     $('nav ul li a').parent().removeClass('active');
     $('nav ul li a[href="' + window.location.hash + '"]').parent().addClass('active');
   });
+
+  // Set up header items
 }
 
 document.onload = init();

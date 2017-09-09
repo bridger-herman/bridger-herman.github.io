@@ -15,6 +15,9 @@ body {
   padding: 0;
   margin: 0;
 }
+a {
+  color: #EFEEEE;
+}
 
 /* Header */
 header {
@@ -75,11 +78,10 @@ nav ul li.active {
   list-style: none;
 }
 .tiled-list li {
-  border-bottom-style: solid;
+  display: inline-block;
+  border-bottom: 5px solid #EFEEEE;
   padding: 1% 6%;
   background-color: #2D3F5C;
+  width: 35%;
   clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
-}
-.album {
-  width: 25% !important;
 }

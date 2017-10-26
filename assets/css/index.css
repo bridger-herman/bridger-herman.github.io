@@ -1,3 +1,7 @@
+@font-face {
+  font-family: Garamond;
+  src: url('../fonts/Garamond.ttf');
+}
 /* COLORS
  * #75A6F0
  * #2D3F5C
@@ -12,6 +16,7 @@ body {
   background-color: #21262D;
   color: #EFEEEE;
   font-size: 14pt;
+  font-family: Garamond;
   padding: 0;
   margin: 0;
 }
@@ -86,12 +91,17 @@ nav ul li.active {
 /* Main controls */
 .page {
   display: none;
+  flex-direction: column;
 }
 .page:target {
   display: flex;
 }
 .page {
   margin: 20px 10px;
+}
+.page img {
+  width: 75%;
+  align-self: center;
 }
 
 /* Photos/projects */
@@ -111,16 +121,11 @@ nav ul li.active {
   width: 100%;
 }
 
-.ragged {
-}
-.left {
-  align-self: flex-start;
-}
 .right {
   align-self: flex-end;
 }
 .fiftypercent {
-  width: 49%;
+  width: 50%;
 }
 
 @keyframes cursorBlink {

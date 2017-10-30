@@ -110,7 +110,10 @@ nav ul li.active {
   display: flex;
 }
 .tiled-list li {
-  display: inline-block;
+  /*display: inline-block;*/
+  /*flex-wrap: wrap;
+  flex-grow: 1;*/
+  /*box-sizing: border-box;*/
   border-bottom: 5px solid #EFEEEE;
   padding: 1% 6%;
   margin: 1%;

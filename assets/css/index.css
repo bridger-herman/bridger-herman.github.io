@@ -53,6 +53,17 @@ header .shell-cursor {
   color: #21262D;
   animation: cursorBlink 1.5s step-start 0s infinite;
 }
+header a {
+  float: right;
+}
+header a div {
+  background-image: url('../img/github.svg');
+  background-size: contain;
+  transition: 0.2s
+}
+header a div:hover{
+  background-image: url('../img/github_hover.svg');
+}
 
 /* Navigation */
 nav {
@@ -72,7 +83,7 @@ nav ul li {
   padding: 0 3%;
   width: 15%;
   border-bottom: 5px solid #A6F075;
-  transition: 0.1s;
+  transition: 0.2s;
 }
 nav ul li a {
   color: #21262D;
@@ -108,6 +119,7 @@ nav ul li.active {
 .tiled-list {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
 }
 .tiled-list li {
   /*display: inline-block;*/

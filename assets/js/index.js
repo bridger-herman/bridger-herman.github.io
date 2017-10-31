@@ -14,6 +14,10 @@ function init() {
   );
   // Set up header items
   // TODO (Lost all functionality when I apparently neglected to push)
+  let headerImg = $('.header-img');
+  let header = $('header');
+  headerImg.height(header.height());
+  headerImg.width(header.height())
 }
 
 document.onload = init();

@@ -13,7 +13,7 @@ function init() {
     }
   );
   // Set up header items
-  // TODO (Lost all functionality when I apparently neglected to push)
+  setupTTY();
   let headerImg = $('.header-img');
   let header = $('header');
   headerImg.height(header.height());

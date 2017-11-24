@@ -34,7 +34,7 @@ header .shell-line {
   clip-path: polygon(0 0, calc(100% - 1em) 0, 100% 50%,
       calc(100% - 1em) 100%, 0 100%);
   padding: 0.2em 1.5em 0.2em 0.5em;
-  display: inline-block;
+  display: inherit;
   background-color: #75A6F0;
 }
 header .shell-branch {
@@ -42,27 +42,33 @@ header .shell-branch {
       calc(100% - 1em) 100%, 0 100%, 1em 50%);
   transform: translate(-1.5em, 0);
   padding: 0.2em 1.5em 0.2em 1.5em;
-  display: inline-block;
+  display: inherit;
   background-color: #A6F075;
 }
 header .shell-cursor {
   padding: 0.1em 0.1em;
   transform: translate(-1.5em, 0);
-  display: inline-block;
+  display: inherit;
   background-color: #A6F075;
   color: #21262D;
   animation: cursorBlink 1.5s step-start 0s infinite;
 }
-header a {
+
+.header-img {
+  display: inline-block;
   float: right;
 }
-header a div {
+.header-img {
   background-image: url('../img/github.svg');
   background-size: contain;
   transition: 0.2s
 }
-header a div:hover{
+.header-img:hover{
   background-image: url('../img/github_hover.svg');
+}
+
+.tty {
+  display: inline-block;
 }
 
 /* Navigation */

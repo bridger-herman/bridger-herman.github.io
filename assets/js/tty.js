@@ -45,8 +45,10 @@ function TTYObject(tty) {
     }
     else if (key === 'Backspace') {
       $(charList).find(':nth-child(' + (self.currentIndex - 1) + ')').remove();
-      self.maxIndex--;
-      self.currentIndex--;
+      if (self.currentIndex > self.minIndex) {
+        self.maxIndex--;
+        self.currentIndex--;
+      }
     }
     else {
       console.log(key);

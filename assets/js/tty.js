@@ -19,9 +19,10 @@ function TTYObject(tty) {
     let target = $(event.target);
     if (IS_TTY_KEY.test(key) && key.length === 1) {
       key = key.replace(' ', '&nbsp;'); // Hacky way to do this...
-      $(target).find('.cursor').remove();
-      $(target).append('<div class="char">' + key + '</div>');
-      $(target).append(getCursor());
+      let charList = $(target).find('.char-list');
+      $(charList).find('.cursor').remove();
+      $(charList).append('<div class="char">' + key + '</div>');
+      $(charList).append(getCursor());
       self.currentIndex++;
     }
     else if (key.startsWith('Arrow')) {
@@ -29,7 +30,7 @@ function TTYObject(tty) {
         case 'Left':
           self.currentIndex--;
           $(target).find('.cursor').remove();
-          let thing = $(target + ':nth-child(' + self.currentIndex + ')')
+          let thing = $(target).find(':nth-child(' + self.currentIndex + ')');
           console.log(thing);
           break;
         case 'Right':
@@ -52,5 +53,5 @@ function getCursor() {
 function getPrompt(currentLocation='#about', currentBranch='master') {
   let locationPrompt = '<div class="shell-line">/bridger-herman.github.io/' + currentLocation + '</div>';
   let branch = '<div class="shell-branch">' + currentBranch + '</div>';
-  return locationPrompt + branch + getCursor();
+  return locationPrompt + branch + '<ul class="char-list">' + getCursor() + '</ul>';
 }

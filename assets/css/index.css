@@ -50,8 +50,8 @@ header {
 }
 .tty .cursor {
   display: inline-block;
-  background-color: #A6F075;
-  color: #21262D;
+  background-color: #21262D;
+  color: #EFEEEE;
   animation: cursorBlink 1.5s step-start 0s infinite;
 }
 .tty .empty {
@@ -161,7 +161,7 @@ nav ul li.active {
 
 @keyframes cursorBlink {
   50% {
-    background-color: #21262D;
-    color: #EFEEEE;
+    background-color: #A6F075;
+    color: #21262D;
   }
 }

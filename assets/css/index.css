@@ -48,9 +48,9 @@ header {
   display: inline-block;
   background-color: #A6F075;
 }
-.tty .shell-cursor {
+.tty .cursor {
   padding: 0.1em 0.1em;
-  transform: translate(-1.5em, 0);
+  /*transform: translate(-1.5em, 0);*/
   display: inline-block;
   background-color: #A6F075;
   color: #21262D;

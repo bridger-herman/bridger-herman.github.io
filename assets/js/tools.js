@@ -13,14 +13,34 @@ function partial(fn /*, args...*/) {
 
 // Source: Benjamin Gudehus
 // https://stackoverflow.com/questions/3562493/jquery-insert-div-as-certain-index
-$.fn.insertAt = function(index, element) {
-  var lastIndex = this.children().size();
-  if (index < 0) {
-    index = Math.max(0, lastIndex + 1 + index);
+// jQuery.fn.insertAt = function(index, element) {
+//   var lastIndex = this.children().size();
+//   if (index < 0) {
+//     index = Math.max(0, lastIndex + 1 + index);
+//   }
+//   this.append(element);
+//   if (index < lastIndex) {
+//     this.children().eq(index).before(this.children().last());
+//   }
+//   return this;
+// }
+
+// Source: Andy Gaskell
+// https://stackoverflow.com/questions/3562493/jquery-insert-div-as-certain-index
+function insertAtIndex(i, char) {
+    if (i === 0) {
+     $(".char-list").prepend("<div>okay things</div>");
+     return;
+    }
+    $(".char-list > div:nth-child(" + (i) + ")").after("<div>great things</div>");
+}
+
+jQuery.fn.insertAt = function(index, element) {
+  if (index === 0) {
+    this.prepend(element);
   }
-  this.append(element);
-  if (index < lastIndex) {
-    this.children().eq(index).before(this.children().last());
+  else {
+    this.find(':nth-child(' + (index) + ')').after(element);
   }
   return this;
 }

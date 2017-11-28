@@ -22,11 +22,12 @@ function TTYObject(tty) {
     let charList = $(target).find('.char-list');
     if (IS_TTY_KEY.test(key) && key.length === 1) {
       key = key.replace(' ', '&nbsp;'); // Hacky way to do this...
-      $(charList).find('.cursor').remove();
-      $(charList).append('<div class="char">' + key + '</div>');
-      $(charList).append(getCursor());
+      $(charList).find('.cursor').removeClass('cursor');
+      $(charList).insertAt(self.currentIndex - 1, '<div class="char">' + key + '</div>');
       self.currentIndex++;
       self.maxIndex++;
+      let currentChar = $(charList).find(':nth-child(' + self.currentIndex + ')');
+      currentChar.addClass('cursor');
     }
     else if (key.startsWith('Arrow')) {
       switch (key.slice(5)) {
@@ -54,8 +55,8 @@ function TTYObject(tty) {
   $(this.tty).on('keydown', partial(this.processKeyStroke, this));
 }
 
-function getCursor() {
-  return '<div class="cursor empty">&nbsp;</div>'
+function getCursor(classes='cursor empty') {
+  return '<div class="' + classes + '">&nbsp;</div>'
 }
 
 function getPrompt(currentLocation='#about', currentBranch='master') {

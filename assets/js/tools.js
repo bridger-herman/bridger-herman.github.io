@@ -10,3 +10,17 @@ function partial(fn /*, args...*/) {
     return fn.apply(this, args.concat(slice.call(arguments, 0)));
   };
 }
+
+// Source: Benjamin Gudehus
+// https://stackoverflow.com/questions/3562493/jquery-insert-div-as-certain-index
+$.fn.insertAt = function(index, element) {
+  var lastIndex = this.children().size();
+  if (index < 0) {
+    index = Math.max(0, lastIndex + 1 + index);
+  }
+  this.append(element);
+  if (index < lastIndex) {
+    this.children().eq(index).before(this.children().last());
+  }
+  return this;
+}

@@ -11,7 +11,9 @@ function setupTTY() {
 }
 
 function TTYObject(tty) {
-  this.currentIndex = 0;
+  this.currentIndex = 1;
+  this.minIndex = 1;
+  this.maxIndex = 1;
   this.tty = tty;
   // Parially apply this to get actual self (not div object)
   this.processKeyStroke = function(self, event) {
@@ -24,19 +26,25 @@ function TTYObject(tty) {
       $(charList).append('<div class="char">' + key + '</div>');
       $(charList).append(getCursor());
       self.currentIndex++;
+      self.maxIndex++;
     }
     else if (key.startsWith('Arrow')) {
-      $(charList).find('.cursor').removeClass('cursor');
-      let currentChar = $(charList).find(':nth-child(' + self.currentIndex + ')');
       switch (key.slice(5)) {
         case 'Left':
-          self.currentIndex--;
+          if (self.currentIndex > self.minIndex) {
+            self.currentIndex--;
+          }
           break;
         case 'Right':
+          if (self.currentIndex < self.maxIndex) {
+            self.currentIndex++;
+          }
           break;
         default:
-          console.log('defaulting');
+          break;
       }
+      $(charList).find('.cursor').removeClass('cursor');
+      let currentChar = $(charList).find(':nth-child(' + self.currentIndex + ')');
       currentChar.addClass('cursor')
     }
     else {

@@ -17,27 +17,27 @@ function TTYObject(tty) {
   this.processKeyStroke = function(self, event) {
     let key = event.key;
     let target = $(event.target);
+    let charList = $(target).find('.char-list');
     if (IS_TTY_KEY.test(key) && key.length === 1) {
       key = key.replace(' ', '&nbsp;'); // Hacky way to do this...
-      let charList = $(target).find('.char-list');
       $(charList).find('.cursor').remove();
       $(charList).append('<div class="char">' + key + '</div>');
       $(charList).append(getCursor());
       self.currentIndex++;
     }
     else if (key.startsWith('Arrow')) {
+      $(charList).find('.cursor').removeClass('cursor');
+      let currentChar = $(charList).find(':nth-child(' + self.currentIndex + ')');
       switch (key.slice(5)) {
         case 'Left':
           self.currentIndex--;
-          $(target).find('.cursor').remove();
-          let thing = $(target).find(':nth-child(' + self.currentIndex + ')');
-          console.log(thing);
           break;
         case 'Right':
           break;
         default:
           console.log('defaulting');
       }
+      currentChar.addClass('cursor')
     }
     else {
       console.log(key);
@@ -47,7 +47,7 @@ function TTYObject(tty) {
 }
 
 function getCursor() {
-  return '<div class="cursor">&nbsp;</div>'
+  return '<div class="cursor empty">&nbsp;</div>'
 }
 
 function getPrompt(currentLocation='#about', currentBranch='master') {

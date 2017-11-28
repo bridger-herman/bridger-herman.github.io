@@ -49,12 +49,13 @@ header {
   background-color: #A6F075;
 }
 .tty .cursor {
-  padding: 0.1em 0.1em;
-  /*transform: translate(-1.5em, 0);*/
   display: inline-block;
   background-color: #A6F075;
   color: #21262D;
   animation: cursorBlink 1.5s step-start 0s infinite;
+}
+.tty .empty {
+  display: inline-block;
 }
 .tty .char-list {
   display: inline-block;

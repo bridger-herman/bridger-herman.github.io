@@ -20,14 +20,12 @@ function TTYObject(tty) {
     let key = event.key;
     let target = $(event.target);
     let charList = $(target).find('.char-list');
+    $(charList).find('.cursor').removeClass('cursor');
     if (IS_TTY_KEY.test(key) && key.length === 1) {
       key = key.replace(' ', '&nbsp;'); // Hacky way to do this...
-      $(charList).find('.cursor').removeClass('cursor');
-      $(charList).insertAt(self.currentIndex - 1, '<div class="char">' + key + '</div>');
+      $(charList).insertAt(self.currentIndex - 1, '<div class="char">' + (key) + '</div>');
       self.currentIndex++;
       self.maxIndex++;
-      let currentChar = $(charList).find(':nth-child(' + self.currentIndex + ')');
-      currentChar.addClass('cursor');
     }
     else if (key.startsWith('Arrow')) {
       switch (key.slice(5)) {
@@ -44,13 +42,16 @@ function TTYObject(tty) {
         default:
           break;
       }
-      $(charList).find('.cursor').removeClass('cursor');
-      let currentChar = $(charList).find(':nth-child(' + self.currentIndex + ')');
-      currentChar.addClass('cursor')
+    }
+    else if (key === 'Backspace') {
+      $(charList).find(':nth-child(' + (self.currentIndex - 1) + ')').remove();
+      self.maxIndex--;
+      self.currentIndex--;
     }
     else {
       console.log(key);
     }
+    $(charList).find(':nth-child(' + (self.currentIndex) + ')').addClass('cursor');
   };
   $(this.tty).on('keydown', partial(this.processKeyStroke, this));
 }

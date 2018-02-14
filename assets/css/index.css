@@ -28,6 +28,7 @@ a {
 header {
   padding: 20px;
 }
+/* TTY inspired by ZSH Agnoster theme */
 .tty {
   font-family: monospace;
   color: #21262D;
@@ -82,9 +83,9 @@ header {
 
 /* Navigation */
 nav {
-background-color: #75A6F0;
-padding: 0;
-margin: 0;
+  background-color: #75A6F0;
+  padding: 0;
+  margin: 0;
 }
 nav ul {
   list-style-type: none;

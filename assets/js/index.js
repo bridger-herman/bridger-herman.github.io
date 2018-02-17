@@ -12,12 +12,16 @@ function init() {
       window.location.hash + '"]').parent().addClass('active');
     }
   );
+
   // Set up header items
   setupTTY();
   let headerImg = $('.header-img');
   let header = $('header');
   headerImg.height(header.height());
-  headerImg.width(header.height())
+  headerImg.width(header.height());
+
+  // Load page content from files
+  loadPages();
 }
 
 document.onload = init();

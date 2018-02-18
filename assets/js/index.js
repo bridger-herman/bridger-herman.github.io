@@ -10,6 +10,7 @@ function init() {
     'hashchange', function() {
       $('nav ul li a').parent().removeClass('active'); $('nav ul li a[href="' +
       window.location.hash + '"]').parent().addClass('active');
+      setupTTY();
     }
   );
 

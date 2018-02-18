@@ -1,0 +1,39 @@
+/* TTY inspired by ZSH Agnoster theme */
+.tty {
+  font-family: monospace;
+  color: #21262D;
+  display: inline-block;
+}
+.tty .shell-line {
+  clip-path: polygon(0 0, calc(100% - 1em) 0, 100% 50%,
+      calc(100% - 1em) 100%, 0 100%);
+  padding: 0.2em 1.5em 0.2em 0.5em;
+  display: inline-block;
+  background-color: #75A6F0;
+}
+.tty .shell-branch {
+  clip-path: polygon(0 0, calc(100% - 1em) 0, 100% 50%,
+      calc(100% - 1em) 100%, 0 100%, 1em 50%);
+  transform: translate(-1.5em, 0);
+  padding: 0.2em 1.5em 0.2em 1.5em;
+  display: inline-block;
+  background-color: #A6F075;
+}
+.tty .cursor {
+  display: inline-block;
+  background-color: #21262D;
+  color: #EFEEEE;
+  animation: cursorBlink 1.5s step-start 0s infinite;
+}
+.tty .empty {
+  display: inline-block;
+}
+.tty .char-list {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+.tty .char {
+  color: #EFEEEE;
+  display: inline-block;
+}

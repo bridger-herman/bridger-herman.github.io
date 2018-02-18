@@ -23,7 +23,7 @@
 body {
   background-color: #21262D;
   color: #EFEEEE;
-  font-size: 12pt;
+  font-size: 13pt;
   font-family: Encode;
   padding: 0;
   margin: 0;
@@ -39,20 +39,27 @@ strong {
 }
 
 /* Main controls */
-.page {
-  display: none;
-  flex-direction: column;
-}
 .page:target {
   display: flex;
 }
 .page {
   margin: 20px 10px;
+  display: none;
+  flex-direction: column;
 }
 .page img {
   width: 75%;
   align-self: center;
 }
+
+/*.page::before {*/
+  /*display: block;*/
+  /*content: "&nbsp;"*/
+  /*margin-top: -200px;*/
+  /*height: 200px;*/
+  /*visibility: hidden;*/
+  /*pointer-events: none;*/
+/*}*/
 
 /* Content pages */
 article {

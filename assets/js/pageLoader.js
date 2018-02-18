@@ -8,7 +8,6 @@ function loadPages() {
       return;
     }
     let htmlName = './' + $(pageDivs[i]).attr('id') + '.html';
-    console.log(htmlName);
     var xhr= new XMLHttpRequest();
     xhr.open('GET', GH_URL + htmlName, true);
     xhr.onreadystatechange= function() {

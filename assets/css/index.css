@@ -1,6 +1,14 @@
 @font-face {
-  font-family: Garamond;
-  src: url('../fonts/Garamond.ttf');
+  font-family: GaramondMed;
+  src: url('../fonts/GaramondMed.ttf');
+}
+@font-face {
+  font-family: Encode;
+  src: url('../fonts/EncodeSansNarrow-300-Light.ttf');
+}
+@font-face {
+  font-family: EncodeBold;
+  src: url('../fonts/EncodeSansNarrow-700-Bold.ttf');
 }
 /* COLORS
  * #75A6F0
@@ -15,13 +23,21 @@
 body {
   background-color: #21262D;
   color: #EFEEEE;
-  font-size: 14pt;
-  font-family: Garamond;
+  font-size: 12pt;
+  font-family: Encode;
+  letter-spacing: 2px;
   padding: 0;
   margin: 0;
 }
 a {
   color: #EFEEEE;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: GaramondMed;
+  letter-spacing: 1px;
+}
+strong {
+  font-family: EncodeBold;
 }
 
 /* Header */
@@ -83,6 +99,8 @@ header {
 
 /* Navigation */
 nav {
+  font-family: GaramondMed;
+  letter-spacing: 1px;
   background-color: #75A6F0;
   padding: 0;
   margin: 0;
@@ -131,6 +149,14 @@ nav ul li.active {
   align-self: center;
 }
 
+article {
+  margin: 0 40px;
+}
+article h3 {
+  margin-bottom: 0;
+}
+
+
 /* Photos/projects */
 .tiled-list {
   list-style: none;
@@ -138,10 +164,6 @@ nav ul li.active {
   flex-wrap: wrap;
 }
 .tiled-list li {
-  /*display: inline-block;*/
-  /*flex-wrap: wrap;
-  flex-grow: 1;*/
-  /*box-sizing: border-box;*/
   border-bottom: 5px solid #EFEEEE;
   padding: 1% 6%;
   margin: 1%;

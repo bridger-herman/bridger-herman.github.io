@@ -1,4 +1,5 @@
 function init() {
+  console.log('set things up');
   // Set up header items
   let ttyObjs = setupTTY();
   let headerImg = $('.header-img');

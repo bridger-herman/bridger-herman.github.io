@@ -10,6 +10,10 @@ function setupTTY() {
   $(ttys).html(getPrompt(window.location.hash));
 }
 
+function evalExpr(expr) {
+
+}
+
 function TTYObject(tty) {
   this.currentIndex = 1;
   this.minIndex = 1;
@@ -49,6 +53,13 @@ function TTYObject(tty) {
         self.maxIndex--;
         self.currentIndex--;
       }
+    }
+    else if (key === 'Enter') {
+      self.currentIndex = 1;
+      self.minIndex = 1;
+      self.maxIndex = 1;
+      charList.empty();
+      charList.append(getCursor());
     }
     else {
       console.log(key);

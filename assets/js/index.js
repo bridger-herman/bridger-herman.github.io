@@ -23,6 +23,13 @@ function init() {
 
   // Load page content from files
   loadPages();
+
+  // https://stackoverflow.com/a/18525368
+  window.onkeydown = function(e) {
+    if (e.keyCode == 32 && $(e.target).hasClass('tty')) {
+      e.preventDefault();
+    }
+  };
 }
 
 document.onload = init();

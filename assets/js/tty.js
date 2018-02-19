@@ -8,6 +8,7 @@ function setupTTY() {
     ttyObjs.push(new TTYObject(ttys[i]));
   });
   $(ttys).html(getPrompt(window.location.hash));
+  return ttyObjs;
 }
 
 function evalExpr(expr) {
@@ -73,8 +74,12 @@ function getCursor(classes='cursor empty') {
   return '<div class="' + classes + '">&nbsp;</div>'
 }
 
+function getShellLine(currentLocation='#about') {
+  return '/bridger-herman.github.io/' + currentLocation;
+}
+
 function getPrompt(currentLocation='#about', currentBranch='&nbsp;') {
-  let locationPrompt = '<div class="shell-line">/bridger-herman.github.io/' + currentLocation + '</div>';
+  let locationPrompt = '<div class="shell-line">' + getShellLine(currentLocation) + '</div>';
   let branch = '<div class="shell-branch">' + currentBranch + '</div>';
   return locationPrompt + branch + '<ul class="char-list">' + getCursor() + '</ul>';
 }

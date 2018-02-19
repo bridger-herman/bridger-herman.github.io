@@ -1,4 +1,11 @@
 function init() {
+  // Set up header items
+  let ttyObjs = setupTTY();
+  let headerImg = $('.header-img');
+  let header = $('header');
+  headerImg.height(header.height());
+  headerImg.width(header.height());
+
   // Set up navigation
   let defaultPage = 'about';
   if (window.location.hash === '') {
@@ -10,16 +17,12 @@ function init() {
     'hashchange', function() {
       $('nav ul li a').parent().removeClass('active'); $('nav ul li a[href="' +
       window.location.hash + '"]').parent().addClass('active');
-      setupTTY();
+      $(ttyObjs).each(function(i) {
+        $(ttyObjs[i].tty).find('.shell-line').html(getShellLine(window.location.hash));
+      });
     }
   );
 
-  // Set up header items
-  setupTTY();
-  let headerImg = $('.header-img');
-  let header = $('header');
-  headerImg.height(header.height());
-  headerImg.width(header.height());
 
   // Load page content from files
   loadPages();

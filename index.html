@@ -50,31 +50,90 @@
     <li>3D user controlled camera</li>
     <li>Real-time user interaction with system</li>
     <li>3D Mass-spring cloth simulation</li>
+    <li>Textured simulated objects</li>
+    <li>Drag terms</li>
+    <li>15x15 and 20x20 cloth at 30+ FPS</li>
     <li>Eulerian integration</li>
+  </ul>
+
+  <h3>Simulations</h3>
+  <ul>
+    <li>Regular cloth (flag)</li>
+    <li>Polyphonic synthesizer (partially implemented)</li>
   </ul>
 
   <h3>Challenges</h3>
   <p>
-    So far, the largest challenges of this project have been determining
+    The largest challenges of this project have been determining
     if the simulation is "correct" or not. With the first part of the
     simulation, I made the mistake of not taking into account forces from
     all directions on nodes, which resulted in the springs not responding
-    to forces in physically realistic ways.
+    to forces in physically realistic ways. An additional challenge was working
+    on the physically-based sound simulation. Due to the way that the rest of
+    my simulation was implemented, the update speed on the nodes was not fast
+    enough to use their velocity for realtime audio.
   </p>
 
   <h3>Controls</h3>
   <ul>
     <li><strong>WASD/Mouse:</strong> Camera control</li>
     <li><strong>Arrow keys:</strong> Move anchored nodes (top nodes) around</li>
-    <li><strong>Z/X:</strong> Decrease/Increase spring constant</li>
-    <li><strong>C/V:</strong> Decrease/Increase damping constant</li>
+    <li><strong>Space:</strong> Toggle draw mode for cloth</li>
+    <li><strong>p:</strong> Pause simulation</li>
+    <li><strong>z/x:</strong> Decrease/Increase spring constant</li>
+    <li><strong>c/v:</strong> Decrease/Increase damping constant</li>
+    <li><strong>b/n:</strong> Decrease/Increase density of air &rho; </li>
+    <li><strong>m/,:</strong> Decrease/Increase drag coefficient</li>
   </ul>
 
   <h3>Implementation Details</h3>
+  <h4>Simulation Overview</h4>
   <p>
-    So far, only linear springs are implemented. There is a list of nodes,
-    and each node has a "link" connecting it with other nodes. Forces are
-    applied on a Node-by-Node basis.
+    The first step when the simulation is run is to build the cloth
+    programmatically. A start position is given to the Cloth constructor, and
+    it creates Node objects in a gridded pattern to store positions and
+    velocities, and builds an accompanying adjacency list. The link and cloth
+    renderers use this adjacency list to determine where to draw
+    <code>GL_LINES</code> and <code>GL_TRIANGLES</code>, respectively. This
+    adjacency list is also used when calculating the forces acting upon each
+    node.
+  </p>
+
+  <p>
+    Each time through the main event loop, the cloth is updated 10 times with a
+    fixed `dt = 0.001`. This was to prevent the simulation from blowing up, and
+    to still display realistic results. Inside the cloth update, the following
+    steps occur:
+    <ol>
+      <li>All forces become `F = m_{\text{node}}*a_{\text{gravity}}`</li>
+      <li>Spring forces (`k_{\text{spring}}` and `k_{\text{damp}}`) are added</li>
+      <li>Drag forces from the cloth area are applied</li>
+      <li>Integration (Eulerian) is performed (velocities and positions are updated)</li>
+      <li>Each node is updated</li>
+      <li>The cloth and link renderers are updated</li>
+    </ol>
+  </p>
+
+  <p>
+    After all updates are finished, the cloth is drawn and the scene rendered.
+    The steps vary slightly for the polyphonic musical instrument simulation,
+    but the overall process is quite similar.
+  </p>
+
+  <h4>Force Calculations</h4>
+  <p>
+    <strong>Spring Forces:</strong> The spring forces within the cloth are
+    calculated using a dampened version of Hooke's Law: `F_\text{spring} =
+    k_{\text{spring}}*((x_1 - x_0) - x_{\text{rest}}) + k_{\text{damp}}*(v_1 -
+    v_0)`. The forces are applied in opposite directions at each end of the
+    spring.
+  </p>
+
+  <p>
+    <strong>Drag Force:</strong> The drag force is calculated using a modified
+    version of Rayleigh's drag equation: `F_\text{aero} = -\frac{1}{2} \rho
+    |\mathbf{v}|^2 c_\text{drag} a \mathbf{n}`. The normal of each quad is
+    calculated using the cross product of two of its edges.
   </p>
 
   <h3>Code</h3>
@@ -91,7 +150,9 @@
     </ul>
   </p>
 
-  <h3>Video</h3>
+  <h3>Videos</h3>
+  <h4>Feature videos</h4>
+  <h4>Check-in</h4>
   <iframe width="560" height="315"
   src="https://www.youtube.com/embed/tTgIeCPBqbE" frameborder="0"
   allow="encrypted-media" allowfullscreen></iframe>
@@ -112,6 +173,7 @@
       <img src="./assets/img/bridger_herman.png" alt="Bridger Herman's Resume">
     </div>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
     <script
         src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>

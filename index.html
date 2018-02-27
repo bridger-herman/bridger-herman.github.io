@@ -30,11 +30,79 @@
     <div id="photos" class="page"></div>
 
     <div id="projects" class="page">
-      
+
     </div>
 
-    <div id="project-cloth" class="page">
+    <div id="project-cloth" class="page inline">
+<article>
+  <h1>Cloth Simulation</h1>
+  <h3>Description</h3>
+  <p>
+    The aim of this project is to simulate cloth, using Hooke's Law spring
+    systems. So far, only vertical springs have been created, with a
+    wireframe representing the locations of nodes and links in the
+    system.
+  </p>
 
+  <h3>Features</h3>
+  <ul>
+    <li>Realtime, 3D rendering</li>
+    <li>3D user controlled camera</li>
+    <li>Real-time user interaction with system</li>
+    <li>3D Mass-spring cloth simulation</li>
+    <li>Eulerian integration</li>
+  </ul>
+
+  <h3>Challenges</h3>
+  <p>
+    So far, the largest challenges of this project have been determining
+    if the simulation is "correct" or not. With the first part of the
+    simulation, I made the mistake of not taking into account forces from
+    all directions on nodes, which resulted in the springs not responding
+    to forces in physically realistic ways.
+  </p>
+
+  <h3>Controls</h3>
+  <ul>
+    <li><strong>WASD/Mouse:</strong> Camera control</li>
+    <li><strong>Arrow keys:</strong> Move anchored nodes (top nodes) around</li>
+    <li><strong>Z/X:</strong> Decrease/Increase spring constant</li>
+    <li><strong>C/V:</strong> Decrease/Increase damping constant</li>
+  </ul>
+
+  <h3>Implementation Details</h3>
+  <p>
+    So far, only linear springs are implemented. There is a list of nodes,
+    and each node has a "link" connecting it with other nodes. Forces are
+    applied on a Node-by-Node basis.
+  </p>
+
+  <h3>Code</h3>
+  <p>
+    Code from this project can be found in <a
+    href="https://github.umn.edu/herma582/5611-hw2">this GitHub repo</a>. <br>
+
+    The code is written in C++ and makes use of the following external libraries:
+    <ul>
+      <li><strong>OpenGL 3.3 API:</strong> Graphics</li>
+      <li><strong>SDL2:</strong> Window management</li>
+      <li><strong>GLM:</strong> Matrix/Vector mathematics</li>
+      <li><strong>stb_image:</strong> Loading image textures</li>
+    </ul>
+  </p>
+
+  <h3>Video</h3>
+  <iframe width="560" height="315"
+  src="https://www.youtube.com/embed/tTgIeCPBqbE" frameborder="0"
+  allow="encrypted-media" allowfullscreen></iframe>
+
+  <h3>Images</h3>
+  <figure>
+    <img src="./assets/img/project-cloth/5-springs.png" alt="5 spring linear system">
+    <figcaption>5-spring linear system</figcaption>
+  </figure>
+
+</article>
     </div>
 
     <div id="project-particles" class="page">

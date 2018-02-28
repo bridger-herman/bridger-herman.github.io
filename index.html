@@ -30,11 +30,268 @@
     <div id="photos" class="page"></div>
 
     <div id="projects" class="page">
-      
+
     </div>
 
-    <div id="project-cloth" class="page">
+    <div id="project-cloth" class="page inline">
+<article>
+  <h1>Cloth Simulation</h1>
+  <h2>Description</h2>
+  <p>
+    The aim of this project was to simulate cloth and other related phenomena,
+    using mass-spring systems and Hooke's Law.
+  </p>
 
+  <h2>Features</h2>
+  <ul>
+    <li>Realtime, 3D rendering</li>
+    <li>3D user controlled camera</li>
+    <li>Real-time user interaction with system</li>
+    <li>3D Mass-spring cloth simulation</li>
+    <li>Textured simulated objects</li>
+    <li>Drag terms</li>
+    <li>15x15 and 20x20 cloth at 30+ FPS</li>
+    <li>Flexible implementation allowing the creation of many cloths and/or
+    deformable objects</li>
+    <li>Eulerian integration</li>
+  </ul>
+
+  <h2>Simulations</h2>
+  <ul>
+    <li>Regular cloth (flag)</li>
+    <li>Deformable objects</li>
+    <li>Polyphonic synthesizer (partially implemented)</li>
+  </ul>
+
+  <h2>Challenges</h2>
+  <p>
+    The largest challenges of this project have been determining
+    if the simulation is "correct" or not. With the first part of the
+    simulation, I made the mistake of not taking into account forces from
+    all directions on nodes, which resulted in the springs not responding
+    to forces in physically realistic ways. An additional challenge was working
+    on the physically-based sound simulation. Due to the way that the rest of
+    my simulation was implemented, the update speed on the nodes was not fast
+    enough to use their velocity for realtime audio.
+  </p>
+
+  <p>
+    Another challenge that I encountered during the course of this project was
+    texturing the flags correctly. The first hurdle to get over was correctly
+    assigning the texture coordinates based on each vertex (Node) position. I
+    was fairly certain that I had a working model for how the textures would
+    work, but the texture was still completely garbled. It turns out that when
+    using a square mesh, the texture had better also be square. I started out
+    using the New Zealand flag with its original aspect ratio, but then squashed
+    it down to a square image to make the texture work properly.
+  </p>
+
+  <ul class="tiled-list">
+    <li>
+      <img src="./assets/img/project-cloth/nz.png" alt="New Zealand Flag">
+      <figcaption>Original New Zealand flag texture</figcap tion>
+    </li>
+    <li>
+      <img src="./assets/img/project-cloth/nz2.png" alt="Squashed NZ Flag">
+      <figcaption>Square New Zealand flag texture</figcap tion>
+    </li>
+  </ul>
+
+  <h2>Controls</h2>
+  <ul>
+    <li><strong>WASD/Mouse:</strong> Camera control</li>
+    <li><strong>Arrow keys:</strong> Move anchored nodes (top nodes) around</li>
+    <li><strong>Space:</strong> Toggle draw mode for cloth</li>
+    <li><strong>p:</strong> Pause simulation</li>
+    <li><strong>e:</strong> Toggle slow-motion mode (defaults to on)</li>
+    <li><strong>z/x:</strong> Decrease/Increase spring constant</li>
+    <li><strong>c/v:</strong> Decrease/Increase damping constant</li>
+    <li><strong>b/n:</strong> Decrease/Increase density of air &rho; </li>
+    <li><strong>m/,:</strong> Decrease/Increase drag coefficient</li>
+  </ul>
+
+  <h3>Special controls for deformable objects</h3>
+  <ul>
+    <li><strong>t:</strong> Release anchors from object</li>
+  </ul>
+
+  <h3>Special controls for audio simulation</h3>
+  <ul>
+    <li><strong>i:</strong> Pluck string</li>
+    <li><strong>h:</strong> Dampen all forces acting on the string</li>
+    <li><strong>q:</strong> Pause SDL audio</li>
+  </ul>
+
+  <h2>Implementation Details</h2>
+  <h3>Simulation Overview</h3>
+  <p>
+    The first step when the simulation is run is to build the cloth
+    programmatically. A start position is given to the Cloth constructor, and
+    it creates Node objects in a gridded pattern to store positions and
+    velocities, and builds an accompanying adjacency list. The link and cloth
+    renderers use this adjacency list to determine where to draw
+    <code>GL_LINES</code> and <code>GL_TRIANGLES</code>, respectively. This
+    adjacency list is also used when calculating the forces acting upon each
+    node.
+  </p>
+
+  <p>
+    Each time through the main event loop, the cloth is updated 10 times with a
+    fixed `dt = 0.001`. This was to prevent the simulation from blowing up, and
+    to still display realistic results. Inside the cloth update, the following
+    steps occur:
+    <ol>
+      <li>All forces become `F = m_{\text{node}}*a_{\text{gravity}}`</li>
+      <li>Spring forces (`k_{\text{spring}}` and `k_{\text{damp}}`) are added</li>
+      <li>Drag forces from the cloth area are applied</li>
+      <li>Integration (Eulerian) is performed (velocities and positions are updated)</li>
+      <li>Each node is updated</li>
+      <li>The cloth and link renderers are updated</li>
+    </ol>
+  </p>
+
+  <p>
+    After all updates are finished, the cloth is drawn and the scene rendered.
+  </p>
+
+  <h3>Deformable Object Simulation</h3>
+  <p>
+    The deformable objects that were created in this simulation are very similar
+    to the mass-spring cloth system described above. They follow the same
+    general principles, only extended into a third dimension. Instead of only
+    rows and columns for a cloth, there are now rows, columns, and slices for
+    a deformable object. Initially the deformable objects were created with no
+    cross springs, which resulted in the object becoming a pancake as soon as it
+    hit the ground. After discovering this, cross springs were added along all
+    of the pricipal axes of the object, resulting in a much stronger object.
+  </p>
+
+  <p>
+    The deforable object spawns in the air, anchored from the nodes in its top
+    slice. Once the <code>t</code> key is pressed, the object is released from
+    its anchors and falls freely until it hits the ground, and/or is acted upon
+    by the wind. Node collisions with the ground are done naively, assuming that
+    it is a plane located at 0.0 on the y axis.
+  </p>
+
+  <h3>Simulated Musical Instrument</h3>
+  <p>
+    I attempted to create a simulated musical instrument using the same concepts
+    as the main cloth simulation, with the added component of realtime audio. I
+    was never able to get a fully working audio simulation. I am fairly
+    convinced that the cause is that the update method of the string takes too
+    long to update each Node's velocity, resulting in audio that doesn't
+    actually reflect the vibrations of the string in realtime. When I have more
+    time, I'd definitely like to come back to this simulation and try again to
+    make it work properly.
+  </p>
+
+  <ul class="tiled-list">
+    <li>
+      <img src="./assets/img/project-cloth/pancake.png" alt="Squished cube">
+      <figcaption>Deformable cube with no cross springs (crushed by its own
+      weight)</figcaption>
+    </li>
+    <li>
+      <img src="./assets/img/project-cloth/deform-cube.png" alt="Deformable cube">
+      <figcaption>Deformable cube with cross springs, supporting itself</figcaption>
+    </li>
+  </ul>
+
+  <h3>Force Calculations</h3>
+  <p>
+    <strong>Spring Forces:</strong> The spring forces within the cloth are
+    calculated using a dampened version of Hooke's Law: `F_\text{spring} =
+    k_{\text{spring}}*((x_1 - x_0) - x_{\text{rest}}) + k_{\text{damp}}*(v_1 -
+    v_0)`. The forces are applied in opposite directions at each end of the
+    spring.
+  </p>
+
+  <p>
+    <strong>Drag Force:</strong> The drag force is calculated using a modified
+    version of Rayleigh's drag equation: `F_\text{aero} = -\frac{1}{2} \rho
+    |\mathbf{v}|^2 c_\text{drag} a \mathbf{n}`. The normal of each quad is
+    calculated using the cross product of two of its edges.
+  </p>
+
+  <h2>Code</h2>
+  <p>
+    Code from this project can be found in <a
+    href="https://github.umn.edu/herma582/5611-hw2">this GitHub repo</a>. The
+    main cloth simulation and deformable object code is on the branch
+    <code>master</code>, and the sound simulation is on the branch
+    <code>audio</code>. <br>
+
+    The code is written in C++ and makes use of the following external libraries:
+    <ul>
+      <li><strong>OpenGL 3.3 API:</strong> Graphics</li>
+      <li><strong>SDL2:</strong> Window management</li>
+      <li><strong>GLM:</strong> Matrix/Vector mathematics</li>
+      <li><strong>stb_image:</strong> Loading image textures</li>
+    </ul>
+  </p>
+
+  <h2>Videos</h2>
+  <ul class="tiled-list">
+    <li>
+      <iframe width="560" height="315"
+      src="https://www.youtube.com/embed/KuSialQx-7A?rel=0" frameborder="0"
+      allow="encrypted-media" allowfullscreen></iframe>
+      <figcaption>Flag Demo</figcaption>
+    </li>
+    <li>
+      <iframe width="560" height="315"
+      src="https://www.youtube.com/embed/ed71QfZ1QqA?rel=0" frameborder="0"
+      allow="encrypted-media" allowfullscreen></iframe>
+      <figcaption>Four 20x20 cloths</figcaption>
+    </li>
+    <li>
+      <iframe width="560" height="315"
+      src="https://www.youtube.com/embed/u8fxVV1T0LM?rel=0" frameborder="0"
+      allow="encrypted-media" allowfullscreen></iframe>
+      <figcaption>Deformable Body Simulation</figcaption>
+    </li>
+    <li>
+      <iframe width="560" height="315"
+      src="https://www.youtube.com/embed/RinG5tKf0RA?rel=0" frameborder="0"
+      allow="encrypted-media" allowfullscreen></iframe>
+      <figcaption>Simulated String Instrument</figcaption>
+    </li>
+    <li>
+      <iframe width="560" height="315"
+      src="https://www.youtube.com/embed/tTgIeCPBqbE" frameborder="0"
+      allow="encrypted-media" allowfullscreen></iframe>
+      <figcaption>Check-in</figcaption>
+    </li>
+  </ul>
+
+  <h2>Images</h2>
+  <figure>
+    <img src="./assets/img/project-cloth/flag.png" alt="Flag simulation">
+    <figcaption>Simulation of a flag flying in the wind</figcaption>
+  </figure>
+  <figure>
+    <img src="./assets/img/project-cloth/deform-rest.png" alt="Anchored cube">
+    <figcaption>Deformable cube, in its initial anchored state</figcaption>
+  </figure>
+  <figure>
+    <img src="./assets/img/project-cloth/deform100rest.png" alt="100 deformable objects at rest">
+    <figcaption>100 deformable cubes, anchored</figcaption>
+  </figure>
+  <figure>
+    <img src="./assets/img/project-cloth/deform100release.png" alt="100 deformable objects in motion">
+    <figcaption>100 deformable cubes, in motion after being released</figcaption>
+  </figure>
+  <figure>
+    <img src="./assets/img/project-cloth/string.png" alt="Single string">
+    <figcaption>Single string from sound simulation</figcaption>
+  </figure>
+  <figure>
+    <img src="./assets/img/project-cloth/5-springs.png" alt="5 spring linear system">
+    <figcaption>5-spring linear system</figcaption>
+  </figure>
+
+</article>
     </div>
 
     <div id="project-particles" class="page">
@@ -44,6 +301,7 @@
       <img src="./assets/img/bridger_herman.png" alt="Bridger Herman's Resume">
     </div>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
     <script
         src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>

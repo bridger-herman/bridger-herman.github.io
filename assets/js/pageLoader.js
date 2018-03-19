@@ -1,4 +1,4 @@
-GH_URL = 'https://raw.githubusercontent.com/bridger-herman/bridger-herman.github.io/master/'
+GH_URL = 'https://raw.githubusercontent.com/bridger-herman/bridger-herman.github.io/planning/'
 
 // Load pages, HTML file corresponds to div ID
 function loadPages() {

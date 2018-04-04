@@ -78,17 +78,6 @@ article h3 {
   margin-bottom: 0;
 }
 
-figure {
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-figcaption {
-  font-family: Garamond;
-  margin: 10px;
-}
-
 .small {
   width: 25%;
 }

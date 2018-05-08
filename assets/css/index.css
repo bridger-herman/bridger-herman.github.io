@@ -56,7 +56,7 @@ strong {
   display: none;
   flex-direction: column;
 }
-.page < img {
+.page img {
   width: 75%;
   align-self: center;
 }

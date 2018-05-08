@@ -43,6 +43,133 @@
     <div id="project-planning" class="page">
     </div>
 
+    <div id="project-sound-prop" class="page inline">
+<article>
+  <h1>Real-Time Sound Propagation</h1>
+  <h2>Description</h2>
+  <p>
+    Sound ray-tracing for both predefined audio clips and real-time streaming
+    from the user's microphone or an external audio device.
+  </p>
+
+  <h2>Group Members</h2>
+  <ul>
+    <li><a href="https://liamtyler.com/">Liam Tyler</a></li>
+    <li>Bridger Herman</li>
+  </ul>
+
+  <h2>Features</h2>
+  <ul>
+    <li>Real-time, 3D rendering</li>
+    <li>3D user controlled camera</li>
+    <li>Realtime user interaction with system</li>
+    <li>Play wav files</li>
+    <li>Stream user microphone audio</li>
+  </ul>
+
+  <h2>Controls</h2>
+  <ul>
+    <li><strong>WASD/Mouse:</strong> Camera control</li>
+    <li><strong>p:</strong> Pause/play sound clip</li>
+    <li><strong>r:</strong> Start/stop real-time audio streaming</li>
+    <li><strong>Left/right arrow keys</strong> Change sound scene</li>
+    <li><strong>Your microphone </strong>(or an external audio device): Stream
+    sound to propagate in a virtual environment, in real-time</li>
+  </ul>
+
+  <h2>Challenges</h2>
+    By far, the most difficult part about this project was working with audio.
+    The only interface that SDL provides for audio is low-level, and it comes
+    along with all the difficulties and mistakes that low-level programming can
+    have. Oftentimes, we were able to get some sound playing fairly easily, but
+    more commonly than not the sound would be completely wrong (too fast, too
+    slow, choppy, laggy, etc.), or just absolute garbage (floating point noise).
+
+  <h2>Implementation Details</h2>
+    <h3>Convolution</h3>
+      <h4>Convolution Overview</h4>
+      <h4>Fourier Transform</h4>
+
+    <h3>Ray Tracing</h3>
+
+    <h3>Audio</h3>
+      All audio is handled through the Simple DirectMedia Layer (SDL2) Library.
+      Audio is converted into single-precision floating point values for use in
+      the project. The default audio format for SDL audio is
+      <code>Uint16</code>s. However, for mixing, convolution, and other maths
+      required, <code>Uint16</code>s are not large enough. All of SDL audio is
+      callback-based, so in order to receive audio from a device or send audio
+      to one, all one needs to do is create a callback function for each. Each
+      callback recieves a "chunk" of bytes, usually 2048 or 4096, depending on
+      the system. This "chunk" of bytes is referred to as the "audio frame." All
+      interaction with SDL audio is handled through an audio manager, which can
+      play audio clips (<code>wav</code> files) and stream audio from the user's
+      microphone or an external audio device.
+
+      <h4>Audio Loading</h4>
+        The project has the capability to load in many <code>wav</code> files
+        and play them simultaneously. Each audio clip can be associated with
+        an object in the virtual scene, and therefore has a position in the
+        world. The position of the audio clip in space is used to ray-trace
+        audio paths around the scene.
+
+      <h4>Audio Input</h4>
+        There is a special audio clip inside of the audio manager which is a
+        "live stream" of the sound from the user's microphone. The audio input
+        callback writes to a temporary buffer, which is accessed during the
+        output callback and used to write into the "live stream" buffer. This
+        buffer is then convolved with the impulse response function for the
+        frame just like any other audio clip.
+
+      <h4>Audio Output</h4>
+        All the sound from every audio clip is mixed, then sent to SDL for
+        playback on the system speakers. The mix for each clip is calculated by
+        a simple multiplication `a = g*v`, where `a` is the output amplitude,
+        `g` is the audio clip's gain, and `v` is the unmixed amplitude. After
+        the output amplitude for each clip is calculated, then the clips are
+        summed together, resulting in the final mix that the user hears for that
+        audio frame. Each audio clip's gain can be individually adjusted, giving
+        the user control of the audio manager as a "virtual mixer".
+
+
+  <h2>Code</h2>
+  <p>
+    Code from this project can be found in <a
+    href="https://github.umn.edu/herma582/SoundProp">this GitHub repo</a>.
+
+    The code is written in C++ and makes use of the following external libraries:
+    <ul>
+      <li><strong>OpenGL:</strong> Graphics</li>
+      <li><strong>SDL2:</strong> Window management and audio</li>
+      <li><strong>GLM:</strong> Matrix/Vector mathematics</li>
+      <li><strong>stb_image:</strong> Loading image textures</li>
+      <li><strong>FFTW:</strong> Fast Fourier Transforms</li>
+    </ul>
+  </p>
+
+  <h2>Videos</h2>
+
+  <h2>Images</h2>
+  <figure>
+    <img src="./assets/img/project-sound-prop/wall.jpg" alt="Outdoor environment">
+    <figcaption>An outdoor environment with a single brick wall for sound reflection</figcaption>
+  </figure>
+  <figure>
+    <img src="./assets/img/project-sound-prop/big_cube.jpg" alt="A warehouse-like environment">
+    <figcaption>A warehouse-like environment</figcaption>
+  </figure>
+  <figure>
+    <img src="./assets/img/project-sound-prop/hall.jpg" alt="A hallway environment">
+    <figcaption>A hallway environment</figcaption>
+  </figure>
+  <figure>
+    <img src="./assets/img/project-sound-prop/living_room.jpg" alt="A living room environment">
+    <figcaption>A living room environment</figcaption>
+  </figure>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+</article>
+    </div>
+
     <div id="resume" class="page inline">
       <img src="./assets/img/bridger_herman.png" alt="Bridger Herman's Resume">
     </div>

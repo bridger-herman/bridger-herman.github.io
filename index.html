@@ -46,10 +46,17 @@
     <div id="project-sound-prop" class="page inline">
 <article>
   <h1>Real-Time Sound Propagation</h1>
-  <h2>Description</h2>
+  <h2>Goals/Motivation</h2>
   <p>
-    Sound ray-tracing for both predefined audio clips and real-time streaming
-    from the user's microphone or an external audio device.
+    The goal of this project was to create a real-time, interactive sound
+    propagation simulation. More specifically, we wanted to allow a user to walk
+    through a scene with several sound sources listen to how the sound changes
+    in real-time. We also wanted the user to be able to interactively input
+    sound as the program was running, by plugging in a phone or keyboard for
+    example. The motivation was to be able to allow musicians to use the system
+    to practice performing in virtual concert venues from the comfort of their
+    homes, or to allow groups of musicians to explore listening spaces without
+    having to pay for additional rehearsal space.
   </p>
 
   <h2>Group Members</h2>
@@ -60,11 +67,13 @@
 
   <h2>Features</h2>
   <ul>
-    <li>Real-time, 3D rendering</li>
-    <li>3D user controlled camera</li>
-    <li>Realtime user interaction with system</li>
+    <li>Real-time, 3D rendering and user interaction</li>
     <li>Play wav files</li>
-    <li>Stream user microphone audio</li>
+    <li>Stream user microphone/external device audio</li>
+    <li>Audio mixing</li>
+    <li>Dynamic construction of impulse response (IR) function based on user's location</li>
+    <li>Real-time convolution using Fast Fourier Transform</li>
+    <li>Real-time sound ray tracing</li>
   </ul>
 
   <h2>Controls</h2>
@@ -78,59 +87,145 @@
   </ul>
 
   <h2>Challenges</h2>
-    By far, the most difficult part about this project was working with audio.
-    The only interface that SDL provides for audio is low-level, and it comes
-    along with all the difficulties and mistakes that low-level programming can
-    have. Oftentimes, we were able to get some sound playing fairly easily, but
-    more commonly than not the sound would be completely wrong (too fast, too
-    slow, choppy, laggy, etc.), or just absolute garbage (floating point noise).
+    <p>
+      By far, the most difficult part about this project was working with audio.
+      The only interface that SDL provides for audio is low-level, and it comes
+      along with all the difficulties and mistakes that low-level programming
+      can have. The first struggle with audio was value overflow. By default,
+      SDL audio uses 16 bit unsigned integers. However, this is generally
+      unacceptable for mixing, because signals are added together which can
+      easily lead to amplitudes with magnitudes greater than 32767. After a
+      great deal of messing around with data types, we found that 32 bit
+      floating-point audio was the way to go. Once this hurdle was crossed, we
+      were able to get some sound playing fairly easily most of the time, but
+      debugging incorrect (too fast, too slow, choppy, laggy, garbage) sound
+      proved to be a whole other issue.
+    </p>
+
+    <p>
+      We also found out after a lot of struggling, that the same program runs
+      differently on different laptops. With Bridger's laptop, the sample size
+      has to be 2048 samples, but with Liam’s, it breaks on 2048, but works with
+      4096 and 1024 samples. Sometimes the callback times were extremely uneven,
+      which caused the audio to sound strange. For example, the input callback
+      might run 15 times in a row, before the output callback runs 20 times in a
+      row, and things get off balanced. We never really knew how to fix this
+      issue, but it caused a lot of segfaults, particularly on Bridger’s laptop.
+    </p>
+
+    <p>
+      Another hurdle was convolution. We initially were just explicitly keeping
+      track of time and amplitude pairs, and doing convolution without FFT. This
+      was seemingly fine at first, but if the user was hit by too many rays, it
+      would slow down too much, and if the user moved around, there was
+      choppiness due to the changes in the IR from one frame to the next.
+      Switching to FFT solved the problem of slowing down from too many rays,
+      but we still had choppiness while moving around. To solve this, we 'bin'
+      the time amplitude pairs that are coming into the IR, so that the time is
+      rounded to the nearest centisecond. This got rid of 99% of the choppiness,
+      so our final implementation uses this feature.
+    </p>
 
   <h2>Implementation Details</h2>
     <h3>Convolution</h3>
       <h4>Convolution Overview</h4>
-      <h4>Fourier Transform</h4>
+      <p>
+        We did convolution using the Fast Fourier Transform from the FFTW
+        library. At each timestep, we shoot rays out of each sound source. For
+        each ray that eventually hits the listener, we calculate the time the
+        ray took to hit the listener, and the energy (amplitude) it has. Each
+        time amplitude pair is stored in the impulse response function (IR) for
+        that state. After all the rays are traced, we then convert the IR into the
+        frequency domain using FFTW. When the audio callback occurs, it converts
+        as much of the song that could impact the next 2048 samples (which is
+        the last 5 seconds plus the next 2048 samples), into the frequency
+        domain. It then convolves the audio with the IR in Fourier space (signal
+        multiplication), and does the inverse FFT to get the resulting sound.
+      </p>
+
+      <h4>Fourier Transform with FFTW</h4>
+      <p>
+        FFTW works by generating a 'plan' that you can then actually perform
+        FFTs with. This plan figures out what the most optimal way to perform
+        the FFT is for your computer’s architecture. Due to the real-time
+        constraint, we had to maximize the performance, so our FFTW plans are
+        multithreaded, using SIMD, and floats instead of doubles. Without these
+        optimizations, the FPS was about 40, with only ray casting (ray tracing
+        depth 1). Optimizations allowed us to achieve 900 FPS, which then
+        enabled us to do the full propagation of two sources in real-time.
+      </p>
 
     <h3>Ray Tracing</h3>
+    <p>
+      Currently, our ray tracing is done on the CPU, and is single threaded. We
+      shoot 1100 rays per sound source, and the system on our laptops can handle
+      two sound sources while maintaining 40+ FPS. For each ray that is shot out
+      of a source, it does a brute force collision check against the listener
+      sphere and all of the triangles in the sound scene. The sound scene is a
+      simplified version of the scene, which only contains the triangles that
+      significantly impact the sound propagation. Currently, the buildings and
+      walls are a part of the sound scene, while the instruments and environment
+      are not a part of it. When a ray hits a triangle, it sends out two more
+      rays: the reflected ray, and the transmitted ray. The triangle’s diffuse
+      component of its material affects how much of the ray is reflected or
+      transmitted (red channel for reflectance, blue for transmittance). The
+      rays that hit the listener are added to the appropriate IR.
+    </p>
 
     <h3>Audio</h3>
+    <p>
       All audio is handled through the Simple DirectMedia Layer (SDL2) Library.
       Audio is converted into single-precision floating point values for use in
-      the project. The default audio format for SDL audio is
-      <code>Uint16</code>s. However, for mixing, convolution, and other maths
-      required, <code>Uint16</code>s are not large enough. All of SDL audio is
-      callback-based, so in order to receive audio from a device or send audio
-      to one, all one needs to do is create a callback function for each. Each
-      callback recieves a "chunk" of bytes, usually 2048 or 4096, depending on
-      the system. This "chunk" of bytes is referred to as the "audio frame." All
-      interaction with SDL audio is handled through an audio manager, which can
-      play audio clips (<code>wav</code> files) and stream audio from the user's
-      microphone or an external audio device.
+      the project, as stated previously. All of SDL audio is callback-based, so
+      in order to receive audio from a device or send audio to one, all one
+      needs to do is create a callback function for each. Each callback recieves
+      a "chunk" of bytes, usually 1024, 2048 or 4096, depending on the system.
+      This "chunk" of bytes is referred to as the "audio frame." All callbacks
+      for SDL audio are handled through an audio manager, which can play audio
+      clips (wav files), stream audio from the user's microphone or an external
+      audio device, and mix the output to send to the user's speakers.
+    </p>
 
       <h4>Audio Loading</h4>
-        The project has the capability to load in many <code>wav</code> files
-        and play them simultaneously. Each audio clip can be associated with
-        an object in the virtual scene, and therefore has a position in the
-        world. The position of the audio clip in space is used to ray-trace
-        audio paths around the scene.
+      <p>
+        The project has the capability to load in many wav files and play them
+        simultaneously. Each audio clip can be associated with an object in the
+        virtual scene, and therefore has a position in the world. The position
+        of the audio clip in space is used to ray-trace audio paths around the
+        scene. By default, SDL loads wav files into an array of unsigned 16 bit
+        integers, which is unsuitable for use. We use <code>SDL_AudioCVT</code>
+        to convert the audio into the same format that the the project is in
+        (ideally mono, 44100 samples/sec, 2048 frame size, floating point).
+      </p>
 
       <h4>Audio Input</h4>
+      <p>
         There is a special audio clip inside of the audio manager which is a
         "live stream" of the sound from the user's microphone. The audio input
         callback writes to a temporary buffer, which is accessed during the
-        output callback and used to write into the "live stream" buffer. This
-        buffer is then convolved with the impulse response function for the
-        frame just like any other audio clip.
+        output callback and used to write into the "live stream" audio clip
+        buffer. This buffer is then convolved with the impulse response function
+        for the frame just like any other audio clip. The input callback only
+        streams live audio if the user has pressed <strong>r</strong>.
+        Otherwise, the callback streams silence to the temporary buffer.
+      </p>
 
       <h4>Audio Output</h4>
-        All the sound from every audio clip is mixed, then sent to SDL for
-        playback on the system speakers. The mix for each clip is calculated by
-        a simple multiplication `a = g*v`, where `a` is the output amplitude,
-        `g` is the audio clip's gain, and `v` is the unmixed amplitude. After
-        the output amplitude for each clip is calculated, then the clips are
-        summed together, resulting in the final mix that the user hears for that
+      <p>
+        In the audio output callback, the next "chunk size" bytes (probably
+        2048) are processed. Each audio clip performs its own convolution,
+        constructing an impulse response function for each frame based on its
+        position, and the current position of the user/listener. All the sound
+        from every audio clip is mixed, then sent to SDL for playback on the
+        system speakers. The mix for each clip is calculated by a simple
+        multiplication `a = g*v`, where `a` is the output amplitude, `g` is the
+        audio clip's gain, and `v` is the unmixed amplitude. After the output
+        amplitude for each clip is calculated, then the clips are summed
+        together. Clipping (truncating values outside the range -1 to 1) is
+        performed, which results in the final mix that the user hears for that
         audio frame. Each audio clip's gain can be individually adjusted, giving
         the user control of the audio manager as a "virtual mixer".
-
+      </p>
 
   <h2>Code</h2>
   <p>

@@ -47,7 +47,7 @@ strong {
   font-family: EncodeBold;
 }
 
-/* Main controls */
+/* Pages */
 .page:target {
   display: flex;
 }
@@ -55,27 +55,34 @@ strong {
   margin: 20px 10px;
   display: none;
   flex-direction: column;
+  align-items: center;
 }
 .page img {
   width: 75%;
   align-self: center;
 }
 
-/*.page::before {*/
-  /*display: block;*/
-  /*content: "&nbsp;"*/
-  /*margin-top: -200px;*/
-  /*height: 200px;*/
-  /*visibility: hidden;*/
-  /*pointer-events: none;*/
-/*}*/
-
-/* Content pages */
+/* Pages with lots of text */
 article {
   margin: 0 40px;
+  width: 60%;
+}
+article * {
+  text-align: left;
+}
+article h1 {
+  font-size: 30pt;
+  padding-bottom: 10px;
+  border-bottom: #EFEEEE 2px dotted;
 }
 article h3 {
   margin-bottom: 0;
+}
+article p {
+  margin-bottom: 10px;
+}
+article figure {
+  margin-bottom: 10px;
 }
 
 .small {

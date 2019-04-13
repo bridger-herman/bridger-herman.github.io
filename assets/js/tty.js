@@ -74,8 +74,14 @@ function getCursor(classes='cursor empty') {
   return '<div class="' + classes + '">&nbsp;</div>'
 }
 
-function getShellLine(currentLocation='#about') {
-  return '/bridger-herman.github.io/' + currentLocation;
+function getShellLine(currentLocation='/build/about.html') {
+  let parts = currentLocation.split('/');
+  if (parts[2]) {
+    let dot = parts[2].indexOf('.');
+    return '/bridger-herman.github.io/' + parts[2].slice(0, dot);
+  } else {
+    return '/bridger-herman.github.io'
+  }
 }
 
 function getPrompt(currentLocation='#about', currentBranch='&nbsp;') {

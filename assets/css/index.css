@@ -19,7 +19,7 @@
  * #2D3F5C
  * #A6F075
  * #F075A6
- * #AA2490
+ * #BE3CD9
  * #21262D
  * #EFEEEE
 */
@@ -28,7 +28,7 @@
 body {
   background-color: #21262D;
   color: #EFEEEE;
-  font-size: 13pt;
+  font-size: 15pt;
   font-family: Encode;
   padding: 0;
   margin: 0;
@@ -46,6 +46,13 @@ p {
 }
 strong {
   font-family: EncodeBold;
+}
+
+/* Main content container (takes up 100% - nav width) */
+.main-content {
+  position: relative;
+  left: 10vw;
+  width: 90vw;
 }
 
 /* Pages with lots of text */
@@ -91,17 +98,9 @@ article figure {
   border-bottom: 5px solid #EFEEEE;
   padding: 1% 6%;
   margin: 1%;
-  background-color: #2D3F5C;
+  background-color: #37598F;
   width: 35%;
 }
 .tiled-list li img {
   width: 100%;
-}
-
-
-@keyframes cursorBlink {
-  50% {
-    background-color: #AA2490;
-    color: #21262D;
-  }
 }

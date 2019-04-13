@@ -3,6 +3,8 @@
   font-family: monospace;
   color: #21262D;
   display: inline-block;
+  background-color: #21262D99;
+  width: 100vw;
 }
 .tty .shell-line {
   clip-path: polygon(0 0, calc(100% - 1em) 0, 100% 50%,
@@ -21,7 +23,7 @@
 }
 .tty .cursor {
   display: inline-block;
-  background-color: #21262D;
+  background-color: #0000;
   color: #EFEEEE;
   animation: cursorBlink 1.5s step-start 0s infinite;
 }
@@ -36,4 +38,11 @@
 .tty .char {
   color: #EFEEEE;
   display: inline-block;
+}
+
+@keyframes cursorBlink {
+  50% {
+    background-color: #BE3CD9;
+    color: #0000;
+  }
 }

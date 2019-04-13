@@ -3,16 +3,18 @@ header {
   padding: 20px;
 }
 
-.header-img {
+#header-img {
+  height: 30px;
+  width: 30px;
   display: inline-block;
   float: right;
 }
-.header-img {
+#header-img {
   background-image: url('../img/github.svg');
   background-size: contain;
   transition: 0.2s
 }
-.header-img:hover{
+#header-img:hover{
   background-image: url('../img/github_hover.svg');
 }
 

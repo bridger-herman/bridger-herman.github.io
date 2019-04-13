@@ -48,24 +48,9 @@ strong {
   font-family: EncodeBold;
 }
 
-/* Pages */
-.page:target {
-  display: flex;
-}
-.page {
-  margin: 20px 10px;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-}
-.page img {
-  width: 75%;
-  align-self: center;
-}
-
 /* Pages with lots of text */
 article {
-  margin: 0 40px;
+  margin: 0 auto;
   width: 60%;
 }
 article * {
@@ -91,9 +76,6 @@ article figure {
 }
 
 /* About */
-.right {
-  align-self: flex-end;
-}
 .fiftypercent {
   width: 50%;
   margin: 3% 5%;

@@ -6,21 +6,6 @@ header {
   z-index: 1;
 }
 
-#header-img {
-  height: 30px;
-  width: 30px;
-  display: inline-block;
-  float: right;
-}
-#header-img {
-  background-image: url('../img/github.svg');
-  background-size: contain;
-  transition: 0.2s
-}
-#header-img:hover{
-  background-image: url('../img/github_hover.svg');
-}
-
 /* Navigation */
 nav {
   position: fixed;
@@ -29,7 +14,7 @@ nav {
   background-color: #2D3F5C;
   padding: 0;
   margin: 0;
-  width: 10vw;
+  width: 5vw;
   height: 100%;
 }
 nav ul {
@@ -47,7 +32,9 @@ nav ul li {
 }
 nav ul li a {
   color: #EFEEEE;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
   text-decoration: none;
   padding: 20px 0;
@@ -57,4 +44,7 @@ nav ul li:hover {
 }
 nav ul li.active {
   background-color: #390C42;
+}
+nav img {
+  width: 60%;
 }

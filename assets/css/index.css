@@ -51,8 +51,8 @@ strong {
 /* Main content container (takes up 100% - nav width) */
 .main-content {
   position: relative;
-  left: 10vw;
-  width: 90vw;
+  left: 5vw;
+  width: 95vw;
 }
 
 /* Pages with lots of text */

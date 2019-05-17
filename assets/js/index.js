@@ -6,6 +6,7 @@ function init() {
   $('nav ul li a[href="' + window.location.pathname + '"]').parent().addClass('active');
   $(ttyObjs).each(function(i) {
     $(ttyObjs[i].tty).find('.shell-line').html(getShellLine(window.location.pathname));
+    ttyObjs[i].tty.focus(true);
   });
 
   // Set up word gallery

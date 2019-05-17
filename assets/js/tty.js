@@ -9,6 +9,7 @@ PAGE_NAMES = [
 
 ACCEPTED_COMMANDS = {
   'ls': lsCommand,
+  'cd': cdCommand,
 };
 
 function setupTTY() {
@@ -86,6 +87,9 @@ function TTYObject(tty) {
       charList.empty();
       charList.append(getCursor());
     }
+    else if (key === 'Escape') {
+      $('.tty>pre').removeClass('expanded');
+    }
     else {
       console.log(key);
     }
@@ -132,4 +136,10 @@ function expandTTY(output) {
 // Dummy commands
 function lsCommand(args) {
   return PAGE_NAMES.join('\n');
+}
+
+function cdCommand(args) {
+  let prefix = '/build/';
+  let suffix = '.html';
+  window.location.pathname = prefix + args[0] + suffix;
 }

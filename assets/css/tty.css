@@ -3,8 +3,18 @@
   font-family: monospace;
   color: #21262D;
   display: inline-block;
-  background-color: #21262D99;
+  background-color: #21262DAA;
   width: 100vw;
+  z-index: 10;
+}
+.tty>pre {
+  display: none;
+}
+.tty>pre.expanded {
+  display: block;
+  padding: 0.5em;
+  padding-bottom: 2.0em;
+  border-bottom: 1px solid white;
 }
 .tty .shell-line {
   clip-path: polygon(0 0, calc(100% - 1em) 0, 100% 50%,
@@ -38,6 +48,10 @@
 .tty .char {
   color: #EFEEEE;
   display: inline-block;
+}
+.tty pre {
+  margin: 0;
+  color: #EFEEEE;
 }
 
 @keyframes cursorBlink {

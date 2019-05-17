@@ -1,5 +1,15 @@
 IS_TTY_KEY = /[A-Za-z0-9 ~!@#$%^&*\(\)_+=\-`,./;'\[\]\\<>?:"\{\}\|"'`]/;
 
+PAGE_NAMES = [
+  'about',
+  'projects',
+  'research',
+  'photography',
+];
+
+ACCEPTED_COMMANDS = {
+  'ls': lsCommand,
+};
 
 function setupTTY() {
   let ttys = $('.tty');
@@ -7,12 +17,21 @@ function setupTTY() {
   ttys.each(function (i) {
     ttyObjs.push(new TTYObject(ttys[i]));
   });
-  $(ttys).html(getPrompt(window.location.hash));
+  constructTTY(ttys, window.location.hash);
   return ttyObjs;
 }
 
+// Dummy expression evaluator for now - might try and use a Rust-based
+// WebAssembly bash emulator
 function evalExpr(expr) {
-
+  let splitExpr = expr.split('&nbsp;');
+  let command = splitExpr[0];
+  let args = splitExpr.slice(1);
+  let commandFn = ACCEPTED_COMMANDS[command];
+  if (commandFn) {
+    let output = ACCEPTED_COMMANDS[command](args);
+    expandTTY(output);
+  }
 }
 
 function TTYObject(tty) {
@@ -59,6 +78,11 @@ function TTYObject(tty) {
       self.currentIndex = 1;
       self.minIndex = 1;
       self.maxIndex = 1;
+      let exprString = '';
+      $(charList).children('.char').each((index, charElem) => {
+        exprString += charElem.innerHTML;
+      });
+      evalExpr(exprString);
       charList.empty();
       charList.append(getCursor());
     }
@@ -71,7 +95,7 @@ function TTYObject(tty) {
 }
 
 function getCursor(classes='cursor empty') {
-  return '<div class="' + classes + '">&nbsp;</div>'
+  return $('<div/>', {class: classes, text: '\xa0'});
 }
 
 function getShellLine(currentLocation='/build/about.html') {
@@ -84,8 +108,28 @@ function getShellLine(currentLocation='/build/about.html') {
   }
 }
 
-function getPrompt(currentLocation='#about', currentBranch='&nbsp;') {
-  let locationPrompt = '<div class="shell-line">' + getShellLine(currentLocation) + '</div>';
-  let branch = '<div class="shell-branch">' + currentBranch + '</div>';
-  return locationPrompt + branch + '<ul class="char-list">' + getCursor() + '</ul>';
+function constructTTY(el, currentLocation) {
+  // Construct the input line
+  $(el).append($('<div/>', {
+    class: 'tty-input',
+  }).append($('<div/>', {
+    class: 'shell-line',
+    text: getShellLine(currentLocation),
+  })).append($('<div/>', {
+    class: 'shell-branch',
+    text: '\xa0' // Non-breaking space
+  })).append($('<ul/>', {
+    class: 'char-list',
+  }).append(getCursor())))
+  .append($('<pre/>'));
+}
+
+function expandTTY(output) {
+  $('.tty>pre').addClass('expanded');
+  $('.tty>pre').html(output);
+}
+
+// Dummy commands
+function lsCommand(args) {
+  return PAGE_NAMES.join('\n');
 }

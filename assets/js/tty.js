@@ -10,6 +10,8 @@ PAGE_NAMES = [
 ACCEPTED_COMMANDS = {
   'ls': lsCommand,
   'cd': cdCommand,
+  'help': helpCommand,
+  '': helpCommand,
 };
 
 function setupTTY() {
@@ -185,4 +187,15 @@ function cdCommand(args) {
   let suffix = '.html';
   window.location.pathname = prefix + args[0] + suffix;
   return ['', 0];
+}
+
+function helpCommand(args) {
+  let helpText =
+    '** Elementary Terminal Emulator **\n\n' +
+    'Available terminal commands:\n' +
+    '  ls   : list pages on website\n' +
+    '  cd   : navigate to a page\n' +
+    '  help : print this help message\n\n' +
+    'Press `Esc` to close terminal window';
+  return [helpText, 0];
 }

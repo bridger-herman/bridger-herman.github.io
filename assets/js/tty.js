@@ -34,8 +34,10 @@ function evalExpr(expr) {
   let [command, args] = parseExpr(expr);
   let commandFn = ACCEPTED_COMMANDS[command];
   if (commandFn) {
-    let output = ACCEPTED_COMMANDS[command](args);
-    expandTTY(output);
+    let [output, exitStatus] = ACCEPTED_COMMANDS[command](args);
+    if (exitStatus == 0) {
+      expandTTY(output);
+    }
   }
 }
 
@@ -161,7 +163,6 @@ function expandTTY(output) {
 // Return the text of the second half of the whole expression (inferred from
 // tab-complete)
 function sliceExpr(userExpr, wholeExpr) {
-  console.log(userExpr + ' ' + wholeExpr);
   let matchIndex = 0;
   for (let i = 0; i < wholeExpr.length; i++) {
     if (userExpr[i] === wholeExpr[i]) {
@@ -173,11 +174,15 @@ function sliceExpr(userExpr, wholeExpr) {
 
 // Dummy commands
 function lsCommand(args) {
-  return PAGE_NAMES.join('\n');
+  return [PAGE_NAMES.join('\n'), 0];
 }
 
 function cdCommand(args) {
+  if (PAGE_NAMES.indexOf(args[0]) < 0) {
+    return ['', -1];
+  }
   let prefix = '/build/';
   let suffix = '.html';
   window.location.pathname = prefix + args[0] + suffix;
+  return ['', 0];
 }

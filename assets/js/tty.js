@@ -24,10 +24,14 @@ function setupTTY() {
 
 // Dummy expression evaluator for now - might try and use a Rust-based
 // WebAssembly bash emulator
-function evalExpr(expr) {
+function parseExpr(expr) {
   let splitExpr = expr.split('&nbsp;');
   let command = splitExpr[0];
   let args = splitExpr.slice(1);
+  return [command, args];
+}
+function evalExpr(expr) {
+  let [command, args] = parseExpr(expr);
   let commandFn = ACCEPTED_COMMANDS[command];
   if (commandFn) {
     let output = ACCEPTED_COMMANDS[command](args);
@@ -90,6 +94,27 @@ function TTYObject(tty) {
     else if (key === 'Escape') {
       $('.tty>pre').removeClass('expanded');
     }
+    else if (key === 'Tab') {
+      event.preventDefault();
+      // Hacked together to support cd only right now
+      let exprString = '';
+      $(charList).children('.char').each((index, charElem) => {
+        exprString += charElem.innerHTML;
+      });
+      let [command, args] = parseExpr(exprString);
+      if (command === 'cd') {
+        for (let i in PAGE_NAMES) {
+          if (PAGE_NAMES[i].startsWith(args[0])) {
+            let secondHalf = sliceExpr(exprString, 'cd&nbsp;' + PAGE_NAMES[i]);
+            for (let i in secondHalf) {
+              self.maxIndex++;
+              self.currentIndex++;
+              $(charList).find($('.empty')).before($('<div/>', {class: 'char', text: secondHalf[i]}))
+            }
+          }
+        }
+      }
+    }
     else {
       console.log(key);
     }
@@ -131,6 +156,19 @@ function constructTTY(el, currentLocation) {
 function expandTTY(output) {
   $('.tty>pre').addClass('expanded');
   $('.tty>pre').html(output);
+}
+
+// Return the text of the second half of the whole expression (inferred from
+// tab-complete)
+function sliceExpr(userExpr, wholeExpr) {
+  console.log(userExpr + ' ' + wholeExpr);
+  let matchIndex = 0;
+  for (let i = 0; i < wholeExpr.length; i++) {
+    if (userExpr[i] === wholeExpr[i]) {
+      matchIndex++;
+    }
+  }
+  return wholeExpr.slice(matchIndex);
 }
 
 // Dummy commands

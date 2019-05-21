@@ -1,2 +1,10 @@
 # Mac stuff
 .DS_Store
+
+# Rust
+/target
+**/*.rs.bk*.orig
+*.swp
+Cargo.lock
+index.html.orig
+*.orig

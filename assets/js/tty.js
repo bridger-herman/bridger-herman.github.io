@@ -1,3 +1,4 @@
+import { partial } from './tools.js'
 IS_TTY_KEY = /[A-Za-z0-9 ~!@#$%^&*\(\)_+=\-`,./;'\[\]\\<>?:"\{\}\|"'`]/;
 
 PAGE_NAMES = [
@@ -14,7 +15,7 @@ ACCEPTED_COMMANDS = {
   '': helpCommand,
 };
 
-function setupTTY() {
+export function setupTTY() {
   let ttys = $('.tty');
   ttyObjs = [];
   ttys.each(function (i) {

@@ -1,4 +1,4 @@
-function initWordGalleries() {
+export function initWordGalleries() {
   $('.word-gallery').each((index, element) => {
     var words = JSON.parse($(element).html().replace('\n', ''));
     var previousIndex = 0;

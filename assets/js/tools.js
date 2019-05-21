@@ -1,5 +1,5 @@
 // Source: http://benalman.com/news/2012/09/partial-application-in-javascript/#partial-application
-function partial(fn /*, args...*/) {
+export function partial(fn /*, args...*/) {
   // A reference to the Array#slice method.
   var slice = Array.prototype.slice;
   // Convert arguments object to an array, removing the first argument.

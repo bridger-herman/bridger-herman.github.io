@@ -2,6 +2,8 @@
 
 set -ex
 
+python3 ./build_site.py
+
 # Note that typically we'd use `wasm-pack` to build the crate, but the
 # `--web` flag is very new to `wasm-bindgen` and as such doesn't have
 # support in `wasm-pack` yet. Support will be added soon though!

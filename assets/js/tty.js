@@ -1,23 +1,25 @@
-import { partial } from './tools.js'
-IS_TTY_KEY = /[A-Za-z0-9 ~!@#$%^&*\(\)_+=\-`,./;'\[\]\\<>?:"\{\}\|"'`]/;
+import { partial } from './tools.js';
+import { display_one_sl, num_cols } from '../pkg/bridger_herman_github_io.js';
+var IS_TTY_KEY = /[A-Za-z0-9 ~!@#$%^&*\(\)_+=\-`,./;'\[\]\\<>?:"\{\}\|"'`]/;
 
-PAGE_NAMES = [
+var PAGE_NAMES = [
   'about',
   'projects',
   'research',
   'photography',
 ];
 
-ACCEPTED_COMMANDS = {
+var ACCEPTED_COMMANDS = {
   'ls': lsCommand,
   'cd': cdCommand,
+  'sl': slCommand,
   'help': helpCommand,
   '': helpCommand,
 };
 
 export function setupTTY() {
   let ttys = $('.tty');
-  ttyObjs = [];
+  let ttyObjs = [];
   ttys.each(function (i) {
     ttyObjs.push(new TTYObject(ttys[i]));
   });
@@ -132,7 +134,7 @@ function getCursor(classes='cursor empty') {
   return $('<div/>', {class: classes, text: '\xa0'});
 }
 
-function getShellLine(currentLocation='/build/about.html') {
+export function getShellLine(currentLocation='/build/about.html') {
   let parts = currentLocation.split('/');
   if (parts[2]) {
     let dot = parts[2].indexOf('.');
@@ -190,11 +192,29 @@ function cdCommand(args) {
   return ['', 0];
 }
 
+function slCommand(args) {
+  $('.tty>pre').addClass('expanded');
+
+  var x = num_cols() - 1;
+  var slInterval = setInterval(() => {
+    let output = display_one_sl(x--);
+    $('.tty>pre').html(output);
+    if (x < -num_cols() / 1.3) {
+      clearInterval(slInterval);
+      expandTTY('');
+      $('.tty>pre').removeClass('expanded');
+    }
+  }, 40);
+
+  return ['', 0];
+}
+
 function helpCommand(args) {
   let helpText =
     '** Elementary Terminal Emulator **\n\n' +
     'Available terminal commands:\n' +
     '  ls   : list pages on website\n' +
+    '  sl   : Steam Locomotive\n' +
     '  cd   : navigate to a page\n' +
     '  help : print this help message\n\n' +
     'Press `Esc` to close terminal window';

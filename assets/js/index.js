@@ -1,7 +1,6 @@
 import { importWasm } from './loadWasm.js';
-import { setupTTY } from './tty.js';
+import { setupTTY, getShellLine } from './tty.js';
 import { initWordGalleries } from './wordGallery.js';
-// import { display_one_sl, num_cols } from './pkg/bridger-herman-github-io.js';
 
 function init() {
   // Set up header items
@@ -25,5 +24,4 @@ function init() {
   };
 }
 
-// window.onload = () => importWasm().then(init);
-window.onload = init
+window.onload = () => importWasm().then(init);

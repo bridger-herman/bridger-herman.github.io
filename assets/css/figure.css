@@ -15,3 +15,6 @@ figcaption::before {
   content: "Figure " counter(figCounter) ": ";
   counter-increment: figCounter;
 }
+figure>img {
+  width: 100%;
+}

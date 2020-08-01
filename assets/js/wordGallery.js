@@ -10,19 +10,29 @@ export function initWordGalleries() {
       }
       previousIndex = wordIndex;
       animateTransition(element, words[wordIndex]);
-    }, 4000);
+    }, 5000);
   });
 }
 
 function animateTransition(elementToChange, word) {
-  var letterIndex = 0;
-  $(elementToChange).html('');
-  let intervalId = setInterval(() => {
+  // Delete the old word
+  let deleteInterval = setInterval(() => {
     let oldHtml = $(elementToChange).html();
-    if (letterIndex < word.length) {
-      $(elementToChange).html(oldHtml + word[letterIndex++])
+    if (oldHtml.length > 0) {
+      $(elementToChange).html(oldHtml.slice(0, oldHtml.length - 1));
     } else {
-      clearInterval(intervalId);
-    }
-  }, 60);
+      clearInterval(deleteInterval);
+
+      // Type the new word
+      var letterIndex = 0;
+      let intervalId = setInterval(() => {
+        let oldHtml = $(elementToChange).html();
+        if (letterIndex < word.length) {
+          $(elementToChange).html(oldHtml + word[letterIndex++])
+        } else {
+          clearInterval(intervalId);
+        }
+      }, 60);
+        }
+  }, 40);
 }

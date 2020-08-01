@@ -106,3 +106,14 @@ article figure {
 .tiled-list li img {
   width: 100%;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  font-size: 8pt;
+}
+footer>p {
+  margin: 0.5rem;
+}

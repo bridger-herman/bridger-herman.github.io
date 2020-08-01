@@ -24,12 +24,15 @@ nav ul {
   margin-top: 3rem;
 }
 nav ul li {
-  display: flex;
-  justify-content: space-between;
   font-size: 12pt;
-  padding: 0 3%;
   border-top: 2px solid #A6F075;
   transition: 0.2s;
+}
+nav ul li a div {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.5rem 0.5rem;
 }
 nav ul li a {
   color: #EFEEEE;
@@ -38,7 +41,6 @@ nav ul li a {
   justify-content: center;
   font-weight: bold;
   text-decoration: none;
-  margin: 0.5rem 0;
 }
 nav ul li p {
   margin: 0;

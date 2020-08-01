@@ -28,10 +28,11 @@
 body {
   background-color: #21262D;
   color: #EFEEEE;
-  font-size: 15pt;
+  font-size: 14pt;
   font-family: Encode;
   padding: 0;
   margin: 0;
+  display: inline-block;
 }
 a {
   color: #EFEEEE;
@@ -51,8 +52,9 @@ strong {
 /* Main content container (takes up 100% - nav width) */
 .main-content {
   position: relative;
-  left: 5vw;
-  width: 95vw;
+  left: 10rem;
+  width: calc(100% - 10rem);
+  margin-top: 3rem;
 }
 
 /* Pages with lots of text */
@@ -85,7 +87,7 @@ article figure {
 /* About */
 .fiftypercent {
   width: 50%;
-  margin: 3% 5%;
+  margin: 1rem 2rem;
 }
 
 /* Photos/projects */

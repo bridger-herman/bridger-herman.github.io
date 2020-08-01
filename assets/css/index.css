@@ -86,8 +86,20 @@ article figure {
 
 /* About */
 .fiftypercent {
-  width: 50%;
+  width: 60%;
   margin: 1rem 2rem;
+}
+
+.thirtypercent {
+  width: 30%;
+  margin: 1rem 2rem;
+  object-fit: contain;
+}
+
+.flex-col {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 /* Photos/projects */

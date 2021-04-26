@@ -7,6 +7,7 @@ var PAGE_NAMES = [
   'projects',
   'research',
   'photography',
+  'teaching',
 ];
 
 var ACCEPTED_COMMANDS = {

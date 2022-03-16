@@ -3,14 +3,21 @@ export function initWordGalleries() {
     var words = JSON.parse($(element).html().replace('\n', ''));
     var previousIndex = 0;
     $(element).html(words[0]);
-    setInterval(() => {
+
+    const wordDelay = 5000;
+    const wordTypewriter = () => {
       let wordIndex = previousIndex;
       while (wordIndex == previousIndex) {
         wordIndex = Math.floor(Math.random() * words.length);
       }
       previousIndex = wordIndex;
       animateTransition(element, words[wordIndex]);
-    }, 5000);
+    };
+
+    let timer = setInterval(wordTypewriter, wordDelay);
+
+    $(window).blur(() => clearInterval(timer));
+    $(window).focus(() => timer = setInterval(wordTypewriter, wordDelay));
   });
 }
 

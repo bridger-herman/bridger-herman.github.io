@@ -1,6 +1,7 @@
 import { importWasm } from './loadWasm.js';
 import { setupTTY, getShellLine } from './tty.js';
 import { initWordGalleries } from './wordGallery.js';
+import { SplashCanvas } from './splash.js';
 
 function init() {
   // Set up header items
@@ -22,6 +23,8 @@ function init() {
       e.preventDefault();
     }
   };
+
+  let sketch = new p5(SplashCanvas, 'splash');
 }
 
 window.onload = () => importWasm().then(init);

@@ -13,30 +13,37 @@ about
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
   </div>
-  <div class="absolute bottom-0 left-0 md:max-w-2xl m-4 xl:ml-44">
-    <div id="not-menu">
-      <p class="text-4xl my-4"><a href="/"><strong>bridger</strong> herman</a></p>
-      <p>extended reality visualization + data physicalization + creativity support tools</p>
+  <div class="
+  absolute bottom-0 left-0 w-full p-4 xl:pl-44
+  bg-gradient-to-b from-transparent from-50% to-gray-900
+  ">
+    <div id="not-menu" class="md:max-w-2xl">
+      <p class="text-4xl my-4"><a class="no-underline" href="/"><strong>bridger</strong> herman</a></p>
+      <p>extended reality visualization + <br class="sm:hidden"> data physicalization + <br class="sm:hidden"> creativity support tools</p>
     </div>
-    {# <div class="
-      hidden absolute w-full bg-gray-950 
-      max-md:right-0 max-md:top-0 md:left-0 md:bottom-0
-      md:flex md:w-auto md:bg-transparent
-      xl:ml-44"
-      id="menu"> #}
-    <div class="hidden my-4 rounded-md bg-gray-950 md:block md:bg-transparent" id="menu">
+    <div class="hidden my-4 rounded-md bg-gray-950 md:max-w-2xl md:block md:bg-transparent" id="menu">
       <nav>
         <ul class="flex flex-col place-content-between md:flex-row">
-        {{ navButton('curriculum vitae', '#') }}
-        {{ navButton('publications', '#') }}
-        {{ navButton('adventures', '#') }}
+          {{ navButton('curriculum vitae', '#') }}
+          {{ navButton('publications', '#') }}
+          {{ navButton('adventures', '#') }}
         </ul>
       </nav>
     </div>
-    {# </div> #}
+    <div class="m-1 md:max-w-2xl flex">
+      <a id="mail" title="copy email address to clipboard" class="m-1 w-6 h-6" href="#">
+        <span class="material-symbols-outlined">mail</span>
+      </a>
+      <a class="m-1 w-6 h-6" title="curriculum vitae" href="#">
+        <span class="material-symbols-outlined">description</span>
+      </a>
+      <a class="m-1 w-6 h-6" title="GitHub: bridger-herman" href="https://github.com/bridger-herman">
+        <img src="/assets/svg/github-mark-white.svg" alt="GitHub logo">
+      </a>
+    </div>
   </div>
   <img src="/build/img/header_1920.jpg" alt="Bridger Herman standing in front of a sunset"
-    class="w-full max-h-[45vh] object-cover object-right" />
+    class="w-full min-h-[55vh] sm:max-h-[45vh] object-cover object-right" />
 </div>
 {% endblock %}
 
@@ -44,8 +51,9 @@ about
 
 
 {{par("
-Hey, I'm Bridger, a Ph.D. Candidate in Computer Science at the University of
-Minnesota.
+Hey, I'm Bridger, a Ph.D. Candidate in the <a href='https://ivlab.cs.umn.edu'>Interactive Visualization Lab</a> at the
+University of
+Minnesota with Dr. <a href='https://www.danielkeefe.net/'>Daniel F. Keefe</a>.
 ")}}
 
 
@@ -76,7 +84,7 @@ technologies our society depends on.
 {{par("
 When I'm not in the lab or teaching, you can usually find me adventuring
 outside. I enjoy running, cycling, hiking, skiing, rock climbing, and many other
-outdoor activities. I have also volunteered for the (Minnesota Brass) drum corps
+outdoor activities. I have also volunteered for the <a href='https://mnbrass.org'>Minnesota Brass</a> drum corps
 as a board member, percussion instructor, and transportation coordinator.
 ")}}
 

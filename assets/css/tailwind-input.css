@@ -6,3 +6,9 @@
 @import url('/fonts/FantasqueSansMono/FantasqueSansMono-BoldItalic-decl.css');
 @import url('/fonts/FantasqueSansMono/FantasqueSansMono-Italic-decl.css');
 @import url('/fonts/FantasqueSansMono/FantasqueSansMono-Regulr-decl.css');
+
+@layer base {
+    a {
+        text-decoration: underline;
+    }
+}

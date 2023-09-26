@@ -9,12 +9,14 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
+      'sans': 'Arial, Helvetica, sans-serif',
       'mono': ['"Fantasque Sans Mono"', 'ui-monospace', 'SFMono-Regular']
     },
     colors: {
-      'transparent': 'transparent',
+      'transparent': colors.transparent,
       'current': 'currentColor',
       'white': '#ffffff',
+      'black': '#000000',
       'gray': colors.gray,
       'zinc': colors.zinc,
       'sunset-orange': '#da8970',

@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>{% block title %}{% endblock %} | bridger</title>
+
+  <link rel="icon" href="/assets/svg/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="/assets/svg/favicon-128.png" sizes="128x128">
+  <link rel="icon" href="/assets/svg/favicon-180.png" sizes="180x180">
+  <link rel="icon" href="/assets/svg/favicon-192.png" sizes="192x192">
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="/assets/css/tailwind-output.css">
 
@@ -91,12 +97,14 @@ function decode(a) {
 
 const email = "oevqtre.t.urezna@tznvy.pbz";
 
-const emailButton = document.getElementById('mail');
-emailButton.addEventListener('click', (evt) => {
-  let emailDecoded = decode(email);
-  navigator.clipboard.writeText(emailDecoded);
-  alert('Copied ' + emailDecoded);
-});
+const emailButtons = document.querySelectorAll('.copy-email');
+for (const b of emailButtons) {
+  b.addEventListener('click', (evt) => {
+    let emailDecoded = decode(email);
+    navigator.clipboard.writeText(emailDecoded);
+    alert('Copied ' + emailDecoded);
+  });
+}
 </script>
 </body>
 </html>

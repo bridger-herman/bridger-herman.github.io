@@ -22,7 +22,7 @@ TEMPLATE_EXTENSION = '.jinja'
 # Image resizing constants
 IMG_FOLDER = ASSETS_DIR.joinpath('img')
 OUT_IMG_FOLDER = OUT_DIR.joinpath('img')
-IMG_RESOLUTION_WIDTHS = [2048]
+IMG_RESOLUTION_WIDTHS = [480, 800, 1280, 1920]
 
 # TailwindCSS constants
 TAILWIND_INPUT = ASSETS_DIR.joinpath('css', 'tailwind-input.css')
@@ -40,7 +40,7 @@ COPYRIGHT_BLOCK = '''
     Last updated: {}
 </p>
 <p>
-    Copyright (c) {} Bridger Herman
+    Copyright &copy; {} Bridger Herman
 </p>
 '''.format(time.strftime('%b %d %Y'), time.strftime('%Y'))
 

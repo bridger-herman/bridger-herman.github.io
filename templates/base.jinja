@@ -6,6 +6,8 @@
   <title>{% block title %}{% endblock %} | bridger</title>
   <link rel="stylesheet" href="/assets/css/tailwind-output.css">
 
+{% set textWidthParams = 'md:w-4/5 lg:w-3/4 xl:w-1/2 max-w-[100ch] m-auto' %}
+
 {% macro par(text) %}
 <p class="m-2 my-4">
 {{ text }}
@@ -21,7 +23,7 @@
 {% macro navButton(text, href) %}
 <li class="m-2 md:m-0 text-lg">
   <a href="{{ href }}">
-  <div class="px-4 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue">
+  <div class="px-8 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold">
     {{ text }}
   </div>
   </a>
@@ -36,7 +38,7 @@
 {% endblock %}
 </div>
 
-<div class="md:w-3/4 lg:w-2/3 xl:w-1/2 m-auto">
+<div class="{{ textWidthParams }}">
 {% block body %}
 {% endblock %}
 </div>

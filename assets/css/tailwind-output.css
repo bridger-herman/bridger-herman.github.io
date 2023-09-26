@@ -586,6 +586,11 @@ video {
   margin: auto;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -636,8 +641,21 @@ video {
   width: 1.5rem;
 }
 
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .w-full {
   width: 100%;
+}
+
+.max-w-\[100ch\] {
+  max-width: 100ch;
+}
+
+.max-w-screen-md {
+  max-width: 768px;
 }
 
 .cursor-pointer {
@@ -652,12 +670,20 @@ video {
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .place-content-between {
   place-content: space-between;
 }
 
 .place-content-around {
   place-content: space-around;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .rounded-md {
@@ -702,9 +728,9 @@ video {
      object-position: right;
 }
 
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .py-2 {
@@ -754,6 +780,15 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+.hover\:font-bold:hover {
+  font-weight: 700;
+}
+
+.hover\:brightness-125:hover {
+  --tw-brightness: brightness(1.25);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 @media not all and (min-width: 768px) {
   .max-md\:right-0 {
     right: 0px;
@@ -789,8 +824,8 @@ video {
     display: none;
   }
 
-  .md\:w-3\/4 {
-    width: 75%;
+  .md\:w-4\/5 {
+    width: 80%;
   }
 
   .md\:w-auto {
@@ -811,8 +846,8 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:w-2\/3 {
-    width: 66.666667%;
+  .lg\:w-3\/4 {
+    width: 75%;
   }
 }
 

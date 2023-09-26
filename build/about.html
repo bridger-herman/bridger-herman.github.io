@@ -9,16 +9,45 @@ about
 
 
 
+
+
+
 </head>
+
 <body class="text-zinc-100 bg-gray-900">
 
 <div>
 
-<img 
-  src="/build/img/header_2048.jpg"
-  alt="Bridger Herman standing in front of a sunset"
-  class="w-full max-h-[40rem] object-cover"
-/>
+<div class="relative">
+  <div class="absolute top-0 right-0 m-4 z-10">
+    
+    <svg xmlns="<http://www.w3.org/2000/svg>" id="menu-button" class="h-6 w-6 cursor-pointer md:hidden block"
+      fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </div>
+  <div class="absolute bottom-0 left-0 max-w-xl m-4">
+    <p><strong>bridger</strong> herman</p>
+    <p>extended reality visualization + data physicalization + creativity support tools</p>
+  </div>
+  <div class="hidden absolute max-md:top-0 right-0 md:bottom-0 w-full md:flex md:w-auto bg-gray-950 md:bg-transparent" id="menu">
+    <nav>
+      <ul class="flex flex-col md:flex-row">
+        <li class="m-2">
+          <a href="#">curriculum vitae</a>
+        </li>
+        <li class="m-2">
+          <a href="#">publications</a>
+        </li>
+        <li class="m-2">
+          <a href="#">adventures</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <img src="/build/img/header_2048.jpg" alt="Bridger Herman standing in front of a sunset"
+    class="w-full max-h-[45vh] object-cover object-right" />
+</div>
 
 </div>
 
@@ -87,9 +116,18 @@ as a board member, percussion instructor, and transportation coordinator.
 
 <p class="m-2 my-4">
 
-Keep reading to check out some of my work!
+Check out some of my work below!
 
 </p>
+
+
+
+<h2 class="text-xl font-bold my-4">
+Research Themes
+</h2>
+
+
+<img src="/assets/svg/research-overview-optimized.svg" />
 
 
 </div>
@@ -106,5 +144,33 @@ Keep reading to check out some of my work!
 </footer>
 
 <script src="/assets/js/jquery-3.4.1.min.js"></script>
+
+
+
+<script>
+window.onload = () => {
+  const url = 'ws://localhost:8001'
+  let ws = new WebSocket(url)
+  ws.onopen = () => {
+    console.log('Opened autoreload connection to ' + url);
+    ws.onmessage = (msg) => {
+
+      if (msg.data == 'Reload') {
+        window.location.reload()
+      }
+    }
+  }
+}
+</script>
+
+
+<script>
+const button = document.querySelector('#menu-button'); // Hamburger Icon
+const menu = document.querySelector('#menu'); // Menu
+
+button.addEventListener('click', () => {
+  menu.classList.toggle('hidden');
+});
+</script>
 </body>
 </html>

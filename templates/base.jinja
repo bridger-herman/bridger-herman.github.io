@@ -7,11 +7,23 @@
 
 {% macro par(text) %}
 <p class="m-2 my-4">
-{{ text}}
+{{ text }}
 </p>
 {% endmacro %}
 
+{% macro h2(text) %}
+<h2 class="text-xl font-bold my-4">
+{{ text }}
+</h2>
+{% endmacro %}
+
+{% macro button(text) %}
+<button>
+{{ text }}
+</button>
+{% endmacro %}
 </head>
+
 <body class="text-zinc-100 bg-gray-900">
 
 <div>
@@ -29,5 +41,33 @@
 </footer>
 
 <script src="/assets/js/jquery-3.4.1.min.js"></script>
+
+{# Only include this if we're auto-reloading #}
+{% if serve %}
+<script>
+window.onload = () => {
+  const url = 'ws://localhost:8001'
+  let ws = new WebSocket(url)
+  ws.onopen = () => {
+    console.log('Opened autoreload connection to ' + url);
+    ws.onmessage = (msg) => {
+
+      if (msg.data == 'Reload') {
+        window.location.reload()
+      }
+    }
+  }
+}
+</script>
+{% endif %}
+
+<script>
+const button = document.querySelector('#menu-button'); // Hamburger Icon
+const menu = document.querySelector('#menu'); // Menu
+
+button.addEventListener('click', () => {
+  menu.classList.toggle('hidden');
+});
+</script>
 </body>
 </html>

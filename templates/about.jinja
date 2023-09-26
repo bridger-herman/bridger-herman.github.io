@@ -4,7 +4,7 @@ about
 {% endblock %}
 
 {% block header %}
-<div class="relative">
+<div class="relative font-mono">
   <div class="absolute top-0 right-0 m-4 z-10">
     {# https://blog.logrocket.com/building-responsive-navbar-tailwind-css/ #}
     <svg xmlns="<http://www.w3.org/2000/svg>" id="menu-button" class="h-6 w-6 cursor-pointer md:hidden block"
@@ -12,24 +12,27 @@ about
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
   </div>
-  <div class="absolute bottom-0 left-0 max-w-xl m-4">
-    <p><strong>bridger</strong> herman</p>
-    <p>extended reality visualization + data physicalization + creativity support tools</p>
-  </div>
-  <div class="hidden absolute max-md:top-0 right-0 md:bottom-0 w-full md:flex md:w-auto bg-gray-950 md:bg-transparent" id="menu">
-    <nav>
-      <ul class="flex flex-col md:flex-row">
-        <li class="m-2">
-          <a href="#">curriculum vitae</a>
-        </li>
-        <li class="m-2">
-          <a href="#">publications</a>
-        </li>
-        <li class="m-2">
-          <a href="#">adventures</a>
-        </li>
-      </ul>
-    </nav>
+  <div class="absolute bottom-0 left-0 md:max-w-2xl m-4 xl:ml-44">
+    <div id="not-menu">
+      <p class="text-4xl my-4"><a href="/"><strong>bridger</strong> herman</a></p>
+      <p>extended reality visualization + data physicalization + creativity support tools</p>
+    </div>
+    {# <div class="
+      hidden absolute w-full bg-gray-950 
+      max-md:right-0 max-md:top-0 md:left-0 md:bottom-0
+      md:flex md:w-auto md:bg-transparent
+      xl:ml-44"
+      id="menu"> #}
+    <div class="hidden my-4 rounded-md bg-gray-950 md:block md:bg-transparent" id="menu">
+      <nav>
+        <ul class="flex flex-col place-content-between md:flex-row">
+        {{ navButton('curriculum vitae', '#') }}
+        {{ navButton('publications', '#') }}
+        {{ navButton('adventures', '#') }}
+        </ul>
+      </nav>
+    </div>
+    {# </div> #}
   </div>
   <img src="/build/img/header_2048.jpg" alt="Bridger Herman standing in front of a sunset"
     class="w-full max-h-[45vh] object-cover object-right" />
@@ -83,6 +86,11 @@ Check out some of my work below!
 
 {{ h2("Research Themes") }}
 
-<img src="/assets/svg/research-overview-optimized.svg" />
+<img class="w-full" src="/assets/svg/research-overview-optimized.svg" />
 
+<ul class="my-10 flex flex-col place-content-around md:flex-row font-mono">
+  {{ navButton('curriculum vitae', '#') }}
+  {{ navButton('publications', '#') }}
+  {{ navButton('adventures', '#') }}
+</ul>
 {% endblock %}

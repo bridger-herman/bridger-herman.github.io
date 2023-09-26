@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>{% block title %}{% endblock %} | bridger</title>
   <link rel="stylesheet" href="/assets/css/tailwind-output.css">
 
@@ -12,19 +13,23 @@
 {% endmacro %}
 
 {% macro h2(text) %}
-<h2 class="text-xl font-bold my-4">
+<h2 class="text-xl font-bold m-2 my-4">
 {{ text }}
 </h2>
 {% endmacro %}
 
-{% macro button(text) %}
-<button>
-{{ text }}
-</button>
+{% macro navButton(text, href) %}
+<li class="m-2 md:m-0 text-lg">
+  <a href="{{ href }}">
+  <div class="px-4 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue">
+    {{ text }}
+  </div>
+  </a>
+</li>
 {% endmacro %}
 </head>
 
-<body class="text-zinc-100 bg-gray-900">
+<body class="text-zinc-100 bg-gray-900 md:lg-white">
 
 <div>
 {% block header %}
@@ -36,7 +41,7 @@
 {% endblock %}
 </div>
 
-<footer>
+<footer class="text-xs">
 {{ copyright_block }}
 </footer>
 
@@ -63,10 +68,12 @@ window.onload = () => {
 
 <script>
 const button = document.querySelector('#menu-button'); // Hamburger Icon
+const notMenu = document.querySelector('#not-menu'); // other contents in header
 const menu = document.querySelector('#menu'); // Menu
 
 button.addEventListener('click', () => {
   menu.classList.toggle('hidden');
+  notMenu.classList.toggle('hidden');
 });
 </script>
 </body>

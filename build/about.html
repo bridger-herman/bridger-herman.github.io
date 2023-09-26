@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>
 about
  | bridger</title>
@@ -14,11 +15,11 @@ about
 
 </head>
 
-<body class="text-zinc-100 bg-gray-900">
+<body class="text-zinc-100 bg-gray-900 md:lg-white">
 
 <div>
 
-<div class="relative">
+<div class="relative font-mono">
   <div class="absolute top-0 right-0 m-4 z-10">
     
     <svg xmlns="<http://www.w3.org/2000/svg>" id="menu-button" class="h-6 w-6 cursor-pointer md:hidden block"
@@ -26,24 +27,46 @@ about
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
   </div>
-  <div class="absolute bottom-0 left-0 max-w-xl m-4">
-    <p><strong>bridger</strong> herman</p>
-    <p>extended reality visualization + data physicalization + creativity support tools</p>
+  <div class="absolute bottom-0 left-0 md:max-w-2xl m-4 xl:ml-44">
+    <div id="not-menu">
+      <p class="text-4xl my-4"><a href="/"><strong>bridger</strong> herman</a></p>
+      <p>extended reality visualization + data physicalization + creativity support tools</p>
+    </div>
+    
+    <div class="hidden my-4 rounded-md bg-gray-950 md:block md:bg-transparent" id="menu">
+      <nav>
+        <ul class="flex flex-col place-content-between md:flex-row">
+        
+<li class="m-2 md:m-0 text-lg">
+  <a href="#">
+  <div class="px-4 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue">
+    curriculum vitae
   </div>
-  <div class="hidden absolute max-md:top-0 right-0 md:bottom-0 w-full md:flex md:w-auto bg-gray-950 md:bg-transparent" id="menu">
-    <nav>
-      <ul class="flex flex-col md:flex-row">
-        <li class="m-2">
-          <a href="#">curriculum vitae</a>
-        </li>
-        <li class="m-2">
-          <a href="#">publications</a>
-        </li>
-        <li class="m-2">
-          <a href="#">adventures</a>
-        </li>
-      </ul>
-    </nav>
+  </a>
+</li>
+
+        
+<li class="m-2 md:m-0 text-lg">
+  <a href="#">
+  <div class="px-4 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue">
+    publications
+  </div>
+  </a>
+</li>
+
+        
+<li class="m-2 md:m-0 text-lg">
+  <a href="#">
+  <div class="px-4 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue">
+    adventures
+  </div>
+  </a>
+</li>
+
+        </ul>
+      </nav>
+    </div>
+    
   </div>
   <img src="/build/img/header_2048.jpg" alt="Bridger Herman standing in front of a sunset"
     class="w-full max-h-[45vh] object-cover object-right" />
@@ -122,17 +145,46 @@ Check out some of my work below!
 
 
 
-<h2 class="text-xl font-bold my-4">
+<h2 class="text-xl font-bold m-2 my-4">
 Research Themes
 </h2>
 
 
-<img src="/assets/svg/research-overview-optimized.svg" />
+<img class="w-full" src="/assets/svg/research-overview-optimized.svg" />
 
+<ul class="my-10 flex flex-col place-content-around md:flex-row font-mono">
+  
+<li class="m-2 md:m-0 text-lg">
+  <a href="#">
+  <div class="px-4 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue">
+    curriculum vitae
+  </div>
+  </a>
+</li>
+
+  
+<li class="m-2 md:m-0 text-lg">
+  <a href="#">
+  <div class="px-4 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue">
+    publications
+  </div>
+  </a>
+</li>
+
+  
+<li class="m-2 md:m-0 text-lg">
+  <a href="#">
+  <div class="px-4 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue">
+    adventures
+  </div>
+  </a>
+</li>
+
+</ul>
 
 </div>
 
-<footer>
+<footer class="text-xs">
 
 <p>
     Last updated: Sep 26 2023
@@ -166,10 +218,12 @@ window.onload = () => {
 
 <script>
 const button = document.querySelector('#menu-button'); // Hamburger Icon
+const notMenu = document.querySelector('#not-menu'); // other contents in header
 const menu = document.querySelector('#menu'); // Menu
 
 button.addEventListener('click', () => {
   menu.classList.toggle('hidden');
+  notMenu.classList.toggle('hidden');
 });
 </script>
 </body>

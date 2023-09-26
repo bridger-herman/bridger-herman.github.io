@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('/fonts/FantasqueSansMono/FantasqueSansMono-Bold-decl.css');
+@import url('/fonts/FantasqueSansMono/FantasqueSansMono-BoldItalic-decl.css');
+@import url('/fonts/FantasqueSansMono/FantasqueSansMono-Italic-decl.css');
+@import url('/fonts/FantasqueSansMono/FantasqueSansMono-Regulr-decl.css');

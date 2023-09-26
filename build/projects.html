@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>
 projects
  | bridger</title>
@@ -14,7 +15,7 @@ projects
 
 </head>
 
-<body class="text-zinc-100 bg-gray-900">
+<body class="text-zinc-100 bg-gray-900 md:lg-white">
 
 <div>
 
@@ -241,7 +242,7 @@ projects
 
 </div>
 
-<footer>
+<footer class="text-xs">
 
 <p>
     Last updated: Sep 26 2023
@@ -275,10 +276,12 @@ window.onload = () => {
 
 <script>
 const button = document.querySelector('#menu-button'); // Hamburger Icon
+const notMenu = document.querySelector('#not-menu'); // other contents in header
 const menu = document.querySelector('#menu'); // Menu
 
 button.addEventListener('click', () => {
   menu.classList.toggle('hidden');
+  notMenu.classList.toggle('hidden');
 });
 </script>
 </body>

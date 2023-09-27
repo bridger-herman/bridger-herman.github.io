@@ -2,10 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('/fonts/FantasqueSansMono/FantasqueSansMono-Bold-decl.css');
-@import url('/fonts/FantasqueSansMono/FantasqueSansMono-BoldItalic-decl.css');
-@import url('/fonts/FantasqueSansMono/FantasqueSansMono-Italic-decl.css');
-@import url('/fonts/FantasqueSansMono/FantasqueSansMono-Regulr-decl.css');
+/* Fantasque Sans Mono fonts, loaded from assets folder */
+@font-face {
+  font-family: 'Fantasque Sans Mono';
+  src: url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Bold.woff2') format('woff2'),
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Bold.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Bold.svg#FantasqueSansMono-Bold') format('svg'); /* Chrome < 4, Legacy iOS */
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fantasque Sans Mono';
+  src: url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-BoldItalic.woff2') format('woff2'),
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-BoldItalic.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-BoldItalic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-BoldItalic.svg#FantasqueSansMono-BoldItalic') format('svg'); /* Chrome < 4, Legacy iOS */
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Fantasque Sans Mono';
+  src: url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Italic.woff2') format('woff2'),
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Italic.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Italic.svg#FantasqueSansMono-Italic') format('svg'); /* Chrome < 4, Legacy iOS */
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Fantasque Sans Mono';
+  src: url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Regular.woff2') format('woff2'),
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Regular.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/FantasqueSansMono/FantasqueSansMono-Regular.svg#FantasqueSansMono-Regular') format('svg'); /* Chrome < 4, Legacy iOS */
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 
 @layer base {
     a {

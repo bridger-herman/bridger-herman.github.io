@@ -103,7 +103,7 @@ teaching
 <footer class="text-xs">
 
 <p>
-    Last updated: Sep 26 2023
+    Last updated: Sep 27 2023
 </p>
 <p>
     Copyright &copy; 2023 Bridger Herman
@@ -117,7 +117,7 @@ teaching
 
 <script>
 window.onload = () => {
-  const url = 'ws://localhost:8001'
+  let url = `ws://${window.location.host.replace('8000', '8001')}`
   let ws = new WebSocket(url)
   ws.onopen = () => {
     console.log('Opened autoreload connection to ' + url);

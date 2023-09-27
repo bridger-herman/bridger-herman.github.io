@@ -1,13 +1,13 @@
 {% extends "base.jinja" %}
 
 {% macro pub(title, titleLink, imgLink, authors, venue, pageOrPublisher, otherInfo, year) %}
-<div class="mx-2 mb-8 flex bg-g">
+<div class="mx-2 mb-8 flex flex-col md:flex-row bg-g">
 
-    <div class="w-1/4 mr-4">
+    <div class="w-full md:w-1/4 md:mr-4">
         <img class="w-full max-h-44 m-auto object-cover object-top rounded-md" src="{{ imgLink }}" alt="">
     </div>
 
-    <div class="w-3/4">
+    <div class="w-full md:w-3/4">
         {% if titleLink|length > 0 %}
         <p><strong><a href="{{ titleLink }}">{{ title }}</a></strong></p>
         {% else %}

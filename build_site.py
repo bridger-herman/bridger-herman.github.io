@@ -140,10 +140,11 @@ def build_templates(serve: bool):
 
     print('Building {} templates...'.format(len(template_list)))
     for filepath in template_list:
-        print(filepath)
+        if filepath.name in EXCLUDE_NAMES:
+            continue
         template = jinja_env.get_template(filepath.name)
         out_path = OUT_DIR.joinpath(filepath.stem + '.html')
-        print('   ', template, '->', out_path)
+        print(template, '->', out_path)
         out_html = template.render({'copyright_block': COPYRIGHT_BLOCK, 'serve': serve})
         with open(out_path, 'w') as fout:
             fout.write(out_html)

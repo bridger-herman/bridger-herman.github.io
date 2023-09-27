@@ -36,21 +36,63 @@
   </a>
 </li>
 {% endmacro %}
+
+{% macro hamburgerButton() %}
+<div class="absolute top-0 right-0 m-4 z-10">
+  {# https://blog.logrocket.com/building-responsive-navbar-tailwind-css/ #}
+  <svg xmlns="<http://www.w3.org/2000/svg>" id="menu-button" class="h-6 w-6 cursor-pointer md:hidden block"
+    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+</div>
+{% endmacro %}
+
+{% macro navbar(isHomepage) %}
+{% if isHomepage %}
+<div class="hidden my-4 rounded-md bg-gray-950 md:max-w-2xl md:block md:bg-transparent" id="menu">
+{% else %}
+<div class="hidden my-2 rounded-md bg-gray-950 md:max-w-2xl md:block md:bg-transparent" id="menu">
+{% endif %}
+  <nav>
+    {% if isHomepage %}
+      <ul class="flex flex-col place-content-between space-x-4 md:flex-row">
+    {% else %}
+      <ul class="flex flex-col place-content-between space-x-4 mx-4 md:flex-row">
+    {% endif %}
+      {{ navButton('curriculum vitae', 'cv.html') }}
+      {{ navButton('publications', '#') }}
+      {{ navButton('adventures', '#') }}
+    </ul>
+  </nav>
+</div>
+{% endmacro %}
+
 </head>
 
 <body class="text-zinc-100 bg-gray-900 md:lg-white">
 
-<div>
+<header>
 {% block header %}
-{% endblock %}
+<div class="relative font-mono bg-gray-700 rounded-b-md">
+  {{ hamburgerButton() }}
+  <div class="flex place-content-between">
+    <div id="not-menu" class="">
+      <p class="text-2xl m-4"><a class="no-underline" href="/"><strong>bridger</strong> herman</a></p>
+    </div>
+    <div class="">
+      {{ navbar() }}
+    </div>
+  </div>
 </div>
+{% endblock %}
+</header>
 
-<div class="{{ textWidthParams }}">
+<div>
 {% block body %}
 {% endblock %}
 </div>
 
-<footer class="text-xs">
+<footer class="text-xs text-zinc-700 m-10">
 {{ copyright_block }}
 </footer>
 

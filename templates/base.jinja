@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="/assets/css/tailwind-output.css">
 
-{% set textWidthParams = 'md:w-4/5 lg:w-3/4 xl:w-1/2 max-w-[100ch] m-auto' %}
+{% set textWidthParams = 'md:w-4/5 lg:w-3/4 xl:w-3/5 max-w-[100ch] m-auto' %}
 
 {% macro par(text) %}
 <p class="m-2 my-4">
@@ -30,11 +30,17 @@
 {% macro navButton(text, href) %}
 <li class="m-2 md:m-0 text-lg">
   <a href="{{ href }}">
-  <div class="px-8 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold">
+  <div class="px-8 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
     {{ text }}
   </div>
   </a>
 </li>
+{% endmacro %}
+
+{% macro navbuttons() %}
+  {{ navButton('curriculum vitae', 'cv.html') }}
+  {{ navButton('publications', 'publications.html') }}
+  {{ navButton('adventures', '#') }}
 {% endmacro %}
 
 {% macro hamburgerButton() %}
@@ -59,9 +65,7 @@
     {% else %}
       <ul class="flex flex-col place-content-between space-x-4 mx-4 md:flex-row">
     {% endif %}
-      {{ navButton('curriculum vitae', 'cv.html') }}
-      {{ navButton('publications', '#') }}
-      {{ navButton('adventures', '#') }}
+    {{ navbuttons() }}
     </ul>
   </nav>
 </div>

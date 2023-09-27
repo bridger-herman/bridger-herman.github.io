@@ -40,7 +40,7 @@ about
 {{par("
 Hey, I'm Bridger, a Ph.D. Candidate in the <a href='https://ivlab.cs.umn.edu'>Interactive Visualization Lab</a> at the
 University of
-Minnesota with Dr. <a href='https://www.danielkeefe.net/'>Daniel F. Keefe</a>.
+Minnesota with Professor <a href='https://www.danielkeefe.net/'>Daniel F. Keefe</a>.
 ")}}
 
 
@@ -86,28 +86,26 @@ Check out some of my work below!
 
 <div class="flex flex-wrap justify-center m-auto max-w-screen-md">
   <a href="#">
-    <div class="w-fit my-4 mx-2 hover:brightness-125">
+    <div class="w-fit my-4 mx-2 hover:scale-105 transition">
       {% include "svg/research-overview-xr-opt.svg" %}
     </div>
   </a>
 
   <a href="#">
-    <div class="w-fit my-4 mx-2 hover:brightness-125">
+    <div class="w-fit my-4 mx-2 hover:scale-105 transition">
       {% include "svg/research-overview-phys-opt.svg" %}
     </div>
   </a>
 
   <a href="#">
-    <div class="w-fit my-4 mx-2 hover:brightness-125">
+    <div class="w-fit my-4 mx-2 hover:scale-105 transition">
       {% include "svg/research-overview-cave-opt.svg" %}
     </div>
   </a>
 </div>
 
 <ul class="my-10 flex flex-col place-content-around md:flex-row font-mono">
-  {{ navButton('curriculum vitae', 'cv.html') }}
-  {{ navButton('publications', '#') }}
-  {{ navButton('adventures', '#') }}
+{{ navbuttons() }}
 </ul>
 </div>
 {% endblock %}

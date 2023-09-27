@@ -1,0 +1,129 @@
+{% extends "base.jinja" %}
+
+{% macro pub(title, titleLink, imgLink, authors, venue, pageOrPublisher, otherInfo, year) %}
+<div class="mx-2 mb-8 flex bg-g">
+
+    <div class="w-1/4 mr-4">
+        <img class="w-full max-h-44 m-auto object-cover object-top rounded-md" src="{{ imgLink }}" alt="">
+    </div>
+
+    <div class="w-3/4">
+        {% if titleLink|length > 0 %}
+        <p><strong><a href="{{ titleLink }}">{{ title }}</a></strong></p>
+        {% else %}
+        <p><strong>{{ title }}</strong></p>
+        {% endif %}
+
+        {% for author in authors %}
+        {% set comma = '' %}
+        {% if loop.revindex0 != 0 %}
+        {% set comma = ',' %}
+        {% endif %}
+        {% if author == 'Bridger Herman' %}
+        <strong><span>{{ author }}{{ comma }}</span></strong>
+        {% else %}
+        <span>{{ author }}{{ comma }}</span>
+        {% endif %}
+        {% endfor %}
+
+        {% if venue|length > 0 %}
+        <p><em>{{ venue }}</em>, {{ pageOrPublisher }}</p>
+        {% endif %}
+
+        {% if otherInfo|length > 0 %}
+        <p>{{ otherInfo }}, {{ year }}.</p>
+        {% else %}
+        <p>{{ year }}.</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endmacro %}
+
+
+{% block title %}
+publications
+{% endblock %}
+
+{% block body %}
+<div class="{{ textWidthParams }}">
+    {{ h2('Publications') }}
+
+    {{ pub(
+    'Hybrid Data Constructs: Interacting with Biomedical Data in Augmented Spaces',
+    'https://www.bloomsbury.com/us/making-data-9781350133235/',
+    '/assets/img/pubs/making-data.jpg',
+    ['Daniel F. Keefe', 'Bridger Herman', 'Jung Who Nam', 'Seth Johnson', 'Daniel Orban'],
+    'Making Data: Materializing Digial Information',
+    'pp. 169-182, Bloomsbury Publishing PLC',
+    '',
+    '2022'
+    )}}
+
+    {{ pub(
+    'Poster: Linked Spatial and Temporal Normalization for Analysis of Cyclical 4D Skeletal Motion Data',
+    'https://ivlab.cs.umn.edu/Turner-2022-Motion.html',
+    '/assets/img/pubs/Turner-2022-Motion.png',
+    ['Morgan Turner', 'Bridger Herman', 'Matthias Broske', 'Daniel F. Keefe'],
+    'IEEE VIS Posters',
+    '',
+    '',
+    '2022'
+    )}}
+
+    {{ pub(
+    'Multi-Touch Querying on Data Physicalizations in Immersive AR',
+    'https://dl.acm.org/doi/10.1145/3488542',
+    '/assets/img/pubs/multi-touch.jpg',
+    ['Bridger Herman', 'Maxwell Omdal', 'Stephanie Zeller', 'Clara A. Richter', 'Greg Abram', 'Francesca Samsel', 'Daniel F. Keefe'],
+    'Proceedings on Human Computer Interaction',
+    'ACM Interactive Surfaces and Spaces',
+    '',
+    '2021'
+    )}}
+
+    {{ pub(
+    'Printmaking, Puzzles, and Studio Closets: Using Artistic Metaphors to Reimagine the User Interface for Designing Immersive Visualizations',
+    'https://doi.org/10.1109/VISAP51628.2020.00009',
+    '/assets/img/pubs/printmaking.png',
+    ['Bridger Herman', 'Francesca Samsel', 'Seth Johnson', 'Annie Bares', 'Greg Abram', 'Daniel F. Keefe'],
+    'Transactions on Visualization and Computer Graphics',
+    'IEEE VIS Arts Program',
+    '',
+    '2020'
+    )}}
+
+    {{ pub(
+    'Poster: Automatic Generation of Data Legends for Multi-Variate Artist Driven Visualizations',
+    'https://ivlab.cs.umn.edu/Weissman-2020-Legends.html',
+    '/assets/img/pubs/Weissman-2020-Legends.png',
+    ['Claire Weissman', 'Bridger Herman', 'Stephanie Zeller', 'Francesca Samsel', 'Daniel F. Keefe'],
+    'IEEE VIS Posters',
+    '',
+    'IEEE SciVis Best Poster Award',
+    '2020'
+    )}}
+
+    {{ pub(
+    'Artifact-Based Rendering: Harnessing Natural and Traditional Visual Media for More Expressive and Engaging 3D Visualizations',
+    'https://doi.org/10.1109/TVCG.2019.2934260',
+    '/assets/img/pubs/abr.png',
+    ['Seth Johnson', 'Francesca Samsel', 'Greg Abram', 'Daniel Olson', 'Andrew J. Solis', 'Bridger Herman', 'Phillip J. Wolfram', 'Cristophe Lenglet', 'Daniel F. Keefe'],
+    'Transactions on Visualization and Computer Graphics',
+    'IEEE VIS',
+    '',
+    '2019'
+    )}}
+
+    {{ pub(
+    'Boxcars On Potatoes: Exploring the Design Language for Tangible Visualizations of Scalar Data Fields on 3D Surfaces Bridger Herman, and Daniel F. Keefe',
+    'https://ivlab.cs.umn.edu/Herman-2018-Boxcars.html',
+    '/assets/img/pubs/boxcars.png',
+    ['Bridger Herman', 'Daniel F. Keefe'],
+    'Toward a Design Language for Data Physicalization ',
+    'Workshop at IEEE VIS',
+    '',
+    '2018'
+    )}}
+</div>
+{% endblock %}

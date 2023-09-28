@@ -28,3 +28,13 @@ and optionally, serve locally on <http://localhost:8000> to preview changes (wit
 ```
 python3 build_site.py serve
 ```
+
+## Deploying the site
+
+To avoid pushing the `build` folder directly to GitHub, I use a script to deploy to `gh-pages` branch instead. This script is from https://github.com/X1011/git-directory-deploy.
+
+In a bash-like shell, run:
+
+```
+GIT_DEPLOY_DIR=./build ./deploy-gh-pages.sh
+```

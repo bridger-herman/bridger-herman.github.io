@@ -1,20 +1,20 @@
 {% extends "base.jinja" %}
 
 {% macro project(title, description, link, photo, photo_alt) %}
-<div class="m-2 flex clex-col md:flex-row bg-gray-700 rounded-md">
-    <div class="w 5/6 m-2 md:w-1/4 md:mr-4">
-        <a class="" href="{{ link }}">
+<a class="" href="{{ link }}">
+    <div class="m-2 flex flex-col md:flex-row bg-gray-700 rounded-md">
+        <div class="w 5/6 m-2 md:w-1/4 md:mr-4">
             <img class="w-full max-h-44 m-auto object-cover object-top rounded-md" src="{{ photo }}"
                 alt="{{ photo_alt }}">
-        </a>
+        </div>
+        <div class="w-5/6 m-2 md:w-3/4">
+            <a class="" href="{{ link }}">
+                <p><strong>{{ title }}</strong></p>
+            </a>
+            <p class="no-underline">{{ description }}</p>
+        </div>
     </div>
-    <div class="w-5/6 m-2 md:w-3/4">
-        <a class="" href="{{ link }}">
-            <p>{{ title }}</p>
-        </a>
-        <p class="no-underline">{{ description }}</p>
-    </div>
-</div>
+</a>
 {% endmacro %}
 
 {% block title %}
@@ -40,18 +40,21 @@ adventures
         {{ h3('Courses Taught') }}
         <div>
             {{ project('CSCI 5609: Visualization', 'Spring 2022: Co-Instructor', '', '/assets/img/csci-5609.png')}}
-            {{ project('CSCI 1133: Introduction to Computing and Programming Concepts', 'Fall 2020: Instructor', '', '/assets/img/csci-1133-instr.png')}}
+            {{ project('CSCI 1133: Introduction to Computing and Programming Concepts', 'Fall 2020: Instructor', '',
+            '/assets/img/csci-1133-instr.png')}}
         </div>
 
         {{ h3('Graduate TA Experience') }}
         <div>
-            {{ project('CSCI 4611: Programming Interactive Computer Graphics and Games', 'Fall 2019, Fall 2021 - Fall 2023', '', '/assets/img/csci-4611.png')}}
+            {{ project('CSCI 4611: Programming Interactive Computer Graphics and Games', 'Fall 2019, Fall 2021 - Fall
+            2023', '', '/assets/img/csci-4611.png')}}
             {{ project('CSCI 5619: Virtual Reality and 3D Interaction', 'Fall 2018', '', '/assets/img/csci-5619.png')}}
         </div>
 
         {{ h3('Undergraduate TA Experience') }}
         <div>
-            {{ project('CSCI 1133: Introduction to Computing and Programming Concepts', 'Fall 2015 - Spring 2018', '', '/assets/img/csci-1133.png')}}
+            {{ project('CSCI 1133: Introduction to Computing and Programming Concepts', 'Fall 2015 - Spring 2018', '',
+            '/assets/img/csci-1133.png')}}
         </div>
     </div>
 
@@ -130,7 +133,8 @@ adventures
 
         {{ project(
         'Multi-Agent Motion Planning',
-        '3D multi-agent motion planning, including A* search, a probabilistic road map, and boids algorithm, written in C++.',
+        '3D multi-agent motion planning, including A* search, a probabilistic road map, and boids algorithm, written in
+        C++.',
         'https://bridger-herman.github.io/project-writeups/project-planning.html',
         'https://bridger-herman.github.io/project-writeups/assets/project-planning/agents_navigating.png',
         'Boids navigation'

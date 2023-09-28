@@ -1,0 +1,217 @@
+{% extends "base.jinja" %}
+
+{% macro project(title, description, link, photo, photo_alt) %}
+<div class="m-2 flex clex-col md:flex-row bg-gray-700 rounded-md">
+    <div class="w 5/6 m-2 md:w-1/4 md:mr-4">
+        <a class="" href="{{ link }}">
+            <img class="w-full max-h-44 m-auto object-cover object-top rounded-md" src="{{ photo }}"
+                alt="{{ photo_alt }}">
+        </a>
+    </div>
+    <div class="w-5/6 m-2 md:w-3/4">
+        <a class="" href="{{ link }}">
+            <p>{{ title }}</p>
+        </a>
+        <p class="no-underline">{{ description }}</p>
+    </div>
+</div>
+{% endmacro %}
+
+{% block title %}
+adventures
+{% endblock %}
+
+{% block body %}
+<div class="{{ textWidthParams }} flex flex-col">
+    {{ h2('Research') }}
+    {{ par('Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, corrupti.
+    Provident possimus dolorum accusantium fugit impedit voluptates natus
+    molestiae autem aliquid, accusamus culpa explicabo totam voluptas molestias
+    hic libero vel?') }}
+
+    {{ h2('Teaching') }}
+
+    <div>
+        {{ par('Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, corrupti.
+        Provident possimus dolorum accusantium fugit impedit voluptates natus
+        molestiae autem aliquid, accusamus culpa explicabo totam voluptas molestias
+        hic libero vel?') }}
+
+        {{ h3('Courses Taught') }}
+        <div>
+            {{ project('CSCI 5609: Visualization', 'Spring 2022: Co-Instructor', '', '/assets/img/csci-5609.png')}}
+            {{ project('CSCI 1133: Introduction to Computing and Programming Concepts', 'Fall 2020: Instructor', '', '/assets/img/csci-1133-instr.png')}}
+        </div>
+
+        {{ h3('Graduate TA Experience') }}
+        <div>
+            {{ project('CSCI 4611: Programming Interactive Computer Graphics and Games', 'Fall 2019, Fall 2021 - Fall 2023', '', '/assets/img/csci-4611.png')}}
+            {{ project('CSCI 5619: Virtual Reality and 3D Interaction', 'Fall 2018', '', '/assets/img/csci-5619.png')}}
+        </div>
+
+        {{ h3('Undergraduate TA Experience') }}
+        <div>
+            {{ project('CSCI 1133: Introduction to Computing and Programming Concepts', 'Fall 2015 - Spring 2018', '', '/assets/img/csci-1133.png')}}
+        </div>
+    </div>
+
+
+    {{ h2('Projects') }}
+    <div>
+        {{ project(
+        'LED Foot',
+        'Hardware and software for RGB LEDs to improve quality-of-life
+        during the winter months by providing atmospheric and
+        reactive
+        lighting effects to a living space.',
+        'https://github.com/bridger-herman/led-foot',
+        '/build/img/leds_480.jpg',
+        'A room with purple RGB LED lighting'
+        )}}
+
+        {{ project(
+        'Volumetric Lighting',
+        'Artist-driven volumetric lighting for a custom 3D in-browser game engine written in Rust.',
+        'https://bridger-herman.github.io/project-writeups/project-volumetric.html',
+        'https://bridger-herman.github.io/project-writeups/assets/project-volumetric/overview.png',
+        'Recreation of a Klingon chamber with volumetric lighting'
+        )}}
+
+        {{ project(
+        'Ray Tracer',
+        'CPU Ray Tracer written in Rust. Also compiled to WebAssembly and available
+        <a href="https://bridger-herman.github.io/wasm-raytracer">on GitHub</a>.',
+        'https://bridger-herman.github.io/project-writeups/project-raytracing.html',
+        'https://bridger-herman.github.io/project-writeups/assets/project-raytracer/img/hw3/gear.bmp',
+        'Ray traced image of a gear'
+        )}}
+
+        {{ project(
+        'Real-Time Sound Propagation',
+        'Real-time engine to simulate propagation of sound throughout virtual spaces, written in C++.',
+        'https://bridger-herman.github.io/project-writeups/project-sound-prop.html',
+        'https://bridger-herman.github.io/project-writeups/assets/project-sound-prop/living_room.jpg',
+        'Piano in a room'
+        )}}
+
+        {{ project(
+        'Scriptable Game',
+        'Scriptable 3D game engine for browsers, written in Rust and JavaScript.',
+        'https://bridger-herman.github.io/project-writeups/project-scriptable.html',
+        'https://bridger-herman.github.io/project-writeups/assets/project-scriptable-game/overview.png',
+        'Scriptable Colorku Sudoku board game'
+        )}}
+
+        {{ project(
+        '2D Game Framework',
+        'A simple 2D component-based game framework for browsers, written on top of p5.js.',
+        'https://bridger-herman.github.io/project-writeups/project-2dgame.html',
+        'https://bridger-herman.github.io/project-writeups/assets/project-2dgame/overview.png',
+        '2D game with Star Trek battle'
+        )}}
+
+        {{ project(
+        'Deferred Rendering Engine',
+        'A second attempt at a graphics engine in Rust, including a comparison of
+        forward, deferred, and deferred + light volumes rendering
+        techniques.',
+        'https://bridger-herman.github.io/project-writeups/project-deferred.html',
+        'https://bridger-herman.github.io/project-writeups/assets/project-deferred/menger-screenshot.png',
+        '10000 menger sponges with 10000 lights'
+        )}}
+
+        {{ project(
+        'Maze Game',
+        'Maze game with raw OpenGL, including a first attempt at a graphics framework in Rust.',
+        'https://bridger-herman.github.io/project-writeups/project-simple-game.html',
+        'https://bridger-herman.github.io/project-writeups/assets/project-simple-game/img/multi-doors.png',
+        'Doors with a key to open them'
+        )}}
+
+        {{ project(
+        'Multi-Agent Motion Planning',
+        '3D multi-agent motion planning, including A* search, a probabilistic road map, and boids algorithm, written in C++.',
+        'https://bridger-herman.github.io/project-writeups/project-planning.html',
+        'https://bridger-herman.github.io/project-writeups/assets/project-planning/agents_navigating.png',
+        'Boids navigation'
+        )}}
+
+        {{ project(
+        'Cloth Simulation',
+        'Cloth simulation, including rigid bodies, written in C++',
+        'https://bridger-herman.github.io/project-writeups/project-cloth.html',
+        'https://bridger-herman.github.io/project-writeups/assets/project-cloth/flag.png',
+        'Flag simulation'
+        )}}
+
+        {{ project(
+        'Particle System',
+        'Particle system simulation written in C++',
+        'https://bridger-herman.github.io/project-writeups/project-particles.html',
+        'https://bridger-herman.github.io/project-writeups/assets/project-particles/all_particles.jpg',
+        'Particle systems'
+        )}}
+
+    </div>
+
+    {{ h2('Photography') }}
+    <div>
+        {{ project(
+        'Western U.S.',
+        'Western United States, including Utah, Nevada, California, Arizona, and
+        New Mexico.',
+        'https://www.flickr.com/photos/151555891@N05/albums/72177720295839048',
+        '/assets/img/west2021.jpg',
+        ''
+        )}}
+
+        {{ project(
+        'Rochester, NY',
+        'Rochester, New York.',
+        'https://www.flickr.com/photos/151555891@N05/albums/72157715325795357',
+        '/assets/img/rochester_ny2020.jpg',
+        ''
+        )}}
+
+        {{ project(
+        'Vancouver',
+        'Vancouver in October for the IEEE VIS conference',
+        'https://www.flickr.com/photos/151555891@N05/albums/72157715325710252',
+        '/assets/img/vancouver2019.jpg',
+        ''
+        )}}
+
+        {{ project(
+        'Minnesota\'s North Shore',
+        'Photos from over the years on the North Shore of Minnesota',
+        'https://www.flickr.com/photos/151555891@N05/albums/72157715323989596',
+        '/assets/img/north_shore.jpg',
+        ''
+        )}}
+
+        {{ project(
+        'Germany',
+        'Photos from Germany, taken during the IEEE VIS conference',
+        'https://www.flickr.com/photos/151555891@N05/albums/72157708827649293',
+        '/assets/img/germany2018.jpg',
+        ''
+        )}}
+
+        {{ project(
+        'New Zealand',
+        'Photos taken during a study abroad experience in New Zealand',
+        'https://www.flickr.com/photos/151555891@N05/albums/72157687607956566',
+        '/assets/img/nz2017.jpg',
+        ''
+        )}}
+
+        {{ project(
+        'One City // Many Sunsets',
+        ' Sunsets over the city of Minneapolis ',
+        'https://www.flickr.com/photos/151555891@N05/albums/72157688640905024',
+        '/assets/img/one-city.jpg',
+        ''
+        )}}
+    </div>
+</div>
+{% endblock %}

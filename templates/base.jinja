@@ -27,6 +27,12 @@
 </h2>
 {% endmacro %}
 
+{% macro h3(text) %}
+<h3 class="text-lg font-bold m-2 my-4">
+{{ text }}
+</h3>
+{% endmacro %}
+
 {% macro navButton(text, href) %}
 <li class="m-2 md:m-0 text-lg">
   <a href="{{ href }}">
@@ -40,7 +46,7 @@
 {% macro navbuttons() %}
   {{ navButton('curriculum vitae', 'cv.html') }}
   {{ navButton('publications', 'publications.html') }}
-  {{ navButton('adventures', '#') }}
+  {{ navButton('adventures', 'adventures.html') }}
 {% endmacro %}
 
 {% macro hamburgerButton() %}

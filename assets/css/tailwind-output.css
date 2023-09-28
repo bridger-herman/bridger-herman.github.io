@@ -623,10 +623,6 @@ a {
   margin-bottom: 1rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
 .block {
   display: block;
 }
@@ -669,6 +665,10 @@ a {
 
 .min-h-\[55vh\] {
   min-height: 55vh;
+}
+
+.w-5\/6 {
+  width: 83.333333%;
 }
 
 .w-6 {

@@ -1,8 +1,8 @@
 import time
 import os
+import re
 import sys
 import asyncio
-import signal
 import websockets
 import threading
 import subprocess
@@ -86,15 +86,44 @@ class FileWatchers:
 
 def resize_images():
     '''
-    Resize all images to ensure that they are not too big
+    Resize all images to desired output resolution defined in templates spec
     '''
+
     if not OUT_IMG_FOLDER.is_dir():
         OUT_IMG_FOLDER.mkdir()
 
     all_images = os.listdir(IMG_FOLDER)
 
+    # first, crawl the templates folder to see what files are used and what resolutions.
+    extension_matches = re.compile(r'\/build\/img\/(.+)_(\d+)\.(jpg)|(png)|(gif)')
+    template_list = list(map(lambda name: TEMPLATE_DIR.joinpath(name), filter(lambda
+        name: fnmatch(name, '*' + TEMPLATE_EXTENSION), os.listdir(TEMPLATE_DIR))))
+
+    svg_dir = TEMPLATE_DIR.joinpath('svg')
+    template_list += list(map(lambda name: svg_dir.joinpath(name), filter(lambda
+        name: fnmatch(name, '*.svg'), os.listdir(svg_dir))))
+
+    imgs_to_convert = []
+    output_resolutions = []
+    output_extensions = []
+    for template in template_list:
+        with open(template) as fin:
+            template_contents = fin.read()
+        matches = re.finditer(extension_matches, template_contents)
+        for m in matches:
+            img_parts = []
+            for g in m.groups():
+                if g is not None and not any([x is None for x in g[0:3]]):
+                    img_parts.append(g)
+            if len(img_parts) == 3:
+                name, width, ext = img_parts
+                src_name = next(filter(lambda n: name in n, all_images))
+                imgs_to_convert.append(src_name)
+                output_resolutions.append(int(width))
+                output_extensions.append(ext)
+
     print('Resizing images...')
-    for img in all_images:
+    for i, img in enumerate(imgs_to_convert):
         # load img
         img_path = IMG_FOLDER.joinpath(img)
         if not img_path.is_file():
@@ -102,17 +131,19 @@ def resize_images():
         img_data = Image.open(img_path)
 
         # calculate aspect ratios
-        for new_width in IMG_RESOLUTION_WIDTHS:
-            # don't generate if we would be upsampling the image
-            # just copy the original
-            if new_width > img_data.width:
-                img_data.save(OUT_IMG_FOLDER.joinpath(img_path.stem + '_{}.jpg'.format(img_data.width)))
-                continue
+        new_width = output_resolutions[i]
+        new_ext = output_extensions[i]
+        # for new_width in IMG_RESOLUTION_WIDTHS:
+        #     # don't generate if we would be upsampling the image
+        #     # just copy the original
+        #     if new_width > img_data.width:
+        #         img_data.save(OUT_IMG_FOLDER.joinpath(img_path.stem + '_{}.jpg'.format(img_data.width)))
+        #         continue
 
-            ratio = new_width / img_data.width
-            new_height = int(ratio * img_data.height)
-            new_img = img_data.resize((new_width, new_height))
-            new_img.save(OUT_IMG_FOLDER.joinpath(img_path.stem + '_{}.jpg'.format(new_width)))
+        ratio = new_width / img_data.width
+        new_height = int(ratio * img_data.height)
+        new_img = img_data.resize((new_width, new_height))
+        new_img.save(OUT_IMG_FOLDER.joinpath(img_path.stem + '_{}.{}'.format(new_width, new_ext)))
 
     print('... done')
 

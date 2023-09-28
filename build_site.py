@@ -109,7 +109,7 @@ def resize_images():
     all_images = os.listdir(IMG_FOLDER)
 
     # first, crawl the templates folder to see what files are used and what resolutions.
-    extension_matches = re.compile(r'^\/img\/(.+)_(\d+)\.(jpg)|(png)|(gif)')
+    extension_matches = re.compile(r'\/img\/(.+)_(\d+)\.(jpg)|(png)|(gif)')
     template_list = list(map(lambda name: TEMPLATE_DIR.joinpath(name), filter(lambda
         name: fnmatch(name, '*' + TEMPLATE_EXTENSION), os.listdir(TEMPLATE_DIR))))
 
@@ -121,6 +121,7 @@ def resize_images():
     output_resolutions = []
     output_extensions = []
     for template in template_list:
+        # print(template)
         with open(template) as fin:
             template_contents = fin.read()
         matches = re.finditer(extension_matches, template_contents)
@@ -129,6 +130,7 @@ def resize_images():
             for g in m.groups():
                 if g is not None and not any([x is None for x in g[0:3]]):
                     img_parts.append(g)
+            # print(img_parts)
             if len(img_parts) == 3:
                 name, width, ext = img_parts
                 src_name = next(filter(lambda n: name in n, all_images))

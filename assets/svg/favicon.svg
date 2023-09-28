@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="63.481544mm"
+   height="63.481544mm"
+   viewBox="0 0 63.481544 63.481544"
+   version="1.1"
+   id="svg2557"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="favicon.svg"
+   inkscape:export-filename="favicon-192.png"
+   inkscape:export-xdpi="76.822327"
+   inkscape:export-ydpi="76.822327"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2559"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.1893044"
+     inkscape:cx="130.7487"
+     inkscape:cy="183.30042"
+     inkscape:window-width="1920"
+     inkscape:window-height="1177"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2554">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1801"
+       id="linearGradient12765"
+       x1="70.685677"
+       y1="82.909515"
+       x2="103.10542"
+       y2="116.92368"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.0945825,0,0,1.0945825,42.526485,-19.87841)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1801">
+      <stop
+         style="stop-color:#7986b4;stop-opacity:1;"
+         offset="0"
+         id="stop1797" />
+      <stop
+         style="stop-color:#da8970;stop-opacity:1;"
+         offset="1"
+         id="stop1799" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-99.140587,-53.835499)">
+    <rect
+       style="font-variation-settings:normal;vector-effect:none;fill:#e5e7eb;fill-opacity:1;stroke:none;stroke-width:0.999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000"
+       id="rect30897"
+       width="63.481544"
+       height="63.481544"
+       x="99.140587"
+       y="53.835499"
+       ry="12.458262" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:66.0771px;line-height:1.25;font-family:'Fantasque Sans Mono';-inkscape-font-specification:'Fantasque Sans Mono Italic';text-align:center;text-decoration-color:#000000;letter-spacing:-11.5843px;text-anchor:middle;fill:url(#linearGradient12765);fill-opacity:1;stroke:none;stroke-width:0.999999;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       x="136.0275"
+       y="108.16122"
+       id="text12693"><tspan
+         sodipodi:role="line"
+         id="tspan12691"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Fantasque Sans Mono';-inkscape-font-specification:'Fantasque Sans Mono';fill:url(#linearGradient12765);fill-opacity:1;stroke-width:0.999999"
+         x="130.23535"
+         y="108.16122">b.</tspan></text>
+  </g>
+</svg>

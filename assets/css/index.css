@@ -1,0 +1,130 @@
+@font-face {
+  font-family: GaramondMed;
+  src: url('../fonts/GaramondMed.ttf');
+}
+@font-face {
+  font-family: Garamond;
+  src: url('../fonts/Garamond.ttf');
+}
+@font-face {
+  font-family: Encode;
+  src: url('../fonts/EncodeSansNarrow-300-Light.ttf');
+}
+@font-face {
+  font-family: EncodeBold;
+  src: url('../fonts/EncodeSansNarrow-700-Bold.ttf');
+}
+/* COLORS
+ * #75A6F0
+ * #2D3F5C
+ * #A6F075
+ * #F075A6
+ * #BE3CD9
+ * #21262D
+ * #EFEEEE
+*/
+
+/* Main Style */
+body {
+  background-color: #21262D;
+  color: #EFEEEE;
+  font-size: 14pt;
+  font-family: Encode;
+  padding: 0;
+  margin: 0;
+}
+a {
+  color: #EFEEEE;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: GaramondMed;
+  margin: 0;
+  margin-top: 10px;
+}
+p {
+  margin-top: 0px;
+}
+strong {
+  font-family: EncodeBold;
+}
+
+/* Main content container (takes up 100% - nav width) */
+.main-content {
+  position: relative;
+  left: 10rem;
+  width: calc(100% - 10rem);
+  margin-top: 3rem;
+}
+
+/* Pages with lots of text */
+article {
+  margin: 0 auto;
+  width: 60%;
+}
+article * {
+  text-align: left;
+}
+article h1 {
+  font-size: 30pt;
+  padding-bottom: 10px;
+  border-bottom: #EFEEEE 2px dotted;
+}
+article h3 {
+  margin-bottom: 0;
+}
+article p {
+  margin-bottom: 10px;
+}
+article figure {
+  margin-bottom: 10px;
+}
+
+.small {
+  width: 25%;
+}
+
+/* About */
+.fiftypercent {
+  width: 60%;
+  margin: 1rem 2rem;
+}
+
+.thirtypercent {
+  width: 30%;
+  margin: 1rem 2rem;
+  object-fit: contain;
+}
+
+.flex-col {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+/* Photos/projects */
+.tiled-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.tiled-list li {
+  border-bottom: 5px solid #EFEEEE;
+  padding: 1% 6%;
+  margin: 1%;
+  background-color: #37598F;
+  width: 35%;
+}
+.tiled-list li img {
+  width: 100%;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  font-size: 8pt;
+}
+footer>p {
+  margin: 0.5rem;
+}

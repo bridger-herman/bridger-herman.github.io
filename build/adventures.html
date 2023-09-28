@@ -584,22 +584,6 @@ Photography
 
 
 
-<script>
-window.onload = () => {
-  let url = `ws://${window.location.host.replace('8000', '8001')}`
-  let ws = new WebSocket(url)
-  ws.onopen = () => {
-    console.log('Opened autoreload connection to ' + url);
-    ws.onmessage = (msg) => {
-
-      if (msg.data == 'Reload') {
-        window.location.reload()
-      }
-    }
-  }
-}
-</script>
-
 
 <script>
 const button = document.querySelector('#menu-button'); // Hamburger Icon

@@ -608,6 +608,11 @@ a {
   margin-right: 1rem;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -667,8 +672,8 @@ a {
   min-height: 55vh;
 }
 
-.w-5\/6 {
-  width: 83.333333%;
+.w-11\/12 {
+  width: 91.666667%;
 }
 
 .w-6 {
@@ -968,6 +973,10 @@ a {
 @media (min-width: 768px) {
   .md\:m-0 {
     margin: 0px;
+  }
+
+  .md\:m-2 {
+    margin: 0.5rem;
   }
 
   .md\:mr-4 {

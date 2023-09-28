@@ -1,20 +1,18 @@
 {% extends "base.jinja" %}
 
 {% macro project(title, description, link, photo, photo_alt) %}
-<a class="" href="{{ link }}">
-    <div class="m-2 flex flex-col md:flex-row bg-gray-700 rounded-md">
-        <div class="w 5/6 m-2 md:w-1/4 md:mr-4">
-            <img class="w-full max-h-44 m-auto object-cover object-top rounded-md" src="{{ photo }}"
-                alt="{{ photo_alt }}">
-        </div>
-        <div class="w-5/6 m-2 md:w-3/4">
-            <a class="" href="{{ link }}">
-                <p><strong>{{ title }}</strong></p>
-            </a>
-            <p class="no-underline">{{ description }}</p>
-        </div>
+<div class="m-2 flex flex-col md:flex-row bg-gray-700 rounded-md">
+    <div class="w-11/12 my-2 mx-auto md:m-2 md:w-1/4 md:mr-4">
+        <img class="w-full max-h-44 m-auto object-cover object-top rounded-md" src="{{ photo }}"
+            alt="{{ photo_alt }}">
     </div>
-</a>
+    <div class="w-11/12 my-2 mx-auto md:m-2 md:w-3/4">
+        <a class="" href="{{ link }}">
+            <p><strong>{{ title }}</strong></p>
+        </a>
+        <p>{{ description }}</p>
+    </div>
+</div>
 {% endmacro %}
 
 {% block title %}
@@ -68,7 +66,7 @@ adventures
         reactive
         lighting effects to a living space.',
         'https://github.com/bridger-herman/led-foot',
-        '/build/img/leds_480.jpg',
+        '/img/leds_480.jpg',
         'A room with purple RGB LED lighting'
         )}}
 
@@ -80,10 +78,10 @@ adventures
         'Recreation of a Klingon chamber with volumetric lighting'
         )}}
 
+        {# 'CPU Ray Tracer written in Rust', #}
         {{ project(
         'Ray Tracer',
-        'CPU Ray Tracer written in Rust. Also compiled to WebAssembly and available
-        <a href="https://bridger-herman.github.io/wasm-raytracer">on GitHub</a>.',
+        'CPU Ray Tracer written in Rust. Also compiled to WebAssembly and available <a href="https://bridger-herman.github.io/wasm-raytracer">on GitHub</a>.',
         'https://bridger-herman.github.io/project-writeups/project-raytracing.html',
         'https://bridger-herman.github.io/project-writeups/assets/project-raytracer/img/hw3/gear.bmp',
         'Ray traced image of a gear'

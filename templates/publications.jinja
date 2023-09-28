@@ -3,11 +3,11 @@
 {% macro pub(title, titleLink, imgLink, authors, venue, pageOrPublisher, otherInfo, year) %}
 <div class="m-2 flex flex-col md:flex-row bg-gray-700 rounded-md">
 
-    <div class="w-5/6 m-2 md:w-1/4 md:mr-4">
+    <div class="w-11/12 my-2 mx-auto md:m-2 md:w-1/4 md:mr-4">
         <img class="w-full max-h-44 m-auto object-cover object-top rounded-md" src="{{ imgLink }}" alt="">
     </div>
 
-    <div class="w-5/6 m-2 md:w-3/4">
+    <div class="w-11/12 my-2 mx-auto md:m-2 md:w-3/4">
         {% if titleLink|length > 0 %}
         <p><strong><a href="{{ titleLink }}">{{ title }}</a></strong></p>
         {% else %}

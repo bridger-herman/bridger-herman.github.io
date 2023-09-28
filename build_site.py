@@ -2,6 +2,7 @@ import time
 import os
 import re
 import sys
+import shutil
 import asyncio
 import websockets
 import threading
@@ -14,6 +15,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+ROOT_DIR = Path('.').resolve()
 ASSETS_DIR = Path('assets')
 OUT_DIR = Path('build')
 TEMPLATE_DIR = Path('templates')
@@ -53,12 +55,15 @@ class Watcher(FileSystemEventHandler):
     last_timestamp = time.time()
     def on_any_event(self, event):
         if time.time() - Watcher.last_timestamp > 1:
+            os.chdir(ROOT_DIR)
             print('Rebuilding site...')
+            copy_assets()
             build_tailwind()
-            # resize_images()
+            resize_images()
             build_templates(True)
             print('Finished building')
             autoreload()
+            os.chdir(OUT_DIR)
             Watcher.last_timestamp = time.time()
 
 class FileWatchers:
@@ -84,6 +89,15 @@ class FileWatchers:
             observer.join()
         self.observers = None
 
+def copy_assets():
+    '''
+    Copy the whole assets folder
+    '''
+    out_assets_dir = OUT_DIR.joinpath(ASSETS_DIR.name)
+    print('Copying assets', ASSETS_DIR, '->', out_assets_dir)
+    shutil.rmtree(out_assets_dir)
+    shutil.copytree(ASSETS_DIR, out_assets_dir)
+
 def resize_images():
     '''
     Resize all images to desired output resolution defined in templates spec
@@ -95,7 +109,7 @@ def resize_images():
     all_images = os.listdir(IMG_FOLDER)
 
     # first, crawl the templates folder to see what files are used and what resolutions.
-    extension_matches = re.compile(r'\/build\/img\/(.+)_(\d+)\.(jpg)|(png)|(gif)')
+    extension_matches = re.compile(r'^\/img\/(.+)_(\d+)\.(jpg)|(png)|(gif)')
     template_list = list(map(lambda name: TEMPLATE_DIR.joinpath(name), filter(lambda
         name: fnmatch(name, '*' + TEMPLATE_EXTENSION), os.listdir(TEMPLATE_DIR))))
 
@@ -208,18 +222,20 @@ def main():
 
     serve = 'serve' in sys.argv
 
+    copy_assets()
     build_tailwind()
     resize_images()
     build_templates(serve)
 
     if serve:
-        # simple server
-        httpd = HTTPServer((SERVER_HOST, SERVER_PORT), SimpleHTTPRequestHandler)
-        server_thread = threading.Thread(target = httpd.serve_forever, daemon=True)
-
-        # watch the file system
+        # watch the file system in the source directories
         watchers = FileWatchers()
         watchers.start()
+
+        # simple server in the build folder
+        os.chdir(OUT_DIR)
+        httpd = HTTPServer((SERVER_HOST, SERVER_PORT), SimpleHTTPRequestHandler)
+        server_thread = threading.Thread(target = httpd.serve_forever, daemon=True)
 
 
         print('Starting HTTP server at http://{}:{}, will rebuild whenever there\'s a change'.format(SERVER_HOST, SERVER_PORT))

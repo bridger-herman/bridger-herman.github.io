@@ -3,8 +3,7 @@
 {% macro project(title, description, link, photo, photo_alt) %}
 <div class="m-2 flex flex-col md:flex-row bg-gray-700 rounded-md">
     <div class="w-11/12 my-2 mx-auto md:m-2 md:w-1/4 md:mr-4">
-        <img class="w-full max-h-44 m-auto object-cover object-top rounded-md" src="{{ photo }}"
-            alt="{{ photo_alt }}">
+        <img class="w-full max-h-44 m-auto object-cover object-top rounded-md" src="{{ photo }}" alt="{{ photo_alt }}">
     </div>
     <div class="w-11/12 my-2 mx-auto md:m-2 md:w-3/4">
         <a class="" href="{{ link }}">
@@ -15,141 +14,229 @@
 </div>
 {% endmacro %}
 
+{% macro featuredPub(title, titleLink, imgLink, authors, venue, pageOrPublisher, otherInfo, year, abstract) %}
+<div class="m-2 bg-gray-700 rounded-md">
+    <p class="py-2 mx-4"><em>Featured Publication:</em></p>
+    <div class="flex flex-col md:flex-row">
+
+        <div class="w-11/12 my-2 mx-auto md:m-2 md:w-1/4 md:mr-4">
+            <img class="w-full max-h-44 m-auto object-cover object-top rounded-md" src="{{ imgLink }}" alt="">
+        </div>
+
+        <div class="w-11/12 my-2 mx-auto md:m-2 md:w-3/4">
+            {% if titleLink|length > 0 %}
+            <p><strong><a href="{{ titleLink }}">{{ title }}</a></strong></p>
+            {% else %}
+            <p><strong>{{ title }}</strong></p>
+            {% endif %}
+
+            {% for author in authors %}
+            {% set comma = '' %}
+            {% if loop.revindex0 != 0 %}
+            {% set comma = ',' %}
+            {% endif %}
+            {% if author == 'Bridger Herman' %}
+            <strong><span>{{ author }}{{ comma }}</span></strong>
+            {% else %}
+            <span>{{ author }}{{ comma }}</span>
+            {% endif %}
+            {% endfor %}
+
+            {% if venue|length > 0 %}
+            <p><em>{{ venue }}</em>, {{ pageOrPublisher }}</p>
+            {% endif %}
+
+            {% if otherInfo|length > 0 %}
+            <p>{{ otherInfo }}, {{ year }}.</p>
+            {% else %}
+            <p>{{ year }}</p>
+            {% endif %}
+
+            <div class="relative h-32 mt-4 overflow-hidden">
+                <p class=""><em>Abstract:</em> {{ abstract }}</p>
+                <div
+                    class="absolute flex flex-col bottom-0 w-full h-16 justify-end content-center bg-gradient-to-b from-transparent to-gray-700">
+                    <p class="text-center"><a href="#">See more...</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
 {% block title %}
 adventures
 {% endblock %}
 
 {% block body %}
 <div class="{{ textWidthParams }} flex flex-col">
-    <img class="rounded-b-md" src="/img/cave_1680.jpg"/>
+    <img class="rounded-b-md" src="/img/cave_1680.jpg" />
 
     {{ h2('Research') }}
 
     <div>
         {{ par("
-My research evolves at the intersection of physical and digital spaces for
-exploring data: I examine new approaches to extended reality visualization that
-use physical rendering processes to make data more graspable: both more
-comprehensible and more tactile.
+        My research evolves at the intersection of physical and digital spaces for
+        exploring data: I examine new approaches to extended reality visualization that
+        use physical rendering processes to make data more graspable: both more
+        comprehensible and more tactile.
 
-Current extended reality visualizations enable new data insights and
-better comprehension during scientific sensemaking processes, but they lack the physical
-tactility that has been crucial to past scientific breakthroughs, and current data
-physicalizations have this tactility yet lack in interactivity required for today’s scientific
-sensemaking processes.
+        Current extended reality visualizations enable new data insights and
+        better comprehension during scientific sensemaking processes, but they lack the physical
+        tactility that has been crucial to past scientific breakthroughs, and current data
+        physicalizations have this tactility yet lack in interactivity required for today's scientific
+        sensemaking processes.
 
-Additionally, creativity support tools can help empower artists and designers to
-create data visualizations with physical media from the real world.
+        Additionally, creativity support tools can help empower artists and designers to
+        create data visualizations with physical media from the real world.
 
-Ultimately, I explore new ways to combine the tactility
-of data physicalization and the comprehensibility of extended reality visualization to
-achieve more graspable data using physical rendering processes.
+        Ultimately, I explore new ways to combine the tactility
+        of data physicalization and the comprehensibility of extended reality visualization to
+        achieve more graspable data using physical rendering processes.
         ") }}
 
-            {{ h3('Extended Reality Visualization' )}}
+        {{ h3('Extended Reality Visualization' )}}
 
-                {{ project('Featured Publication: Multi-Touch Querying on Data
-                Physicalization in Immersive AR', 'Abstract:
-Data physicalizations (3D printed terrain models, anatomical scans, or even
-abstract data) can naturally engage both the visual and haptic senses in ways
-that are difficult or impossible to do with traditional planar touch screens and
-even immersive digital displays. Yet, the rigid 3D physicalizations produced
-with today’s most common 3D printers are fundamentally limited for data
-exploration and querying tasks that require dynamic input (e.g., touch sensing)
-and output (e.g., animation), functions that are easily handled with digital
-displays. We introduce a novel style of hybrid virtual + physical visualization
-designed specifically to support interactive data exploration tasks. Working
-toward a \"best of both worlds\" solution, our approach fuses immersive AR,
-physical 3D data printouts, and touch sensing through the physicalization. We
-demonstrate that this solution can support three of the most common spatial data
-querying interactions used in scientific visualization (streamline seeding,
-dynamic cutting places, and world-in-miniature visualization). Finally, we
-present quantitative performance data and describe a first application to
-exploratory visualization of an actively studied supercomputer climate
-simulation data with feedback from domain scientists.
-<br>ACM ISS 2021
-                ',
-                'https://dl.acm.org/doi/10.1145/3488542',
-                '/assets/img/pubs/multi-touch.jpg'
-                )}}
+        {{ featuredPub(
+        'Multi-Touch Querying on Data Physicalizations in Immersive AR',
+        'https://dl.acm.org/doi/10.1145/3488542',
+        '/assets/img/pubs/multi-touch.jpg',
+        ['Bridger Herman', 'Maxwell Omdal', 'Stephanie Zeller', 'Clara A. Richter', 'Greg Abram', 'Francesca Samsel',
+        'Daniel F. Keefe'],
+        'Proceedings on Human Computer Interaction',
+        'ACM Interactive Surfaces and Spaces, 2021',
+        '',
+        '',
+        'Data physicalizations (3D printed terrain models, anatomical scans, or even
+        abstract data) can naturally engage both the visual and haptic senses in ways
+        that are difficult or impossible to do with traditional planar touch screens and
+        even immersive digital displays. Yet, the rigid 3D physicalizations produced
+        with today\'s most common 3D printers are fundamentally limited for data
+        exploration and querying tasks that require dynamic input (e.g., touch sensing)
+        and output (e.g., animation), functions that are easily handled with digital
+        displays. We introduce a novel style of hybrid virtual + physical visualization
+        designed specifically to support interactive data exploration tasks. Working
+        toward a \"best of both worlds\" solution, our approach fuses immersive AR,
+        physical 3D data printouts, and touch sensing through the physicalization. We
+        demonstrate that this solution can support three of the most common spatial data
+        querying interactions used in scientific visualization (streamline seeding,
+        dynamic cutting places, and world-in-miniature visualization). Finally, we
+        present quantitative performance data and describe a first application to
+        exploratory visualization of an actively studied supercomputer climate
+        simulation data with feedback from domain scientists.'
+        )}}
 
-            {# TODO: add new card type featuredPub... has expandable abstract. #}
-        
-            {{ h3('Creativity Support Tools' )}}
+        {# TODO: add new card type featuredPub... has expandable abstract. #}
 
-                <img class="rounded-md" src="/img/physics-today_1680.jpg"/>
+        {{ h3('Creativity Support Tools' )}}
 
-                <div class="mx-4">
-                    (Image: <em>Physics Today</em> cover story:
-                    <a href="https://pubs.aip.org/physicstoday/article/74/4/24/398927/Mingling-art-and-science-opens-mindsCollaborations">
-                    Mingling art and science opens minds</a>.
-                    Visualization of mixing antarctic water masses created by artist Francesca Samsel with the
-                    <a href="https://doi.org/10.1109/TVCG.2019.2934260">Artifact-Based Rendering</a> software)
-                </div>
-                
-                {{ project('Featured Publication: Printmaking, Puzzles, and
-                Studio Closets: Using Artistic Metaphors to Reimagine the User
-                Interface for Designing Immersive Visualizations', "Abstract:
-We, as a society, need artists to help us interpret and explain science, but
-what does an artist’s studio look like when today’s science is built upon the
-language of large, increasingly complex data? This paper presents a data
-visualization design interface that lifts the barriers for artists to engage
-with actively studied, 3D multivariate datasets. To accomplish this, the
-interface must weave together the need for creative artistic processes and the
-challenging constraints of real-time, data-driven 3D computer graphics. The
-result is an interface for a technical process, but technical in the way
-artistic printmaking is technical, not in the sense of computer scripting and
-programming. Using metaphor, computer graphics algorithms and shader program
-parameters are reimagined as tools in an artist’s printmaking studio. These
-artistic metaphors and language are merged with a puzzle-piece approach to
-visual programming and matching iconography. Finally, artists access the
-interface using a web browser, making it possible to design immersive
-multivariate data visualizations that can be displayed in VR and AR environments
-using familiar drawing tablets and touch screens. We report on insights from the
-interdisciplinary design of the interface and early feedback from artists.
-                <br>IEEE VIS Arts Program 2020",
-                'https://doi.org/10.1109/VISAP51628.2020.00009',
-                '/assets/img/pubs/printmaking.png',
-                )}}
-            
-            {{ h3('Data Physicalization' )}}
+        <img class="rounded-md" src="/img/physics-today_1680.jpg" />
 
-            <img class="rounded-md" src="/img/phys_1680.jpg"/>
-
-            {{ par(" I have forthcoming work in this area...  ") }}
-
-        
+        <div class="mx-4">
+            (Image: <em>Physics Today</em> cover story:
+            <a
+                href="https://pubs.aip.org/physicstoday/article/74/4/24/398927/Mingling-art-and-science-opens-mindsCollaborations">
+                Mingling art and science opens minds</a>.
+            Visualization of mixing antarctic water masses created by artist Francesca Samsel with the
+            <a href="https://doi.org/10.1109/TVCG.2019.2934260">Artifact-Based Rendering</a> software)
         </div>
-        {{ h2('Professional Experience') }}
-    
+
+        {{ featuredPub(
+        'Printmaking, Puzzles, and Studio Closets: Using Artistic Metaphors to Reimagine the User Interface for
+        Designing Immersive Visualizations',
+        'https://doi.org/10.1109/VISAP51628.2020.00009',
+        '/assets/img/pubs/printmaking.png',
+        ['Bridger Herman', 'Francesca Samsel', 'Seth Johnson', 'Annie Bares', 'Greg Abram', 'Daniel F. Keefe'],
+        'Transactions on Visualization and Computer Graphics',
+        'IEEE VIS Arts Program, 2020',
+        '',
+        '',
+        "We, as a society, need artists to help us interpret and explain science, but
+        what does an artist's studio look like when today's science is built upon the
+        language of large, increasingly complex data? This paper presents a data
+        visualization design interface that lifts the barriers for artists to engage
+        with actively studied, 3D multivariate datasets. To accomplish this, the
+        interface must weave together the need for creative artistic processes and the
+        challenging constraints of real-time, data-driven 3D computer graphics. The
+        result is an interface for a technical process, but technical in the way
+        artistic printmaking is technical, not in the sense of computer scripting and
+        programming. Using metaphor, computer graphics algorithms and shader program
+        parameters are reimagined as tools in an artist's printmaking studio. These
+        artistic metaphors and language are merged with a puzzle-piece approach to
+        visual programming and matching iconography. Finally, artists access the
+        interface using a web browser, making it possible to design immersive
+        multivariate data visualizations that can be displayed in VR and AR environments
+        using familiar drawing tablets and touch screens. We report on insights from the
+        interdisciplinary design of the interface and early feedback from artists."
+        )}}
+
+        {{ h3('Data Physicalization' )}}
+
+        <img class="rounded-md" src="/img/phys_1680.jpg" />
+
+        {{ featuredPub(
+        'Hybrid Data Constructs: Interacting with Biomedical Data in Augmented Spaces',
+        'https://www.bloomsbury.com/us/making-data-9781350133235/',
+        '/assets/img/pubs/making-data.jpg',
+        ['Daniel F. Keefe', 'Bridger Herman', 'Jung Who Nam', 'Seth Johnson', 'Daniel Orban'],
+        'Making Data: Materializing Digial Information',
+        'pp. 169-182, Bloomsbury Publishing PLC, 2022',
+        '',
+        '',
+        "In this chapter, we highlight a new application area: biomedical
+        data. Here, the 'users' of our physical data constructs are medical
+        practitioners, engineers and scientists. In the biomedical field,
+        digital data visualizations are already common practice and provide
+        valuable aids for research and clinical practice alike. However,
+        biomedical researchers and practitioners still struggle to make
+        sense of many important datasets. Consider, for example, the
+        challenge of analysing how disease impacts the wiring of neural
+        fibre tracts in the brain or how several alternative designs for an
+        implantable medical device might impact cardiac blood flow for a
+        particular patient. Both examples come from interdisciplinary
+        collaborative research projects with a computer science data
+        visualization lab. Computational simulation techniques and
+        experimental data collection have advanced to the point that data
+        with potential to transform the science of healthcare are finally
+        available, but, unfortunately, the ability to collect and generate
+        these data has far outpaced our ability to understand them. Often
+        these datasets are challenging or impossible to interpret with even
+        our most advanced digital data displays."
+        )}}
+
+
+    </div>
+    {{ h2('Professional Experience') }}
+
     <div>
         {{ par("
-In my professional experience, I seek diverse teams that are dedicated to
-advancing the state of computing to bring more deliberate and thoughtful
-interactions between humans, computers, and data.
+        In my professional experience, I seek diverse teams that are dedicated to
+        advancing the state of computing to bring more deliberate and thoughtful
+        interactions between humans, computers, and data.
         ")}}
-            
+
         {{ project('Abbott Laboratories', 'R&D Engineer - Human Factors<br>Extended
         reality development for medical device applications<br>Summer 2022', 'https://www.abbott.com/',
         '/img/abbott-logo_480.png')}}
-        
-        {{ project('Bitwise IO', 'Software development intern<br>Summer 2018', 'https://bitwise.io/', '/assets/img/bitwise-logo.svg')}}
+
+        {{ project('Bitwise IO', 'Software development intern<br>Summer 2018', 'https://bitwise.io/',
+        '/assets/img/bitwise-logo.svg')}}
     </div>
-    
+
     {{ h2('Teaching') }}
 
     <div>
         {{ par("
-I am passionate about teaching computer science in ways that works for
-everyone.
+        I am passionate about teaching computer science in ways that works for
+        everyone.
 
-In my experience as an instructor and teaching assistant for class sizes large
-and small, I've helped hundreds of students focus on learning the computational
-problem solving process.
+        In my experience as an instructor and teaching assistant for class sizes large
+        and small, I've helped hundreds of students focus on learning the computational
+        problem solving process.
 
-My dedication to supporting student learning is evidenced by creating
-thoughtful assessments, crafting course material around them, and encouraging
-students to think critically about their designs and implementation.
+        My dedication to supporting student learning is evidenced by creating
+        thoughtful assessments, crafting course material around them, and encouraging
+        students to think critically about their designs and implementation.
         ") }}
 
         {{ h3('Courses Taught') }}
@@ -175,7 +262,7 @@ students to think critically about their designs and implementation.
             Concepts', 'Undergraduate Teaching Assistant<br>Fall 2015 - Spring
             2018<br>University of Minnesota', '',
             '/assets/img/csci-1133.png')}}
-            
+
             {{ project('Minnesota Brass Indoor Drumline', 'Percussion Instructor
             and Audio Engineer<br>2018 - 2023', 'https://mnbrass.org',
             '/img/mbi_480.jpg')}}
@@ -207,7 +294,8 @@ students to think critically about their designs and implementation.
         {# 'CPU Ray Tracer written in Rust', #}
         {{ project(
         'Ray Tracer',
-        'CPU Ray Tracer written in Rust. Also compiled to WebAssembly and available <a href="https://bridger-herman.github.io/wasm-raytracer">on GitHub</a>.',
+        'CPU Ray Tracer written in Rust. Also compiled to WebAssembly and available <a
+            href="https://bridger-herman.github.io/wasm-raytracer">on GitHub</a>.',
         'https://bridger-herman.github.io/project-writeups/project-raytracing.html',
         'https://bridger-herman.github.io/project-writeups/assets/project-raytracer/img/hw3/gear.bmp',
         'Ray traced image of a gear'

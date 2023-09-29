@@ -42,7 +42,7 @@ COPYRIGHT_BLOCK = time.strftime('%Y')
 CONNECTIONS = set()
 
 TAILWIND = {
-    'nt': 'tailwindcss-windows-x64.exe',
+    'win32': 'tailwindcss-windows-x64.exe',
     'darwin': 'tailwindcss-macos-x64',
 }
 

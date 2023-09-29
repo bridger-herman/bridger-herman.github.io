@@ -660,6 +660,10 @@ a {
   height: 1.5rem;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
 .h-\[80vh\] {
   height: 80vh;
 }
@@ -678,6 +682,10 @@ a {
 
 .w-6 {
   width: 1.5rem;
+}
+
+.w-8 {
+  width: 2rem;
 }
 
 .w-\[90\%\] {
@@ -824,6 +832,10 @@ a {
   padding-bottom: 0.5rem;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .font-mono {
   font-family: "Fantasque Sans Mono", ui-monospace, SFMono-Regular;
 }
@@ -857,14 +869,14 @@ a {
   font-weight: 700;
 }
 
+.text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
 .text-zinc-100 {
   --tw-text-opacity: 1;
   color: rgb(244 244 245 / var(--tw-text-opacity));
-}
-
-.text-zinc-700 {
-  --tw-text-opacity: 1;
-  color: rgb(63 63 70 / var(--tw-text-opacity));
 }
 
 .no-underline {

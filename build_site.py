@@ -37,16 +37,14 @@ SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 8000
 AUTORELOAD_PORT = 8001
 
-COPYRIGHT_BLOCK = '''
-<p>
-    Last updated: {}
-</p>
-<p>
-    Copyright &copy; {} Bridger Herman
-</p>
-'''.format(time.strftime('%b %d %Y'), time.strftime('%Y'))
+COPYRIGHT_BLOCK = time.strftime('%Y')
 
 CONNECTIONS = set()
+
+TAILWIND = {
+    'nt': 'tailwindcss-windows-x64.exe',
+    'darwin': 'tailwindcss-macos-x64',
+}
 
 class Watcher(FileSystemEventHandler):
     '''
@@ -59,7 +57,7 @@ class Watcher(FileSystemEventHandler):
             print('Rebuilding site...')
             copy_assets()
             build_tailwind()
-            resize_images()
+            # resize_images()
             build_templates(True)
             print('Finished building')
             autoreload()
@@ -95,7 +93,8 @@ def copy_assets():
     '''
     out_assets_dir = OUT_DIR.joinpath(ASSETS_DIR.name)
     print('Copying assets', ASSETS_DIR, '->', out_assets_dir)
-    shutil.rmtree(out_assets_dir)
+    if os.path.exists(out_assets_dir):
+        shutil.rmtree(out_assets_dir)
     shutil.copytree(ASSETS_DIR, out_assets_dir)
 
 def resize_images():
@@ -109,7 +108,7 @@ def resize_images():
     all_images = os.listdir(IMG_FOLDER)
 
     # first, crawl the templates folder to see what files are used and what resolutions.
-    extension_matches = re.compile(r'\/img\/(.+)_(\d+)\.(jpg)|(png)|(gif)')
+    extension_matches = re.compile(r'\/img\/(.+)_(\d+)\.(jpg|png|gif)')
     template_list = list(map(lambda name: TEMPLATE_DIR.joinpath(name), filter(lambda
         name: fnmatch(name, '*' + TEMPLATE_EXTENSION), os.listdir(TEMPLATE_DIR))))
 
@@ -171,7 +170,7 @@ def build_tailwind():
     '''
     # this step requires tailwindcss-* to be on PATH
     print('Building tailwind CSS... from ' + os.getcwd())
-    tailwind_cli = 'tailwindcss-windows-x64.exe'
+    tailwind_cli = TAILWIND[sys.platform]
     result = subprocess.check_call([tailwind_cli, '-c', TAILWIND_CONFIG, '-i', TAILWIND_INPUT, '-o', TAILWIND_OUTPUT])
     print('  ...done')
 

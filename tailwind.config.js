@@ -9,7 +9,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'sans': 'Arial, Helvetica, sans-serif',
+      'sans': '"Encode Sans", Arial, Helvetica, sans-serif',
       'mono': ['"Fantasque Sans Mono"', 'ui-monospace', 'SFMono-Regular']
     },
     colors: {

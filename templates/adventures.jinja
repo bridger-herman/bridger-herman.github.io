@@ -14,7 +14,7 @@
 </div>
 {% endmacro %}
 
-{% macro featuredPub(title, titleLink, imgLink, authors, venue, pageOrPublisher, otherInfo, year, abstract) %}
+{% macro featuredPub(title, titleLink, imgLink, authors, venue, pageOrPublisher, abstract, id) %}
 <div class="m-2 bg-gray-700 rounded-md">
     <p class="py-2 mx-4"><em>Featured Publication:</em></p>
     <div class="flex flex-col md:flex-row">
@@ -46,17 +46,11 @@
             <p><em>{{ venue }}</em>, {{ pageOrPublisher }}</p>
             {% endif %}
 
-            {% if otherInfo|length > 0 %}
-            <p>{{ otherInfo }}, {{ year }}.</p>
-            {% else %}
-            <p>{{ year }}</p>
-            {% endif %}
-
-            <div class="relative h-32 mt-4 overflow-hidden">
+            <div class="expander relative h-24 mt-4 overflow-hidden" id="{{ id }}">
                 <p class=""><em>Abstract:</em> {{ abstract }}</p>
                 <div
-                    class="absolute flex flex-col bottom-0 w-full h-16 justify-end content-center bg-gradient-to-b from-transparent to-gray-700">
-                    <p class="text-center"><a href="#">See more...</a></p>
+                    class="fader absolute flex flex-col bottom-0 w-full h-16 justify-end content-center bg-gradient-to-b from-transparent to-gray-700">
+                    <p class="expand-link text-center cursor-pointer underline">Read more...</p>
                 </div>
             </div>
         </div>
@@ -95,7 +89,7 @@ adventures
         achieve more graspable data using physical rendering processes.
         ") }}
 
-        {{ h3('Extended Reality Visualization' )}}
+        {{ h3('Extended Reality Visualization', 'extended-reality-visualization')}}
 
         {{ featuredPub(
         'Multi-Touch Querying on Data Physicalizations in Immersive AR',
@@ -105,8 +99,6 @@ adventures
         'Daniel F. Keefe'],
         'Proceedings on Human Computer Interaction',
         'ACM Interactive Surfaces and Spaces, 2021',
-        '',
-        '',
         'Data physicalizations (3D printed terrain models, anatomical scans, or even
         abstract data) can naturally engage both the visual and haptic senses in ways
         that are difficult or impossible to do with traditional planar touch screens and
@@ -123,23 +115,19 @@ adventures
         dynamic cutting places, and world-in-miniature visualization). Finally, we
         present quantitative performance data and describe a first application to
         exploratory visualization of an actively studied supercomputer climate
-        simulation data with feedback from domain scientists.'
+        simulation data with feedback from domain scientists.', 'multi-touch'
         )}}
 
-        {# TODO: add new card type featuredPub... has expandable abstract. #}
+        <figure class="mx-auto w-11/12">
+            <img class="rounded-md" src="/img/xr-vis_1680.jpg" />
+            <figcaption class="mx-4 mb-4">
+                Extended reality (XR) visualization, including augmented (AR)
+                and virtual reality (VR) visualizations, enables data
+                stakeholders to better comprehend 3D spatial data.
+            </figcaption>
+        </figure>
 
-        {{ h3('Creativity Support Tools' )}}
-
-        <img class="rounded-md" src="/img/physics-today_1680.jpg" />
-
-        <div class="mx-4">
-            (Image: <em>Physics Today</em> cover story:
-            <a
-                href="https://pubs.aip.org/physicstoday/article/74/4/24/398927/Mingling-art-and-science-opens-mindsCollaborations">
-                Mingling art and science opens minds</a>.
-            Visualization of mixing antarctic water masses created by artist Francesca Samsel with the
-            <a href="https://doi.org/10.1109/TVCG.2019.2934260">Artifact-Based Rendering</a> software)
-        </div>
+        {{ h3('Creativity Support Tools', 'creativity-support-tools')}}
 
         {{ featuredPub(
         'Printmaking, Puzzles, and Studio Closets: Using Artistic Metaphors to Reimagine the User Interface for
@@ -149,8 +137,6 @@ adventures
         ['Bridger Herman', 'Francesca Samsel', 'Seth Johnson', 'Annie Bares', 'Greg Abram', 'Daniel F. Keefe'],
         'Transactions on Visualization and Computer Graphics',
         'IEEE VIS Arts Program, 2020',
-        '',
-        '',
         "We, as a society, need artists to help us interpret and explain science, but
         what does an artist's studio look like when today's science is built upon the
         language of large, increasingly complex data? This paper presents a data
@@ -167,12 +153,26 @@ adventures
         interface using a web browser, making it possible to design immersive
         multivariate data visualizations that can be displayed in VR and AR environments
         using familiar drawing tablets and touch screens. We report on insights from the
-        interdisciplinary design of the interface and early feedback from artists."
+        interdisciplinary design of the interface and early feedback from artists.", 'printmaking'
         )}}
 
-        {{ h3('Data Physicalization' )}}
+        <figure class="mx-auto w-11/12">
+            <img class="rounded-md" src="/img/physics-today_1680.jpg" />
+            <figcaption class="mx-4 mb-4">
+                Visualizations can be more effective to domain science audiences
+                <em>and</em> more engaging to the general public when they're
+                created by artists. The above image of mixing antarctic water masses is from a <em>Physics
+                Today</em> cover story:
+                <a
+                    href="https://pubs.aip.org/physicstoday/article/74/4/24/398927/Mingling-art-and-science-opens-mindsCollaborations">
+                    Mingling art and science opens minds</a>.
+                The visualization was created by artist Francesca Samsel with the
+                <a href="https://doi.org/10.1109/TVCG.2019.2934260">Artifact-Based Rendering</a> software which I substantially developed.
+            </figcaption>
+        </figure>
 
-        <img class="rounded-md" src="/img/phys_1680.jpg" />
+
+        {{ h3('Data Physicalization', 'data-physicalization')}}
 
         {{ featuredPub(
         'Hybrid Data Constructs: Interacting with Biomedical Data in Augmented Spaces',
@@ -181,8 +181,6 @@ adventures
         ['Daniel F. Keefe', 'Bridger Herman', 'Jung Who Nam', 'Seth Johnson', 'Daniel Orban'],
         'Making Data: Materializing Digial Information',
         'pp. 169-182, Bloomsbury Publishing PLC, 2022',
-        '',
-        '',
         "In this chapter, we highlight a new application area: biomedical
         data. Here, the 'users' of our physical data constructs are medical
         practitioners, engineers and scientists. In the biomedical field,
@@ -201,9 +199,16 @@ adventures
         available, but, unfortunately, the ability to collect and generate
         these data has far outpaced our ability to understand them. Often
         these datasets are challenging or impossible to interpret with even
-        our most advanced digital data displays."
+        our most advanced digital data displays.", 'making-data'
         )}}
 
+        <figure class="mx-auto w-11/12">
+            <img class="rounded-md" src="/img/phys_1680.jpg" />
+            <figcaption class="mx-4 mb-4">
+                <a href="https://dataphys.org">Data physicalizations</a> enable
+                us to use multisensory perception to better comprehend data.
+            </figcaption>
+        </figure>
 
     </div>
     {{ h2('Professional Experience') }}
@@ -211,7 +216,7 @@ adventures
     <div>
         {{ par("
         In my professional experience, I seek diverse teams that are dedicated to
-        advancing the state of computing to bring more deliberate and thoughtful
+        advancing the state of computing to deliver more deliberate and thoughtful
         interactions between humans, computers, and data.
         ")}}
 
@@ -244,7 +249,7 @@ adventures
             {{ project('CSCI 5609: Visualization', 'Spring 2022:
             Co-Instructor<br>75 Students<br>University of Minnesota', '', '/assets/img/csci-5609.png')}}
             {{ project('CSCI 1133: Introduction to Computing and Programming
-            Concepts', 'Fall 2020: Instructor<br>20 Students<br>University of Minnesota', '',
+            Concepts', 'Fall 2020: Instructor<br>40 Students<br>University of Minnesota', '',
             '/assets/img/csci-1133-instr.png')}}
         </div>
 
@@ -291,7 +296,6 @@ adventures
         'Recreation of a Klingon chamber with volumetric lighting'
         )}}
 
-        {# 'CPU Ray Tracer written in Rust', #}
         {{ project(
         'Ray Tracer',
         'CPU Ray Tracer written in Rust. Also compiled to WebAssembly and available <a

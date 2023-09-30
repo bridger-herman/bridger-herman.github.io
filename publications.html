@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="google-site-verification" content="UcZUyK3iKAlaVhb79aGr3El2vAK7JrUJiNJwYWZpSQQ" />
+  <meta property="og:title" content="Bridger Herman" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bridger-herman.github.io/" />
+  <meta property="og:image" content="https://bridger-herman.github.io/img/cave_800.jpg" />
+
   <title>
 publications
  | bridger</title>
@@ -599,22 +605,6 @@ Publications
 <script src="/assets/js/jquery-3.4.1.min.js"></script>
 
 
-
-<script>
-window.onload = () => {
-  let url = `ws://${window.location.host.replace('8000', '8001')}`
-  let ws = new WebSocket(url)
-  ws.onopen = () => {
-    console.log('Opened autoreload connection to ' + url);
-    ws.onmessage = (msg) => {
-
-      if (msg.data == 'Reload') {
-        window.location.reload()
-      }
-    }
-  }
-}
-</script>
 
 
 <script>

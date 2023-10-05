@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /cv.html
-Disallow: /assets/Bridger_herman__CV.pdf
-Disallow: /assets/bridger-herman-wpe.pdf
+Allow: /$
+Allow: /index.html
+Disallow: /

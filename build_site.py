@@ -26,6 +26,10 @@ IMG_FOLDER = ASSETS_DIR.joinpath('img')
 OUT_IMG_FOLDER = OUT_DIR.joinpath('img')
 IMG_RESOLUTION_WIDTHS = [480, 800, 1280, 1920]
 
+# Robots.txt
+ROBOTS_NAME = 'robots.txt'
+ROBOTS_FILE = ROOT_DIR.joinpath(ROBOTS_NAME)
+
 # TailwindCSS constants
 TAILWIND_INPUT = ASSETS_DIR.joinpath('css', 'tailwind-input.css')
 TAILWIND_OUTPUT = ASSETS_DIR.joinpath('css', 'tailwind-output.css')
@@ -96,6 +100,11 @@ def copy_assets():
     if os.path.exists(out_assets_dir):
         shutil.rmtree(out_assets_dir)
     shutil.copytree(ASSETS_DIR, out_assets_dir)
+
+    # copy robots.txt separately
+    out_robots = OUT_DIR.joinpath(ROBOTS_NAME)
+    shutil.copy(ROBOTS_FILE, out_robots)
+    print('Copied ', ROBOTS_NAME)
 
 def resize_images():
     '''

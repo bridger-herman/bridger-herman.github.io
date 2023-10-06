@@ -106,6 +106,10 @@ def copy_assets():
     shutil.copy(ROBOTS_FILE, out_robots)
     print('Copied ', ROBOTS_NAME)
 
+    # generate favicon.ico from 32x32 png and write it to out path
+    favicon = Image.open(out_assets_dir.joinpath('svg', 'favicon-32.png'))
+    favicon.save(OUT_DIR.joinpath('favicon.ico'))
+
 def resize_images():
     '''
     Resize all images to desired output resolution defined in templates spec

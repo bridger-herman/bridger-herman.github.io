@@ -11,7 +11,7 @@
 
   <title>
 publications
- | bridger</title>
+ | bridger herman, ph.d.</title>
 
   <link rel="icon" href="/assets/svg/favicon-32.png" sizes="32x32">
   <link rel="icon" href="/assets/svg/favicon-128.png" sizes="128x128">
@@ -61,7 +61,7 @@ publications
 
   <div class="flex place-content-between">
     <div id="not-menu" class="">
-      <p class="text-2xl m-4"><a class="no-underline" href="/"><strong>bridger</strong> herman</a></p>
+      <p class="text-2xl m-4"><a class="no-underline" href="/"><strong>bridger</strong> herman, ph.d.</a></p>
     </div>
     <div class="">
       
@@ -597,7 +597,7 @@ Publications
 
 <footer class="text-xs text-gray-600 m-10">
 <div class="m-auto">
-    <div class="text-center">Copyright &copy; 2023 Bridger Herman, All Rights Reserved.</div>
+    <div class="text-center">Copyright &copy; 2024 Bridger Herman, All Rights Reserved.</div>
     <img class="mx-auto w-8 h-8" src="/img/pride_128.png"/>
 </div>
 </footer>
@@ -605,6 +605,22 @@ Publications
 <script src="/assets/js/jquery-3.4.1.min.js"></script>
 
 
+
+<script>
+window.onload = () => {
+  let url = `ws://${window.location.host.replace('8000', '8001')}`
+  let ws = new WebSocket(url)
+  ws.onopen = () => {
+    console.log('Opened autoreload connection to ' + url);
+    ws.onmessage = (msg) => {
+
+      if (msg.data == 'Reload') {
+        window.location.reload()
+      }
+    }
+  }
+}
+</script>
 
 
 <script>

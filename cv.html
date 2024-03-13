@@ -11,7 +11,7 @@
 
   <title>
 cv
- | bridger</title>
+ | bridger herman, ph.d.</title>
 
   <link rel="icon" href="/assets/svg/favicon-32.png" sizes="32x32">
   <link rel="icon" href="/assets/svg/favicon-128.png" sizes="128x128">
@@ -61,7 +61,7 @@ cv
 
   <div class="flex place-content-between">
     <div id="not-menu" class="">
-      <p class="text-2xl m-4"><a class="no-underline" href="/"><strong>bridger</strong> herman</a></p>
+      <p class="text-2xl m-4"><a class="no-underline" href="/"><strong>bridger</strong> herman, ph.d.</a></p>
     </div>
     <div class="">
       
@@ -113,16 +113,16 @@ cv
 
 <div>
 
-<object class="w-[90%] h-[80vh] m-auto" data="/assets/Bridger_Herman___CV.pdf" type="application/pdf">
+<object class="w-[90%] h-[80vh] bg-white m-auto" data="/assets/cv.pdf" type="application/pdf">
 Whoops, your browser doesn't support loading PDFs. Try <a
-href="/assets/Bridger_Herman___CV.pdf">downloading</a> it instead.
+href="/assets/cv.pdf">downloading</a> it instead.
 </object>
 
 </div>
 
 <footer class="text-xs text-gray-600 m-10">
 <div class="m-auto">
-    <div class="text-center">Copyright &copy; 2023 Bridger Herman, All Rights Reserved.</div>
+    <div class="text-center">Copyright &copy; 2024 Bridger Herman, All Rights Reserved.</div>
     <img class="mx-auto w-8 h-8" src="/img/pride_128.png"/>
 </div>
 </footer>
@@ -130,6 +130,22 @@ href="/assets/Bridger_Herman___CV.pdf">downloading</a> it instead.
 <script src="/assets/js/jquery-3.4.1.min.js"></script>
 
 
+
+<script>
+window.onload = () => {
+  let url = `ws://${window.location.host.replace('8000', '8001')}`
+  let ws = new WebSocket(url)
+  ws.onopen = () => {
+    console.log('Opened autoreload connection to ' + url);
+    ws.onmessage = (msg) => {
+
+      if (msg.data == 'Reload') {
+        window.location.reload()
+      }
+    }
+  }
+}
+</script>
 
 
 <script>

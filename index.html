@@ -11,7 +11,7 @@
 
   <title>
 about
- | bridger</title>
+ | bridger herman, ph.d.</title>
 
   <link rel="icon" href="/assets/svg/favicon-32.png" sizes="32x32">
   <link rel="icon" href="/assets/svg/favicon-128.png" sizes="128x128">
@@ -65,7 +65,7 @@ about
   bg-gradient-to-b from-transparent from-50% to-gray-900
   ">
     <div id="not-menu" class="md:max-w-2xl">
-      <p class="text-4xl my-4"><a class="no-underline" href="/"><strong>bridger</strong> herman</a></p>
+      <p class="text-4xl my-4"><a class="no-underline" href="/"><strong>bridger</strong> herman, ph.d.</a></p>
       <p>extended reality visualization + <br class="sm:hidden"> data physicalization + <br class="sm:hidden"> creativity support tools</p>
     </div>
     
@@ -137,9 +137,10 @@ about
 
 <p class="m-2 my-4">
 
-Hey, I'm Bridger, a Ph.D. Candidate in the <a href='https://ivlab.cs.umn.edu'>Interactive Visualization Lab</a> at the
-University of
-Minnesota with Professor <a href='https://www.danielkeefe.net/'>Daniel F. Keefe</a>.
+Hey, I'm Bridger! I recently finished my Ph.D. in the <a
+href='https://ivlab.cs.umn.edu'>Interactive Visualization Lab</a> at the
+University of Minnesota with Professor <a
+href='https://www.danielkeefe.net/'>Daniel F. Keefe</a>.
 
 </p>
 
@@ -430,7 +431,7 @@ Research Themes
 
 <footer class="text-xs text-gray-600 m-10">
 <div class="m-auto">
-    <div class="text-center">Copyright &copy; 2023 Bridger Herman, All Rights Reserved.</div>
+    <div class="text-center">Copyright &copy; 2024 Bridger Herman, All Rights Reserved.</div>
     <img class="mx-auto w-8 h-8" src="/img/pride_128.png"/>
 </div>
 </footer>
@@ -438,6 +439,22 @@ Research Themes
 <script src="/assets/js/jquery-3.4.1.min.js"></script>
 
 
+
+<script>
+window.onload = () => {
+  let url = `ws://${window.location.host.replace('8000', '8001')}`
+  let ws = new WebSocket(url)
+  ws.onopen = () => {
+    console.log('Opened autoreload connection to ' + url);
+    ws.onmessage = (msg) => {
+
+      if (msg.data == 'Reload') {
+        window.location.reload()
+      }
+    }
+  }
+}
+</script>
 
 
 <script>

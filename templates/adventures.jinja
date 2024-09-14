@@ -177,33 +177,35 @@ adventures
 
 
         {{ h3('Data Physicalization', 'data-physicalization')}}
-
+    
         {{ featuredPub(
-        'Hybrid Data Constructs: Interacting with Biomedical Data in Augmented Spaces',
-        'https://www.bloomsbury.com/us/making-data-9781350133235/',
-        '/assets/img/pubs/making-data.jpg',
-        ['Daniel F. Keefe', 'Bridger Herman', 'Jung Who Nam', 'Seth Johnson', 'Daniel Orban'],
-        'Making Data: Materializing Digial Information',
-        'pp. 169-182, Bloomsbury Publishing PLC, 2022',
-        "In this chapter, we highlight a new application area: biomedical
-        data. Here, the 'users' of our physical data constructs are medical
-        practitioners, engineers and scientists. In the biomedical field,
-        digital data visualizations are already common practice and provide
-        valuable aids for research and clinical practice alike. However,
-        biomedical researchers and practitioners still struggle to make
-        sense of many important datasets. Consider, for example, the
-        challenge of analysing how disease impacts the wiring of neural
-        fibre tracts in the brain or how several alternative designs for an
-        implantable medical device might impact cardiac blood flow for a
-        particular patient. Both examples come from interdisciplinary
-        collaborative research projects with a computer science data
-        visualization lab. Computational simulation techniques and
-        experimental data collection have advanced to the point that data
-        with potential to transform the science of healthcare are finally
-        available, but, unfortunately, the ability to collect and generate
-        these data has far outpaced our ability to understand them. Often
-        these datasets are challenging or impossible to interpret with even
-        our most advanced digital data displays.", 'making-data'
+        'Touching the Ground: Evaluating the Effectiveness of Data Physicalizations for Spatial Data Analysis Tasks',
+        'https://doi.org/10.1109/TVCG.2024.3456377',
+        '/assets/img/pubs/touching-the-ground.png',
+        ['Bridger Herman', 'Cullen D. Jackson', 'Daniel F. Keefe'],
+        'Transactions on Visualization and Computer Graphics',
+        'IEEE VIS Full Papers 2024. Best Paper Honorable Mention Award (top 3% of submissions).',
+        'Inspired by recent advances in digital fabrication, artists and scientists have
+demonstrated that physical data encodings (i.e., data physicalizations) can
+increase engagement with data, foster collaboration, and in some cases, improve
+data legibility and analysis relative to digital alternatives. However, prior
+empirical studies have only investigated abstract data encoded in physical form
+(e.g., laser cut bar charts) and not continuously sampled spatial data fields
+relevant to climate and medical science (e.g., heights, temperatures, densities,
+and velocities sampled on a spatial grid). This paper presents the design and
+results of the first study to characterize human performance in 3D spatial data
+analysis tasks across analogous physical and digital visualizations.
+Participants analyzed continuous spatial elevation data with three visualization
+modalities: (1) 2D digital visualization; (2) perspective-tracked, stereoscopic
+"fishtank" virtual reality; and (3) 3D printed data physicalization. Their tasks
+included tracing paths downhill, looking up spatial locations and comparing
+their relative heights, and identifying and reporting the minimum and maximum
+heights within certain spatial regions. As hypothesized, in most cases,
+participants performed the tasks just as well or better in the physical modality
+(based on time and error metrics). Additional results include an analysis of
+open-ended feedback from participants and discussion of implications for further
+research on the value of data physicalization. All data and supplemental
+materials are available at https://osf.io/7xdq4/.', 'touching-the-ground'
         )}}
 
         <figure class="mx-auto w-11/12">
@@ -215,53 +217,47 @@ adventures
         </figure>
 
     </div>
-    {{ h2('Professional Experience') }}
-
-    <div>
-        {{ par("
-        In my professional experience, I seek diverse teams that are dedicated to
-        advancing the state of computing to deliver more deliberate and thoughtful
-        interactions between humans, computers, and data.
-        ")}}
-
-        {{ project('Abbott Laboratories', 'R&D Engineer - Human Factors<br>Extended
-        reality development for medical device applications<br>Summer 2022', 'https://www.abbott.com/',
-        '/img/abbott-logo2_480.png')}}
-
-        {{ project('Bitwise IO', 'Software development intern<br>Summer 2018', 'https://bitwise.io/',
-        '/assets/img/bitwise-logo.svg')}}
-    </div>
 
     {{ h2('Teaching') }}
 
     <div>
         {{ par("
-        I am passionate about teaching computer science in ways that work for
-        everyone.
+        I am passionate about making computer science topics accessible for a
+        wide variety of audiences.
 
-        In my experience as an instructor and teaching assistant for class sizes large
-        and small, I've helped hundreds of students focus on learning the computational
-        problem solving process.
+        Three core teaching philosophies center my process: (1) hands-on
+        learning, (2) consistent communication, and (3) flexibility and
+        kindness.
 
-        My dedication to supporting student learning begins by creating
-        thoughtful assessments, crafting course material around them, and encouraging
-        students to think critically about their designs and implementation.
+        Throughout my teaching experiences in classes ranging from 10 to 150
+        students at various undergraduate and graduate levels, I continue to
+        build and improve my courses based on these philosophies.
         ") }}
-
-        {{ h3('Courses Taught') }}
+        
+        {{ h3('Current Courses') }}
         <div>
-            {{ project('CSCI 5609: Visualization', 'Spring 2022:
-            Co-Instructor<br>75 Students<br>University of Minnesota', '', '/assets/img/csci-5609.png')}}
-            {{ project('CSCI 1133: Introduction to Computing and Programming
-            Concepts', 'Fall 2020: Instructor<br>40 Students<br>University of Minnesota', '',
-            '/assets/img/csci-1133-instr.png')}}
+            {{ project('CS111 - Introduction to Computer Science', 'Fall 2024, Carleton College', 'https://bridger-herman.github.io/class/f24-cs111', '/assets/img/carleton.png')}}
+            {{ project('CS208 - Introduction to Computer Systems', 'Fall 2024, Carleton College', 'https://bridger-herman.github.io/class/f24-cs208', '/assets/img/carleton.png')}}
+        </div>
+        
+        {{ h3('Upcoming Courses') }}
+        <div>
+            {{ project('CS208 - Introduction to Computer Systems', 'Winter 2025, Carleton College', 'https://bridger-herman.github.io/', '/assets/img/carleton.png')}}
+            {{ project('CS314 - Data Visualization', 'Winter 2025, Carleton College', 'https://bridger-herman.github.io/', '/assets/img/carleton.png')}}
+            {{ project('CS111 - Introduction to Computer Science', 'Spring 2025, Carleton College', 'https://bridger-herman.github.io', '/assets/img/carleton.png')}}
+            {{ project('CS251 - Programming Languages', 'Spring 2025, Carleton College', 'https://bridger-herman.github.io', '/assets/img/carleton.png')}}
         </div>
 
-        {{ h3('Graduate TA Experience') }}
+        {{ h3('Previously Taught Courses') }}
         <div>
-            {{ project('CSCI 4611: Programming Interactive Computer Graphics and Games', 'Fall 2019, Fall 2021 - Fall
+            {{ project('Co-Instructor - CSCI 5609: Visualization', 'Spring 2022:
+            Co-Instructor<br>75 Students<br>University of Minnesota', '', '/assets/img/csci-5609.png')}}
+            {{ project('Instructor - CSCI 1133: Introduction to Computing and Programming
+            Concepts', 'Fall 2020: Instructor<br>40 Students<br>University of Minnesota', '',
+            '/assets/img/csci-1133-instr.png')}}
+            {{ project('Teaching Assistant - CSCI 4611: Programming Interactive Computer Graphics and Games', 'Fall 2019, Fall 2021 - Fall
             2023<br>150 Students<br>University of Minnesota', '', '/assets/img/csci-4611.png')}}
-            {{ project('CSCI 5619: Virtual Reality and 3D Interaction', 'Fall
+            {{ project('Teaching Assistant - CSCI 5619: Virtual Reality and 3D Interaction', 'Fall
             2018<br>75 Students<br>University of Minnesota', '', '/assets/img/csci-5619.png')}}
         </div>
 
@@ -278,6 +274,22 @@ adventures
         </div>
     </div>
 
+    {{ h2('Professional Experience') }}
+
+    <div>
+        {{ par("
+        In my professional experience, I seek diverse teams that are dedicated to
+        advancing the state of computing to deliver more deliberate and thoughtful
+        interactions between humans, computers, and data.
+        ")}}
+
+        {{ project('Abbott Laboratories', 'R&D Engineer - Human Factors<br>Extended
+        reality development for medical device applications<br>Summer 2022', 'https://www.abbott.com/',
+        '/img/abbott-logo2_480.png')}}
+
+        {{ project('Bitwise IO', 'Software development intern<br>Summer 2018', 'https://bitwise.io/',
+        '/assets/img/bitwise-logo.svg')}}
+    </div>
 
     {{ h2('Projects') }}
     <div>

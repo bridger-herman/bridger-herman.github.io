@@ -46,8 +46,8 @@ COPYRIGHT_BLOCK = time.strftime('%Y')
 CONNECTIONS = set()
 
 TAILWIND = {
-    'win32': 'tailwindcss-windows-x64.exe',
-    'darwin': 'tailwindcss-macos-x64',
+    'win32': 'bin/tailwindcss-windows-x64.exe',
+    'darwin': 'bin/tailwindcss-macos-arm64',
 }
 
 class Watcher(FileSystemEventHandler):

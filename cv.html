@@ -74,37 +74,37 @@ cv
     
     
   
-<li class="m-2 md:m-0 text-lg text-center align-middle">
+<li class="m-2 md:m-0 text-lg">
   <a href="https://bridger-herman.github.io/class">
-  <div class="px-8 py-2 height-100 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
+  <div class="px-8 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
     teaching
   </div>
   </a>
 </li>
 
   
-<li class="m-2 md:m-0 text-lg text-center align-middle">
+<li class="m-2 md:m-0 text-lg">
   <a href="cv.html">
-  <div class="px-8 py-2 height-100 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
-    curriculum vitae
+  <div class="px-8 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
+    cv
   </div>
   </a>
 </li>
 
   
-<li class="m-2 md:m-0 text-lg text-center align-middle">
+<li class="m-2 md:m-0 text-lg">
   <a href="publications.html">
-  <div class="px-8 py-2 height-100 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
+  <div class="px-8 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
     publications
   </div>
   </a>
 </li>
 
   
-<li class="m-2 md:m-0 text-lg text-center align-middle">
+<li class="m-2 md:m-0 text-lg">
   <a href="adventures.html">
-  <div class="px-8 py-2 height-100 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
-    research + adventures
+  <div class="px-8 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
+    adventures
   </div>
   </a>
 </li>
@@ -132,29 +132,13 @@ href="/assets/cv.pdf">downloading</a> it instead.
 <footer class="text-xs text-gray-600 m-10">
 <div class="m-auto">
     <div class="text-center">Copyright &copy; 2024 Bridger Herman, All Rights Reserved.</div>
-    <img class="mx-auto w-8 h-8" src="/img/pride_128.png"/>
+    <img class="mx-auto w-8 h-8" src="/img/pride_128.png" title="I strongly support diverse voices in computer science, both in the classroom and outside. You Belong Here."/>
 </div>
 </footer>
 
 <script src="/assets/js/jquery-3.4.1.min.js"></script>
 
 
-
-<script>
-window.onload = () => {
-  let url = `ws://${window.location.host.replace('8000', '8001')}`
-  let ws = new WebSocket(url)
-  ws.onopen = () => {
-    console.log('Opened autoreload connection to ' + url);
-    ws.onmessage = (msg) => {
-
-      if (msg.data == 'Reload') {
-        window.location.reload()
-      }
-    }
-  }
-}
-</script>
 
 
 <script>

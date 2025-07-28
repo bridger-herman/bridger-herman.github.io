@@ -32,20 +32,25 @@ about
       </a>
     </div>
   </div>
-  <img src="/img/header_1920.jpg" alt="Bridger Herman standing in front of a sunset"
-    class="w-full min-h-[55vh] sm:max-h-[45vh] object-cover object-right" />
+  {# <img src="/img/header_1920.jpg" alt="Bridger Herman standing in front of a sunset" #}
+    {# class="w-full min-h-[55vh] sm:max-h-[45vh] object-cover object-right"> #}
+  <div
+    class="w-full min-h-[55vh] sm:max-h-[45vh] flex flex-row justify-end">
+    <img src="/assets/img/headshot-2024-square.jpeg" class="w-96 h-96 max-w-[85vw] m-10 rounded-[5rem] ">
+    </div>
 </div>
 {% endblock %}
 
 {% block body %}
 
 <div class="{{ textWidthParams }}">
-{{par("
-Hey, I'm Bridger! I'm a Visiting Assistant Professor in the Computer Science department at <a href='https://carleton.edu/computer-science'>Carleton College</a>. I earned my Ph.D. in the <a
-href='https://ivlab.cs.umn.edu'>Interactive Visualization Lab</a> at the
-University of Minnesota with Professor <a
-href='https://www.danielkeefe.net/'>Daniel F. Keefe</a>. I use he/they pronouns.
-")}}
+{{par('
+Hey, I\'m Bridger! I\'m a Visiting Assistant Professor in the Mathematics / Computer Science department at <a data-tooltip-position="top" aria-label="https://hws.edu" rel="noopener nofollow" class="external-link" href="https://hws.edu" target="_blank">Hobart and William Smith Colleges</a> in Geneva, NY. I\'ve previously been a visiting faculty member at <a data-tooltip-position="top" aria-label="https://carleton.edu" rel="noopener nofollow" class="external-link" href="https://carleton.edu" target="_blank">Carleton College</a> in Northfield, MN, and I earned my Ph.D. in the <a data-tooltip-position="top" aria-label="https://ivlab.cs.umn.edu" rel="noopener nofollow" class="external-link" href="https://ivlab.cs.umn.edu" target="_blank">Interactive Visualization Lab</a> at the University of Minnesota with Professor <a data-tooltip-position="top" aria-label="https://www.danielkeefe.net/" rel="noopener nofollow" class="external-link" href="https://www.danielkeefe.net/" target="_blank">Daniel F. Keefe</a>. I use he/they pronouns.
+')}}
+
+{{par('
+For current students, please check out the <a data-tooltip-position="top" aria-label="https://bridger-herman.github.io/class/" rel="noopener nofollow" class="external-link" href="https://bridger-herman.github.io/class/" target="_blank">teaching</a> page which has my current course information and FAQs where you can find everything from schedules to assignment descriptions (seriously, I try to put everything on this site so it\'s all in one place and easy to find. Let me know if some piece of helpful information is not here and you think it should be).
+')}}
 
 
 {{par("
@@ -58,40 +63,14 @@ comprehensible and more tactile.
 
 
 {{par("
-Besides my research, I have a passion for teaching. I believe that computer science students are poised to change the world, and I believe that computer science educators to not only help students acquire a world-class technical skillset but also to develop the kindness, empathy, and compassion to remember that every piece of code they write may have real-world repercussions that reach far beyond their own lives. In my current teaching at Carleton College, I incorporate practices rooted in <a href='https://udlguidelines.cast.org/'>Universal Design for Learning</a> and I focus on hands-on learning to provide students opportunities to practice their problem solving, as well as design and programming skills.
-")}}
-
-
-{{par("
 This is the blurb that I copy/paste into forms requesting a bio in the third-person:
 ")}}
 
-{{par("
+{{par('
 <quote>
-Bridger Herman (he/they) is a Visiting Assistant Professor in the
-<a href='https://www.carleton.edu/computer-science/'>Computer Science department</a>
-at
-<a href='https://carleton.edu'>Carleton College</a>.
-He earned his Ph.D. in the University
-of Minnesota's
-<a href='https://ivlab.cs.umn.edu'>Interactive Visualization Lab</a>,
-working with
-<a href='https://danielkeefe.net'>Daniel F. Keefe</a>.
-Bridger is an enthusiastic computer science educator with a keen interest in
-helping people navigate their first computer science experiences to become
-thoughtful and critical contributors to a rapidly evolving field with worldwide
-impacts. Their research evolves at the intersection of
-<a href='adventures.html#extended-reality-visualization'>extended reality visualization</a>,
-<a href='adventures.html#data-physicalization'>data physicalization</a>
-, and
-<a href='adventures.html#creativity-support-tools'>creativity support tools</a>
-, to facilitate more useful, deliberately designed interactions between humans,
-computers, and data. Beyond academics, Bridger can generally be found outside
-running, cycling, hiking, skiing, or rock climbing, and they enjoy attending
-jazz concerts and playing percussion for local music ensembles in their free
-time.
+Bridger Herman (he/they) is a Visiting Assistant Professor in the <a data-tooltip-position="top" aria-label="https://hws.edu" rel="noopener nofollow" class="external-link" href="https://hws.edu" target="_blank">Hobart and William Smith Colleges</a> in Geneva, NY. He has previously been a visiting faculty member at <a data-tooltip-position="top" aria-label="https://carleton.edu" rel="noopener nofollow" class="external-link" href="https://carleton.edu" target="_blank">Carleton College</a> in Northfield, MN, and taught classes while completing his Ph.D. in the University of Minnesota\'s <a data-tooltip-position="top" aria-label="https://ivlab.cs.umn.edu" rel="noopener nofollow" class="external-link" href="https://ivlab.cs.umn.edu" target="_blank">Interactive Visualization Lab</a>, working with <a data-tooltip-position="top" aria-label="https://danielkeefe.net" rel="noopener nofollow" class="external-link" href="https://danielkeefe.net" target="_blank">Daniel F. Keefe</a>. Bridger is an enthusiastic computer science educator with a keen interest in helping people navigate their first computer science experiences to become thoughtful and critical contributors to a rapidly evolving field with worldwide impacts. Their research evolves at the intersection of <a data-tooltip-position="top" aria-label="https://bridger-herman.github.io/adventures.html#extended-reality-visualization" rel="noopener nofollow" class="external-link" href="https://bridger-herman.github.io/adventures.html#extended-reality-visualization" target="_blank">extended reality visualization</a>, <a data-tooltip-position="top" aria-label="https://bridger-herman.github.io/adventures.html#data-physicalization" rel="noopener nofollow" class="external-link" href="https://bridger-herman.github.io/adventures.html#data-physicalization" target="_blank">data physicalization</a> , and <a data-tooltip-position="top" aria-label="https://bridger-herman.github.io/adventures.html#creativity-support-tools" rel="noopener nofollow" class="external-link" href="https://bridger-herman.github.io/adventures.html#creativity-support-tools" target="_blank">creativity support tools</a> , to facilitate more useful, deliberately designed interactions between humans, computers, and data. Beyond academics, Bridger can generally be found outside running, cycling, hiking, skiing, or rock climbing, and they enjoy attending jazz concerts and playing percussion for local music ensembles in their free time.
 </quote>
-")}}
+')}}
 
 
 

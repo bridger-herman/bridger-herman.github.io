@@ -8,22 +8,26 @@ To build the site, first install requirements:
 
 - Install `pipenv` virtual env manager, like `python3 -m pip install pipenv`
 
-- Install the dependencies for this project, like `python3 -m pipenv install`
+- Install the dependencies for this project, like `pipenv install`
 
 - [Download Tailwind CSS standalone CLI](https://tailwindcss.com/blog/standalone-cli) and put it in the `bin` folder in the is repo (it will not be committed). Then make sure it has execute permissions, like `chmod u+x bin/tailwindcss-macos-arm64`.
+
+> [!NOTE]
+> - Use `python3 -m pipenv [COMMAND]` if you don't have `pipenv` on PATH.
+> For Windows, use `py` instead of `python3`.
 
 
 ## Building the site
 
 
 ```
-python3 -m pipenv run build_site.py
+pipenv run build_site.py
 ```
 
 and optionally, serve locally on <http://localhost:8000> to preview changes (with auto-reload server):
 
 ```
-python3 -m pipenv run build_site.py serve
+pipenv run build_site.py serve
 ```
 
 ## Deploying the site

@@ -582,10 +582,6 @@ a {
   bottom: 0px;
 }
 
-.left-0 {
-  left: 0px;
-}
-
 .right-0 {
   right: 0px;
 }
@@ -696,6 +692,10 @@ a {
   height: 6rem;
 }
 
+.h-36 {
+  height: 9rem;
+}
+
 .h-6 {
   height: 1.5rem;
 }
@@ -722,6 +722,10 @@ a {
 
 .w-11\/12 {
   width: 91.666667%;
+}
+
+.w-36 {
+  width: 9rem;
 }
 
 .w-6 {
@@ -761,6 +765,14 @@ a {
   max-width: 768px;
 }
 
+.flex-grow-0 {
+  flex-grow: 0;
+}
+
+.basis-1\/2 {
+  flex-basis: 50%;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -775,6 +787,10 @@ a {
 
 .flex-col {
   flex-direction: column;
+}
+
+.flex-col-reverse {
+  flex-direction: column-reverse;
 }
 
 .flex-wrap {
@@ -809,6 +825,10 @@ a {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.rounded-\[2rem\] {
+  border-radius: 2rem;
 }
 
 .rounded-\[5rem\] {
@@ -889,18 +909,14 @@ a {
      object-fit: cover;
 }
 
-.object-right {
-  -o-object-position: right;
-     object-position: right;
+.object-scale-down {
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
 }
 
 .object-top {
   -o-object-position: top;
      object-position: top;
-}
-
-.p-4 {
-  padding: 1rem;
 }
 
 .px-8 {
@@ -1122,9 +1138,5 @@ a {
 @media (min-width: 1280px) {
   .xl\:w-3\/5 {
     width: 60%;
-  }
-
-  .xl\:pl-44 {
-    padding-left: 11rem;
   }
 }

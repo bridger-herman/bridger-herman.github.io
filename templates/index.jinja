@@ -6,38 +6,39 @@ about
 
 {% block header %}
 {# Custom header for main about page #}
+  {# bg-gradient-to-b from-transparent from-50% to-gray-900 #}
 <div class="relative font-mono">
   {{ hamburgerButton() }}
-  <div class="
-  absolute bottom-0 left-0 w-full p-4 xl:pl-44
-  bg-gradient-to-b from-transparent from-50% to-gray-900
-  ">
-    <div id="not-menu" class="md:max-w-2xl">
-      <p class="text-4xl my-4"><a class="no-underline" href="/">dr. <strong>bridger</strong> herman</a></p>
-      <p>extended reality visualization + <br class="sm:hidden"> data physicalization + <br class="sm:hidden"> creativity support tools</p>
+  <div class=" {{ textWidthParams }} flex flex-col-reverse md:flex-row">
+    <div class="m-2 flex-grow-0">
+      <div id="not-menu" class="md:max-w-2xl">
+        <p class="text-4xl my-4"><a class="no-underline" href="/">dr. <strong>bridger</strong> herman</a></p>
+        <p>extended reality visualization + <br class="sm:hidden"> data physicalization + <br class="sm:hidden"> creativity support tools</p>
+      </div>
+      {{ navbar(true) }}
+      <div class="m-1 md:max-w-2xl flex">
+        <a title="copy email address to clipboard" class="copy-email m-1 w-6 h-6" href="#">
+          <span class="material-symbols-outlined">mail</span>
+        </a>
+        <a class="m-1 w-6 h-6" title="curriculum vitae" href="cv.html">
+          <span class="material-symbols-outlined">description</span>
+        </a>
+        <a class="m-1 w-6 h-6" title="GitHub: bridger-herman" href="https://github.com/bridger-herman">
+          <img src="/assets/svg/github-mark-white.svg" alt="GitHub logo">
+        </a>
+        <a class="m-1 w-6 h-6" title="Google Scholar" href="https://scholar.google.com/citations?user=fn5GpHgAAAAJ&hl=en">
+          <img src="/assets/svg/Google_Scholar_logo_grayscale.svg" alt="GitHub logo">
+        </a>
+      </div>
     </div>
-    {{ navbar(true) }}
-    <div class="m-1 md:max-w-2xl flex">
-      <a title="copy email address to clipboard" class="copy-email m-1 w-6 h-6" href="#">
-        <span class="material-symbols-outlined">mail</span>
-      </a>
-      <a class="m-1 w-6 h-6" title="curriculum vitae" href="cv.html">
-        <span class="material-symbols-outlined">description</span>
-      </a>
-      <a class="m-1 w-6 h-6" title="GitHub: bridger-herman" href="https://github.com/bridger-herman">
-        <img src="/assets/svg/github-mark-white.svg" alt="GitHub logo">
-      </a>
-      <a class="m-1 w-6 h-6" title="Google Scholar" href="https://scholar.google.com/citations?user=fn5GpHgAAAAJ&hl=en">
-        <img src="/assets/svg/Google_Scholar_logo_grayscale.svg" alt="GitHub logo">
-      </a>
+    <div class="flex-grow-1">
+      <img src="/assets/img/headshot-2024-square.jpeg" class="w-36 h-36 max-w-[85vw] m-10 object-scale-down rounded-[2rem]"/>
     </div>
   </div>
-  {# <img src="/img/header_1920.jpg" alt="Bridger Herman standing in front of a sunset" #}
-    {# class="w-full min-h-[55vh] sm:max-h-[45vh] object-cover object-right"> #}
-  <div
-    class="w-full min-h-[55vh] sm:max-h-[45vh] flex flex-row justify-end">
-    <img src="/assets/img/headshot-2024-square.jpeg" class="w-96 h-96 max-w-[85vw] m-10 rounded-[5rem] ">
-    </div>
+  {# <div
+    class="{{ textWidthParams }} min-h-[55vh] sm:max-h-[45vh] flex flex-row justify-end">
+      <img src="/assets/img/headshot-2024-square.jpeg" class="w-96 h-96 max-w-[85vw] m-10 object-scale-down rounded-[5rem]"/>
+    </div> #}
 </div>
 {% endblock %}
 

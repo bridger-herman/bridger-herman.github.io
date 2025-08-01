@@ -1,0 +1,68 @@
+{% extends "base.jinja" %}
+
+
+{% block title %}
+teaching
+{% endblock %}
+
+{% block body %}
+<div class="{{ textWidthParams }} flex flex-col">
+
+{{ h2("Course Websites") }}
+
+
+{{ par('
+Please visit the <a href="https://bridger-herman.github.io/class">course website
+pages</a> for details on each course (schedule, syllabi, etc).
+') }}
+
+
+{{ h2("FAQs") }}
+
+
+
+
+{{ h3("Q: How can I request a letter of recommendation from you?") }}
+
+{{ par('
+To request a letter of recommendation, please send me an email with answers to the following questions:
+
+<ol class="list-decimal ml-2">
+
+    <li>Ask me one-on-one or via email <strong>at least 1 month before it is due</strong>.</li>
+
+    <li>Consider if I am the right person. What will I be able to say about you?</li>
+    
+    <li>Please answer the following questions, in complete sentences:
+        <ul class="list-[lower-alpha] ml-4">
+            <li>How did we work together?</li>
+
+            <li>1 or 2 examples of specific challenges you faced in our context of working together and how you addressed these challenges.</li>
+
+            <li>What makes you good for this opportunity?</li>
+        </ul>
+    </li>
+
+</ol>
+
+<p class="mt-4"><em>If you\'re requesting multiple letters of recommendation from me, please also send me a table listing all the opportunities you\'re applying for, their due dates, and any additional information you think I should know about each opportunity.</em></p>
+
+') }}
+
+
+{{ h3("Q: I'm on the waitlist for your course. What should I do?") }}
+
+{{ par("
+As soon as you're able, send me an email to introduce yourself and mention that
+you're on the waitlist. If there's a waitlist for a course, I'll do my best to
+add as many folks as possible.
+")}}
+
+
+{{ par("
+<em>Have a question that you think should be on this list? Let me know.</em>
+")}}
+
+
+</div>
+{% endblock %}

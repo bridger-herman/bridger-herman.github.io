@@ -78,7 +78,7 @@ about
     
   
 <li class="m-2 md:m-0 text-lg basis-1/2">
-  <a href="https://bridger-herman.github.io/class">
+  <a href="teaching.html">
   <div class="px-8 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
     teaching
   </div>
@@ -133,10 +133,9 @@ about
       </div>
     </div>
     <div class="flex-grow-1">
-      <img src="/assets/img/headshot-2024-square.jpeg" class="w-36 h-36 max-w-[85vw] m-10 object-scale-down rounded-[2rem]"/>
+      <img src="/assets/img/headshot-2024-square.jpeg" class="w-36 h-36 max-w-[85vw] m-10 object-scale-down rounded-[2rem] border-2"/>
     </div>
   </div>
-  
 </div>
 
 </header>
@@ -156,7 +155,7 @@ Hey, I'm Bridger! I'm a Visiting Assistant Professor in the Mathematics / Comput
 
 <p class="m-2 my-4">
 
-For current students, please check out the <a data-tooltip-position="top" aria-label="https://bridger-herman.github.io/class/" rel="noopener nofollow" class="external-link" href="https://bridger-herman.github.io/class/" target="_blank">teaching</a> page which has my current course information and FAQs where you can find everything from schedules to assignment descriptions (seriously, I try to put everything on this site so it's all in one place and easy to find. Let me know if some piece of helpful information is not here and you think it should be).
+For current students, please check out the <a href="./teaching.html">teaching</a> page which has my current course information and FAQs where you can find everything from schedules to assignment descriptions (seriously, I try to put everything on this site so it's all in one place and easy to find. Let me know if some piece of helpful information is not here and you think it should be).
 
 </p>
 
@@ -399,7 +398,7 @@ Research Themes
 
   
 <li class="m-2 md:m-0 text-lg basis-1/2">
-  <a href="https://bridger-herman.github.io/class">
+  <a href="teaching.html">
   <div class="px-8 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
     teaching
   </div>
@@ -450,6 +449,22 @@ Research Themes
 
 
 
+<script>
+window.onload = () => {
+  let url = `ws://${window.location.host.replace('8000', '8001')}`
+  let ws = new WebSocket(url)
+  ws.onopen = () => {
+    console.log('Opened autoreload connection to ' + url);
+    ws.onmessage = (msg) => {
+
+      if (msg.data == 'Reload') {
+        window.location.reload()
+      }
+    }
+  }
+}
+</script>
+
 
 <script>
 const button = document.querySelector('#menu-button'); // Hamburger Icon
@@ -471,7 +486,7 @@ function decode(a) {
   })
 }; 
 
-const e = "oevqtre.t.urezna" + "@" + "tznvy.pbz";
+const e = "ourezna" + "@" + "ujf.rqh"
 
 const bs = document.querySelectorAll('.copy-email');
 for (const b of bs) {

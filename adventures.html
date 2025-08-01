@@ -75,7 +75,7 @@ adventures
     
   
 <li class="m-2 md:m-0 text-lg basis-1/2">
-  <a href="https://bridger-herman.github.io/class">
+  <a href="teaching.html">
   <div class="px-8 py-2 rounded-md bg-gradient-to-br from-sunset-orange to-sunset-blue hover:font-bold hover:scale-105 transition">
     teaching
   </div>
@@ -503,11 +503,13 @@ Teaching
 
         Throughout my teaching experiences in classes ranging from 10 to 150
         students at various undergraduate and graduate levels, I continue to
-        build and improve my courses based on these philosophies.
+        build and improve my courses based on these philosophies. Please see the
+        <a href="./teaching.html">teaching</a> page for more information.
         
 </p>
 
         
+        <!--
         
 <h3 class="text-lg font-bold m-2 my-4" id="">
 Current Courses
@@ -703,6 +705,7 @@ Other Teaching Experience
 </div>
 
         </div>
+        -->
     </div>
 
     
@@ -1041,6 +1044,22 @@ Photography
 
 
 
+<script>
+window.onload = () => {
+  let url = `ws://${window.location.host.replace('8000', '8001')}`
+  let ws = new WebSocket(url)
+  ws.onopen = () => {
+    console.log('Opened autoreload connection to ' + url);
+    ws.onmessage = (msg) => {
+
+      if (msg.data == 'Reload') {
+        window.location.reload()
+      }
+    }
+  }
+}
+</script>
+
 
 <script>
 const button = document.querySelector('#menu-button'); // Hamburger Icon
@@ -1062,7 +1081,7 @@ function decode(a) {
   })
 }; 
 
-const e = "oevqtre.t.urezna" + "@" + "tznvy.pbz";
+const e = "ourezna" + "@" + "ujf.rqh"
 
 const bs = document.querySelectorAll('.copy-email');
 for (const b of bs) {

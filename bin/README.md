@@ -1,1 +1,0 @@
-Place [tailwindcss executables](https://github.com/tailwindlabs/tailwindcss/releases) in this folder (not committing them, though).
